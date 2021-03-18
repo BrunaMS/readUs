@@ -1,12 +1,11 @@
 package readUs;
 
 import java.util.Arrays;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Book {
 	
-	// Variáveis (adicionar os privates)
+	// Atributos
 
 	private String name;
 	private String author;
@@ -14,23 +13,27 @@ public class Book {
 	private int firstEdition;
 	private String originalLanguage;
 	private String[] awards;
-	private int numberAwards=0;
+	private int numberAwards;
 	private int numberPages;
 	private int numberPagesRead;
 	// int launchYear; - Mesma coisa de firstEdition
 	private String genre;
 	//EstimatedReadingTime[] estimatedReadingTime;
-	private long atributteProgress=numberPagesRead/numberPages;
+	private long progress;
 	Scanner ler = new Scanner(System.in);
 	
-	
+	// Initializes the class attributes
+	public Book() {
+		updateProgress();
+		numberAwards = 0;
+	}
 	// 
 
 	@Override
 	public String toString() {
-		return "Livro [Nome:" + name + ", Autor:" + author + ", Nacionalidade:" + nationality + ", Primeira Edição:"
-				+ firstEdition + ", Linguagem Original =" + originalLanguage + ", Prêmios:" + Arrays.toString(awards)
-				+ ", Número de Páginas =" + numberPages + "Número de Páginas Lidas:"+ numberPagesRead+", Genêro =" + genre +"]";
+		return "Livro [Nome:" + name + ", Autor:" + author + ", Nacionalidade:" + nationality + ", Primeira Ediï¿½ï¿½o:"
+				+ firstEdition + ", Linguagem Original =" + originalLanguage + ", Prï¿½mios:" + Arrays.toString(awards)
+				+ ", Nï¿½mero de Pï¿½ginas =" + numberPages + "Nï¿½mero de Pï¿½ginas Lidas:"+ numberPagesRead+", Genï¿½ro =" + genre +"]";
 	}
 
 	
@@ -122,6 +125,7 @@ public class Book {
 
 	public void setNumberPagesRead(int numberPagesRead) {
 		this.numberPagesRead = numberPagesRead;
+		updateProgress();
 	}
 
 
@@ -133,15 +137,16 @@ public class Book {
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-
-
-	//Get() e set() para os atributos da classe
-
 	
-
+	public void addAward(String award){
+		this.awards[this.numberAwards++] = award;
+	}
 	
-
-
-
-
+	private void updateProgress() {
+		this.progress = this.numberPagesRead / this.numberPages;
+	}
+	
+	public long getProgress() {
+		return this.progress;
+	}
 }
