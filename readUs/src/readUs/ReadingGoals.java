@@ -1,12 +1,32 @@
 package readUs;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ReadingGoals {
 	
 	// Atributos
 
-	long desiredNumber;
-	long concludedNumber;
-	String typeGoal;
+	private long desiredNumber;
+	private long concludedNumber;
+	private String typeGoal;
+	private String timestamp;
+	
+	
+	public ReadingGoals(String typeGoal, long desiredNumber, long concludedNumber) {
+		setTypeGoal(typeGoal);
+		setDesiredNumber(desiredNumber);
+		setConcludedNumber(concludedNumber);	
+	}
+	
+	public ReadingGoals(String typeGoal, long desiredNumber, long concludedNumber, String date_ddmmyyyy) {
+		setTypeGoal(typeGoal);
+		setDesiredNumber(desiredNumber);
+		setConcludedNumber(concludedNumber);
+		setTimestamp(date_ddmmyyyy);
+		
+	}
 
 
     public long getDesiredNumber() {
@@ -21,6 +41,9 @@ public class ReadingGoals {
 		return concludedNumber;
 	}
 
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
 
 	public void setConcludedNumber(long concludedNumber) {
 		this.concludedNumber = concludedNumber;

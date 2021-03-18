@@ -1,15 +1,17 @@
 package readUs;
 
+// Source: https://jar-download.com/artifacts/org.json
 import org.json.JSONObject;
 
 public class Collection {
 
 	private Book[] books;
-	private int qntBooks = 0;
+	private int qntBooks;
 	private String typeSorting;
+	private ReadingGoals[] goals;
 	
 	public Collection(){
-		
+		qntBooks = 0;
 	}
 	
 	enum sortType {
