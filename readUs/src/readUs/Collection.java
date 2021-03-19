@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 public class Collection {
 
-	private Book[] books;
+	private Literature[] books;
 	private int qntBooks;
 	private String typeSorting;
 	private ReadingGoals[] goals;
@@ -22,11 +22,11 @@ public class Collection {
 		  PROGRESS
 	}
 	
-	public Book[] getbooks() {
+	public Literature[] getbooks() {
 		return books;
 	}
 	
-	public int getqntBooks() {
+	public int getQntBooks() {
 		return qntBooks;
 	}
 
@@ -34,42 +34,52 @@ public class Collection {
 		return typeSorting;
 	}
 	
-	public void setbooks(Book[] newbooks) {
+	public void setBooks(Literature[] newbooks) {
 		books = newbooks;
 	}
 	
-	public void setqntBooks(int newqntBooks) {
+	public void setQntBooks(int newqntBooks) {
 		qntBooks = newqntBooks;
 	}
 
 	public void setTypeSorting(String sorting) {
 		typeSorting = sorting;
 	}
-	
-	public void addBook(String name, int year, String author, String[] awards, 
-			            int numberPages, String genre) {
-		Book newBook = new Book();
-		if(!name.isEmpty()) { 
-			newBook.setName(name);
-		}
-		if(year != 0) {
-			newBook.setFirstEdition(year);
-		}
-		if(!author.isEmpty()) {
-			newBook.setAuthor(author);
-		}
-		for(int award = 0; award < awards.length; award++) {
-			newBook.addAward(awards[award]);
-		}
-		if(numberPages != -1) {
-			newBook.setNumberPages(numberPages);
-		}
-		if(!genre.isEmpty()) {
-			newBook.setGenre(genre);
-		}
-		books[qntBooks] = newBook; // Book
+
+	// Book
+	public void addLiterature(String name, String publisher, String nationality, int firstEdition,
+			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre, 
+			String author) {
+		Literature newBook = new Book();
+		books[qntBooks] = newBook;
 		qntBooks++;
 	}
+	
+	public void addLiterature(String name, String publisher, String nationality, int firstEdition,
+			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre) {
+		Literature newBook = new Magazine();
+		books[qntBooks] = newBook;
+		qntBooks++;
+	}
+	
+	// Comic
+	public void addLiterature(String name, String publisher, String nationality, int firstEdition,
+			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre,
+			String[] writer, String[] penciller, String[] inker, String[] letterer, String[] colorist,
+			String[] mainCharacters) {
+		Literature newBook = new Comic();
+		books[qntBooks] = newBook;
+		qntBooks++;
+	}
+	
+	// TODO (articles)
+//	public void addLiterature(String name, String publisher, String nationality, int firstEdition,
+//			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre, 
+//			int numberPages, String genre) {
+//		Literature newBook = new Article();
+//		books[qntBooks] = newBook;
+//		qntBooks++;
+//	}
 	
 	public void removeBook(String removedBookName) {
 		int idx = getBookIndex(books, removedBookName);
@@ -79,7 +89,7 @@ public class Collection {
 	}
 	
 	
-	private int getBookIndex(Book[] list, String item){
+	private int getBookIndex(Literature[] list, String item){
 		for(int i = 0; i < list.length; i++) {
 			if(list[i].getName().contentEquals(item)) {
 				return i;
@@ -113,7 +123,7 @@ public class Collection {
         for (int i = 0; i < qntBooks; i++) {
             for (int j = i + 1; j < qntBooks; j++) { 
                 if (books[i].getName().compareTo(books[j].getName()) > 0){ //  > 0: Book[i] > Book[j]
-                    Book temp = books[i];						 // == 0: Book[i] == Book[j]
+                	Literature temp = books[i];						 // == 0: Book[i] == Book[j]
                     books[i] = books[j];						 //  < 0: Book[i] < Book[j]
                     books[j] = temp;
                 }
@@ -126,7 +136,7 @@ public class Collection {
         for (int i = 0; i < qntBooks; i++) {
             for (int j = i + 1; j < qntBooks; j++) { 
                 if (books[i].getName().compareTo(books[j].getName()) > 0){ //  > 0: Book[i]  > Book[j]
-                    Book temp = books[i];						 // == 0: Book[i] == Book[j]
+                	Literature temp = books[i];						 // == 0: Book[i] == Book[j]
                     books[i] = books[j];						 //  < 0: Book[i]  < Book[j]
                     books[j] = temp;
                 }
@@ -137,7 +147,7 @@ public class Collection {
         for (int i = 0; i < qntBooks; i++) {
             for (int j = i + 1; j < qntBooks; j++) { 
                 if (books[i].getFirstEdition() > books[j].getFirstEdition()){
-                    Book temp = books[i];						 
+                	Literature temp = books[i];						 
                     books[i] = books[j];						 
                     books[j] = temp;
                 }
@@ -149,7 +159,7 @@ public class Collection {
         for (int i = 0; i < qntBooks; i++) {
             for (int j = i + 1; j < qntBooks; j++) { 
                 if (books[i].getNumberPages() < books[j].getNumberPages()){
-                    Book temp = books[i];						 
+                	Literature temp = books[i];						 
                     books[i] = books[j];						 
                     books[j] = temp;
                 }
@@ -161,7 +171,7 @@ public class Collection {
         for (int i = 0; i < qntBooks; i++) {
             for (int j = i + 1; j < qntBooks; j++) { 
                 if (books[i].getProgress() < books[j].getProgress()){
-                    Book temp = books[i];						 
+                	Literature temp = books[i];						 
                     books[i] = books[j];						 
                     books[j] = temp;
                 }
