@@ -1,7 +1,5 @@
 package readUs;
 
-import java.util.Arrays;
-
 public class Comic extends Literature{
 
 	private String[] writer;
@@ -16,17 +14,7 @@ public class Comic extends Literature{
 			
 		}
 		
-		// Retorna os atributos
-		@Override
-		public String toString() {
-			return "HQ [Nome:" + name + "Roteirista(s):"+ writer + "Ilustrador(es):" + penciller + "Finalista(s)"
-					+ inker + "Letrista(s)" + letterer + "Colorista(s)" + collorist + "Personagens Principais:"
-					+ mainCharacters +", Editora:" + publisher + ", Nacionalidade:" + nationality + ", Primeira Edicao:"
-					+ firstEdition + ", Linguagem Original =" + originalLanguage + ", Premios:" + Arrays.toString(awards)
-					+ ", Numero de Paginas =" + numberPages + "Numero de Paginas Lidas:"+ numberPagesRead +", Genero =" + genre + "]";
-		}
-		
-// Gets and Sets
+		// Gets and Sets
 		public String[] getWriter() {
 			return writer;
 		}
@@ -74,6 +62,58 @@ public class Comic extends Literature{
 		public void setMainCharacters(String[] mainCharacters) {
 			this.mainCharacters = mainCharacters;
 		}
-	
+
+		public String toString() {	
+			int i = 0;
+			String output = "\n     ** Dados da Comic **\n";
+			output += "Nome: " + getName() + "\n";
+			
+			output += "Roteirista(s): ";
+			for(i = 0; i < writer.length; i++) {
+				output += "\n" + getWriter()[i];
+			}
+			output += "\n";
+			output += "Ilustrador(es): ";
+			for(i = 0; i < penciller.length; i++) {	
+				output += "\n" + getPenciller()[i];
+			}
+			output += "\n";
+	        output += "Finalista(s): ";
+			for(i = 0; i < inker.length; i++) {
+				output += "\n" + getInker()[i];				
+			}
+			output += "\n";
+			output += "Letrista(s): ";
+			for(i = 0; i < letterer.length; i++) {
+				output += "\n" + getLetterer()[i];				
+			}
+			output += "\n";
+			output += "Colorista(s): ";
+			for(i = 0; i < collorist.length; i++) {
+				output += "\n" + getCollorist()[i];				
+			}
+			output += "\n";
+			output += "Personagens Principais: ";
+			for(i = 0; i < mainCharacters.length; i++) {
+				output += "\n" + getMainCharacters()[i];				
+			}
+			output += "\n";
+			output += "Editora: " + getPublisher() + "\n";
+			output += "Nacionalidade: " + getNationality() + "\n";
+			output += "Primeira Edicao: " + getFirstEdition() + "\n";
+			output += "Linguagem Original: " + getOriginalLanguage() + "\n";
+			output += "Genero: " + getGenre() + "\n";
+
+			output += "Premio(s): ";
+			for(i = 0; i < awards.length; i++) {
+				output += "\n" + getAwards()[i];
+			}
+			output += "\n";
+			output += "Numero de Paginas: " + getNumberPages() + "\n";
+			output += "Numero de Paginas Lidas: " + getNumberPagesRead() + "\n";
+			output += "Progresso: " + getProgress() * 100 + "%\n";
+
+			return output;
+		}
 	
 }

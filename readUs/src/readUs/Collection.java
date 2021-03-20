@@ -5,23 +5,36 @@ import org.json.JSONObject;
 
 public class Collection {
 
+	enum sortType {
+		NAME_A_Z,
+		NAME_Z_A,
+		FIRST_EDITION,
+		NUMBER_PAGES,
+		PROGRESS
+	}
+
 	private Literature[] books;
 	private int qntBooks;
-	private String typeSorting;
-	private ReadingGoals[] goals;
+	private sortType typeSorting;
+	private int maxBooks = 100;
+	private int maxAwards = 20;
+	
 	
 	public Collection(){
 		qntBooks = 0;
+		typeSorting = sortType.NAME_A_Z;
+		books = new Literature[maxBooks];
 	}
 	
-	enum sortType {
-		  NAME_A_Z,
-		  NAME_Z_A,
-		  FIRST_EDITION,
-		  NUMBER_PAGES,
-		  PROGRESS
+		
+	public int getMaxAwards() {
+		return maxAwards;
 	}
-	
+
+	public int getMaxBooks() {
+		return maxBooks;
+	}
+
 	public Literature[] getbooks() {
 		return books;
 	}
@@ -30,7 +43,7 @@ public class Collection {
 		return qntBooks;
 	}
 
-	public String getTypeSorting() {
+	public sortType getTypeSorting() {
 		return typeSorting;
 	}
 	
@@ -42,51 +55,64 @@ public class Collection {
 		qntBooks = newqntBooks;
 	}
 
-	public void setTypeSorting(String sorting) {
+	public void setTypeSorting(sortType sorting) {
 		typeSorting = sorting;
 	}
-
+	
 	// Book
 	public void addLiterature(String name, String publisher, String nationality, int firstEdition,
 			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre, 
-			String author) {
-		
-		Book newBook = new Book();
-		books[qntBooks] = newBook;
-		qntBooks++;
-		
-		newBook.setName(name);
-		newBook.setPublisher(publisher);
-		newBook.setNationality(nationality);
-		newBook.setFirstEdition(firstEdition);
-		newBook.setOriginalLanguage(originalLanguage);
-		newBook.setAwards(awards);
-		newBook.setNumberPages(numberPages);
-		newBook.setNumberPagesRead(numberPagesRead);
-		newBook.setGenre(genre);
-		newBook.setAuthor(author);
+			String[] author) {
+		if(qntBooks < (this.maxBooks - 1)) {
+			Book newBook = new Book();
+
+			newBook.setName(name);
+			newBook.setPublisher(publisher);
+			newBook.setNationality(nationality);
+			newBook.setFirstEdition(firstEdition);
+			newBook.setOriginalLanguage(originalLanguage);
+			newBook.setAwards(awards);
+			newBook.setNumberPages(numberPages);
+			newBook.setNumberPagesRead(numberPagesRead);
+			newBook.setGenre(genre);
+			newBook.setAuthor(author);
+	
+			books[qntBooks] = newBook;
+			qntBooks++;
+			sortBooks(typeSorting);
+		}
+		else {
+			System.out.println("Max number exceeded.");
+		}
 	}
 	
+	// Magazine
 	public void addLiterature(String name, String publisher, String nationality, int firstEdition,
 			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre,
 			String[] headline, String frequency, String coverDate) {
-		
-		Magazine newMagazine = new Magazine();
-		books[qntBooks] = newMagazine;
-		qntBooks++;
-		
-		newMagazine.setName(name);
-		newMagazine.setPublisher(publisher);
-		newMagazine.setNationality(nationality);
-		newMagazine.setFirstEdition(firstEdition);
-		newMagazine.setOriginalLanguage(originalLanguage);
-		newMagazine.setAwards(awards);
-		newMagazine.setNumberPages(numberPages);
-		newMagazine.setNumberPagesRead(numberPagesRead);
-		newMagazine.setGenre(genre);
-		newMagazine.setHeadline(headline);
-		newMagazine.setFrequency(frequency);
-		newMagazine.setCoverDate(coverDate);
+		if(qntBooks < (this.maxBooks - 1)) {
+			Magazine newMagazine = new Magazine();
+
+			newMagazine.setName(name);
+			newMagazine.setPublisher(publisher);
+			newMagazine.setNationality(nationality);
+			newMagazine.setFirstEdition(firstEdition);
+			newMagazine.setOriginalLanguage(originalLanguage);
+			newMagazine.setAwards(awards);
+			newMagazine.setNumberPages(numberPages);
+			newMagazine.setNumberPagesRead(numberPagesRead);
+			newMagazine.setGenre(genre);
+			newMagazine.setHeadline(headline);
+			newMagazine.setFrequency(frequency);
+			newMagazine.setCoverDate(coverDate);
+	
+			books[qntBooks] = newMagazine;
+			qntBooks++;
+			sortBooks(typeSorting);
+		}
+		else {
+			System.out.println("Max number exceeded.");
+		}
 	}
 	
 	// Comic
@@ -94,34 +120,45 @@ public class Collection {
 			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre,
 			String[] writer, String[] penciller, String[] inker, String[] letterer, String[] collorist,
 			String[] mainCharacters) {
-		
-		Comic newComic = new Comic();
-		books[qntBooks] = newComic;
-		qntBooks++;
-		
-		newComic.setName(name);
-		newComic.setPublisher(publisher);
-		newComic.setNationality(nationality);
-		newComic.setFirstEdition(firstEdition);
-		newComic.setOriginalLanguage(originalLanguage);
-		newComic.setAwards(awards);
-		newComic.setNumberPages(numberPages);
-		newComic.setNumberPagesRead(numberPagesRead);
-		newComic.setGenre(genre);
-		newComic.setWriter(writer);
-		newComic.setPenciller(penciller);
-		newComic.setInker(inker);
-		newComic.setLetterer(letterer);
-		newComic.setPenciller(penciller);
-		newComic.setCollorist(collorist);
-		newComic.setMainCharacters(mainCharacters);
+		if(qntBooks < (this.maxBooks - 1)) {
+			Comic newComic = new Comic();
+			
+			newComic.setName(name);
+			newComic.setPublisher(publisher);
+			newComic.setNationality(nationality);
+			newComic.setFirstEdition(firstEdition);
+			newComic.setOriginalLanguage(originalLanguage);
+			newComic.setAwards(awards);
+			newComic.setNumberPages(numberPages);
+			newComic.setNumberPagesRead(numberPagesRead);
+			newComic.setGenre(genre);
+			newComic.setWriter(writer);
+			newComic.setPenciller(penciller);
+			newComic.setInker(inker);
+			newComic.setLetterer(letterer);
+			newComic.setPenciller(penciller);
+			newComic.setCollorist(collorist);
+			newComic.setMainCharacters(mainCharacters);
+	
+			books[qntBooks] = newComic;
+			qntBooks++;
+			sortBooks(typeSorting);
+		}
+		else {
+			System.out.println("Max number exceeded.");
+		}
 	}
 	
 	public void removeBook(String removedBookName) {
 		int idx = getBookIndex(books, removedBookName);
-		books[idx] = books[qntBooks - 1];
-		books[qntBooks - 1] = null;
-		qntBooks--;
+		if(qntBooks > 0) {
+			books[idx] = books[qntBooks - 1];
+			books[qntBooks - 1] = null;
+			qntBooks--;			
+		}
+		else {
+			System.out.println("There are no books to remove here");
+		}
 	}
 	
 	
@@ -135,7 +172,7 @@ public class Collection {
 		return -1;
 	}
 
-	public void sortbooks(sortType sort){
+	public void sortBooks(sortType sort){
 		switch(sort) {
 			case NAME_A_Z:
 				orderLibraryAZ();
@@ -215,22 +252,28 @@ public class Collection {
         }
 	}
 
-	public String toString() {
+	public JSONObject toJson() {
 		JSONObject libraryJson = new JSONObject();
-		libraryJson.put("books", books.toString());
+		for(int i = 0; i < this.qntBooks; i++) {
+			libraryJson.put("books", books[i].toString());
+		}
 		libraryJson.put("qntBooks", qntBooks);
 		libraryJson.put("typeSorting", typeSorting);
 		
-		return libraryJson.toString();
-		
+		return libraryJson;
 	}
-	//String name, String publisher, String nationality, int firstEdition,
-	//String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre, 
-	//String author
+
+	public String toString() {
+		String output = "** Biblioteca **\n";
+		for(int i = 0; i < this.qntBooks; i++) {
+			output += books[i].toString() + "\n";
+		}
+		output += "Quantidade de Livros: " + qntBooks + "\n";
+		output += "Ordenação: " + typeSorting + "\n";
+		
+		return output;
+	}
+
 	public static void main(String[] args){
-		Collection	myLibrary = new Collection();
-		String[] awards = new String[0];
-		myLibrary.addLiterature("I am four number", "HarperTorch", "English", 2010, "English", awards, 440, 0, "Science fiction", "Pittacus Lore"); 
-		System.out.println(myLibrary.toString());
 	}
 }

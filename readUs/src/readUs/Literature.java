@@ -1,6 +1,4 @@
 package readUs;
-
-import java.util.Arrays;
 import java.util.Scanner;
 
 public abstract class Literature {
@@ -19,23 +17,13 @@ public abstract class Literature {
 	// int launchYear; - Mesma coisa de firstEdition
 	protected String genre;
 	//EstimatedReadingTime[] estimatedReadingTime;
-	protected long progress;
+	protected float progress;
 	Scanner ler = new Scanner(System.in);
 	
 	// Initializes the class attributes
 	public Literature() {
-		updateProgress();
 		numberAwards = 0;
 	}
-	// 
-	//Retorna os atributos
-	@Override
-	public String toString() {
-		return "Obra [Nome:" + name + ", Editora:" + publisher + ", Nacionalidade:" + nationality + ", Primeira Edicao:"
-				+ firstEdition + ", Linguagem Original =" + originalLanguage + ", Premios:" + Arrays.toString(awards)
-				+ ", Numero de Paginas =" + numberPages + "Numero de Paginas Lidas:"+ numberPagesRead+", Genero =" + genre +"]";
-	}
-
 	
 	//Get() e set() para os atributos da classe
 	public String getName() {
@@ -47,7 +35,6 @@ public abstract class Literature {
 		this.name = name;
 	}
 
-
 	public String getPublisher() {
 		return publisher;
 	}
@@ -55,12 +42,6 @@ public abstract class Literature {
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
-
-
-	public void setAuthor(String publisher) {
-		this.publisher = publisher;
-	}
-
 
 	public String getNationality() {
 		return nationality;
@@ -147,10 +128,10 @@ public abstract class Literature {
 	}
 	
 	private void updateProgress() {
-		this.progress = this.numberPagesRead / this.numberPages;
+		this.progress = (float)this.numberPagesRead / (float)this.numberPages;
 	}
 	
-	public long getProgress() {
+	public float getProgress() {
 		return this.progress;
 	}
 	

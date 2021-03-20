@@ -1,5 +1,7 @@
 package readUs;
 
+//Source: https://jar-download.com/artifacts/org.json
+import org.json.JSONObject;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,17 +19,20 @@ public class ReadingGoals{
 	}
 	
 	// Atributos
-	private long desiredNumber;
-	private long concludedNumber;
+	private float desiredNumber;
+	private float concludedNumber;
 	private goalType typeGoal;
+	private float progress;
 	private Timestamp startTimestamp;
 	private Timestamp endTimestamp;
-	
 	
 	public ReadingGoals(goalType typeGoal, long desiredNumber, long concludedNumber) {
 		setTypeGoal(typeGoal);
 		setDesiredNumber(desiredNumber);
 		setConcludedNumber(concludedNumber);	
+		
+		startTimestamp = null;
+		endTimestamp = null;
 	}
 	
 	public ReadingGoals(goalType typeGoal, long desiredNumber, long concludedNumber, String deadline_ddmmyyyy) {
@@ -44,15 +49,16 @@ public class ReadingGoals{
 	}
 
 
-    public long getDesiredNumber() {
+    public float getDesiredNumber() {
 		return desiredNumber;
 	}
 
 	public void setDesiredNumber(long desiredNumber) {
 		this.desiredNumber = desiredNumber;
+		updateProgress();
 	}
 
-	public long getConcludedNumber() {
+	public float getConcludedNumber() {
 		return concludedNumber;
 	}
 
@@ -74,6 +80,7 @@ public class ReadingGoals{
 
 	public void setConcludedNumber(long concludedNumber) {
 		this.concludedNumber = concludedNumber;
+		updateProgress();
 	}
 
 	
@@ -87,7 +94,7 @@ public class ReadingGoals{
 	}
 	
 	Timestamp dateToTimestamp(String date) {
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("ddmmyyyy");
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
 	    Date parsedDate = null;
 		try {
 			parsedDate = dateFormat.parse(date);
@@ -99,24 +106,40 @@ public class ReadingGoals{
 	    return timestamp;
 	}
 
+	private void updateProgress() {
+		this.progress = this.concludedNumber / this.desiredNumber;
+	}
+	
+	public float getProgress() {
+		updateProgress();
+		return this.progress;
+	}	
 
-//	public String toString() {
-//		return "Meta de Leitura \n Foram lidos" + concludedNumber+" de" + typeGoal + "de"+ desiredNumber +" desejados.";
-//	}
-	public String toString() {
+	public JSONObject toJson() {
 		JSONObject readingGoalsJson = new JSONObject();
 		readingGoalsJson.put("concludedNumber", concludedNumber);
 		readingGoalsJson.put("typeGoal", typeGoal);
 		readingGoalsJson.put("desiredNumber", desiredNumber);
+		return readingGoalsJson;
+	}
+
+	
+	public String toString() {
+		String output = "** Goals Data **\n";
 		
-		return readingGoalsJson.toString();
+		output += "Tipo de meta: " + getTypeGoal() + '\n';
+		output += "Quantidade Concluida: " + getConcludedNumber() + '\n';
+		output += "Quantidade Desejada: " + getDesiredNumber() + '\n' ;
+		output += "Progresso: " + getProgress()*100 + "%\n" ;
 		
+		if(endTimestamp != null) {
+			output += "Data inicial: "  + getStartTimestamp() + '\n';
+			output += "Data Final: "  + getEndTimestamp() + '\n';
+		}
+		return output;
 	}
 	
 	public static void main(String[] args){
-		// goalType typeGoal, long desiredNumber, long concludedNumber
-		ReadingGoals myGoals = new ReadingGoals(goalType.PAGES, 1000, 100);
-		ReadingGoals myLimitedGoals = new ReadingGoals(goalType.PAGES, 1000, 100, "31122021");
 		
 	}
 	

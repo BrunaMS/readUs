@@ -1,7 +1,5 @@
 package readUs;
 
-import java.util.Arrays;
-
 public class Magazine extends Literature {
 	
 	private String[] headline;
@@ -10,51 +8,69 @@ public class Magazine extends Literature {
 	
 	
 	// Initializes the class attributes
-			public Magazine() {
-				
-			}
-			
-			
-	// Retorna os atributos
-			@Override
-			public String toString() {
-				return "Revista [Nome:" + name + "Manchete"+ headline + "Frequencia da publicacao:"+frequency+"Data da publicacao"+coverDate
-			+", Editora:" + publisher + ", Nacionalidade:" + nationality + ", Primeira Edicao:"
-						+ firstEdition + ", Linguagem Original =" + originalLanguage + ", Premios:" + Arrays.toString(awards)
-						+ ", Numero de Paginas =" + numberPages + "Numero de Paginas Lidas:"+ numberPagesRead+", Genero =" + genre +"]";
-			}
+	public Magazine() {
+		
+	}
+
+	
+	public String toString() {
+		int i;
+		String output = "\n     ** Dados da Revista **\n";
+		output += "Nome: " + getName() + "\n";
+		
+		output += "Manchete(s)': ";
+		for(i = 0; i < headline.length; i++) {
+			output += "\n" + getHeadline()[i] + "     ";
+		}
+		output += "\n";
+		output += "Frequência: " + getFrequency() + "\n";
+		output += "Data da Capa: " + getCoverDate() + "\n";
+		output += "Editora: " + getPublisher() + "\n";
+		output += "Nacionalidade: " + getNationality() + "\n";
+		output += "Primeira Edicao: " + getFirstEdition() + "\n";
+		output += "Linguagem Original: " + getOriginalLanguage() + "\n";
+		output += "Genero: " + getGenre() + "\n";
+
+		output += "Premio(s): \n";
+		for(i = 0; i < awards.length; i++) {
+			output += "\n" + getAwards()[i] + "     ";
+		}
+		output += "\n";
+		output += "Numero de Paginas: " + getNumberPages() + "\n";
+		output += "Numero de Paginas Lidas: " + getNumberPagesRead() + "\n";
+		output += "Progresso: " + getProgress()* 100 + "%\n";
+		
+		return output;
+	}
 
 
-//Gets and Sets
-			public String[] getHeadline() {
-				return headline;
-			}
+	// Gets and Sets
+	public String[] getHeadline() {
+		return headline;
+	}
 
 
-			public void setHeadline(String[] headline) {
-				this.headline = headline;
-			}
+	public void setHeadline(String[] headline) {
+		this.headline = headline;
+	}
 
 
-			public String getFrequency() {
-				return frequency;
-			}
+	public String getFrequency() {
+		return frequency;
+	}
 
 
-			public void setFrequency(String frequency) {
-				this.frequency = frequency;
-			}
+	public void setFrequency(String frequency) {
+		this.frequency = frequency;
+	}
 
 
-			public String getCoverDate() {
-				return coverDate;
-			}
+	public String getCoverDate() {
+		return coverDate;
+	}
 
 
-			public void setCoverDate(String coverDate) {
-				this.coverDate = coverDate;
-			}
-
-			
-			
+	public void setCoverDate(String coverDate) {
+		this.coverDate = coverDate;
+	}
 }
