@@ -16,12 +16,16 @@ public class Collection {
 	private Literature[] books;
 	private int qntBooks;
 	private sortType typeSorting;
-	private int maxBooks = 100;
-	private int maxAwards = 20;
+	private int maxBooks;
+	private int maxAwards;
 	
 	
 	public Collection(){
 		qntBooks = 0;
+		// Can not be changed
+		maxBooks = 100;
+		// Can not be changed
+		maxAwards = 20;
 		typeSorting = sortType.NAME_A_Z;
 		books = new Literature[maxBooks];
 	}
@@ -35,7 +39,7 @@ public class Collection {
 		return maxBooks;
 	}
 
-	public Literature[] getbooks() {
+	public Literature[] getBooks() {
 		return books;
 	}
 	
@@ -47,12 +51,12 @@ public class Collection {
 		return typeSorting;
 	}
 	
-	public void setBooks(Literature[] newbooks) {
-		books = newbooks;
+	public void setBooks(Literature[] newBooks) {
+		books = newBooks;
 	}
 	
-	public void setQntBooks(int newqntBooks) {
-		qntBooks = newqntBooks;
+	public void setQntBooks(int newQntBooks) {
+		qntBooks = newQntBooks;
 	}
 
 	public void setTypeSorting(sortType sorting) {
@@ -150,7 +154,7 @@ public class Collection {
 	}
 	
 	public void removeBook(String removedBookName) {
-		int idx = getBookIndex(books, removedBookName);
+		int idx = getBookIndex(removedBookName);
 		if(qntBooks > 0) {
 			books[idx] = books[qntBooks - 1];
 			books[qntBooks - 1] = null;
@@ -162,9 +166,9 @@ public class Collection {
 	}
 	
 	
-	private int getBookIndex(Literature[] list, String item){
-		for(int i = 0; i < list.length; i++) {
-			if(list[i].getName().contentEquals(item)) {
+	private int getBookIndex(String itemName){
+		for(int i = 0; i < this.books.length; i++) {
+			if(this.books[i].getName().contentEquals(itemName)) {
 				return i;
 			}
 				
@@ -216,6 +220,7 @@ public class Collection {
             }
         }
 	}
+	
 	private void orderLibraryYear() {
         for (int i = 0; i < qntBooks; i++) {
             for (int j = i + 1; j < qntBooks; j++) { 
@@ -275,5 +280,6 @@ public class Collection {
 	}
 
 	public static void main(String[] args){
+		
 	}
 }

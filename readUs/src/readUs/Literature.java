@@ -1,10 +1,8 @@
 package readUs;
-import java.util.Scanner;
 
 public abstract class Literature {
 	
 	// Atributos
-
 	protected String name;
 	protected String publisher;
 	protected String nationality;
@@ -14,11 +12,9 @@ public abstract class Literature {
 	protected int numberAwards;
 	protected int numberPages;
 	protected int numberPagesRead;
-	// int launchYear; - Mesma coisa de firstEdition
 	protected String genre;
-	//EstimatedReadingTime[] estimatedReadingTime;
 	protected float progress;
-	Scanner ler = new Scanner(System.in);
+	// EstimatedReadingTime[] estimatedReadingTime; // TODO
 	
 	// Initializes the class attributes
 	public Literature() {
@@ -29,7 +25,6 @@ public abstract class Literature {
 	public String getName() {
 		return name;
 	}
-
 
 	public void setName(String name) {
 		this.name = name;
@@ -56,7 +51,6 @@ public abstract class Literature {
 	public int getFirstEdition() {
 		return firstEdition;
 	}
-
 
 	public void setFirstEdition(int firstEdition) {
 		this.firstEdition = firstEdition;
@@ -132,6 +126,7 @@ public abstract class Literature {
 	}
 	
 	public float getProgress() {
+		updateProgress();
 		return this.progress;
 	}
 	

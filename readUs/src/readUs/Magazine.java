@@ -1,5 +1,7 @@
 package readUs;
 
+import org.json.JSONObject;
+
 public class Magazine extends Literature {
 	
 	private String[] headline;
@@ -11,7 +13,6 @@ public class Magazine extends Literature {
 	public Magazine() {
 		
 	}
-
 	
 	public String toString() {
 		int i;
@@ -72,5 +73,12 @@ public class Magazine extends Literature {
 
 	public void setCoverDate(String coverDate) {
 		this.coverDate = coverDate;
+	}
+	
+	// TODO
+	public JSONObject toJson() {
+		JSONObject magazineJson = new JSONObject();
+		
+		return magazineJson;
 	}
 }

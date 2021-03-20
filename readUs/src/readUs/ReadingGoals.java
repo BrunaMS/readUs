@@ -7,8 +7,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.json.JSONObject;
-
 public class ReadingGoals{
 	
 	enum goalType {
@@ -18,15 +16,15 @@ public class ReadingGoals{
 		WORDS
 	}
 	
-	// Atributos
+	// Attributes
 	private float desiredNumber;
 	private float concludedNumber;
-	private goalType typeGoal;
 	private float progress;
+	private goalType typeGoal;
 	private Timestamp startTimestamp;
 	private Timestamp endTimestamp;
 	
-	public ReadingGoals(goalType typeGoal, long desiredNumber, long concludedNumber) {
+	public ReadingGoals(goalType typeGoal, float desiredNumber, float concludedNumber) {
 		setTypeGoal(typeGoal);
 		setDesiredNumber(desiredNumber);
 		setConcludedNumber(concludedNumber);	
@@ -35,7 +33,7 @@ public class ReadingGoals{
 		endTimestamp = null;
 	}
 	
-	public ReadingGoals(goalType typeGoal, long desiredNumber, long concludedNumber, String deadline_ddmmyyyy) {
+	public ReadingGoals(goalType typeGoal, float desiredNumber, float concludedNumber, String deadline_ddmmyyyy) {
 		Date date = new Date();
 		
 		setTypeGoal(typeGoal);
@@ -53,7 +51,7 @@ public class ReadingGoals{
 		return desiredNumber;
 	}
 
-	public void setDesiredNumber(long desiredNumber) {
+	public void setDesiredNumber(float desiredNumber) {
 		this.desiredNumber = desiredNumber;
 		updateProgress();
 	}
@@ -61,9 +59,18 @@ public class ReadingGoals{
 	public float getConcludedNumber() {
 		return concludedNumber;
 	}
+	
+	public void setConcludedNumber(float concludedNumber) {
+		this.concludedNumber = concludedNumber;
+		updateProgress();
+	}
 
-	public void set(Timestamp timestamp) {
+	public void setStartTimestamp(Timestamp timestamp) {
 		this.startTimestamp = timestamp;
+	}
+
+	public Timestamp getStartTimestamp() {
+		return this.startTimestamp;
 	}
 
 	public void setEndTimestamp(Timestamp timestamp) {
@@ -74,16 +81,6 @@ public class ReadingGoals{
 		return this.endTimestamp;
 	}
 
-	public Timestamp getStartTimestamp() {
-		return this.startTimestamp;
-	}
-
-	public void setConcludedNumber(long concludedNumber) {
-		this.concludedNumber = concludedNumber;
-		updateProgress();
-	}
-
-	
 	public goalType getTypeGoal() {
 		return typeGoal;
 	}
@@ -93,7 +90,7 @@ public class ReadingGoals{
 		this.typeGoal = typeGoal;
 	}
 	
-	Timestamp dateToTimestamp(String date) {
+	private Timestamp dateToTimestamp(String date) {
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
 	    Date parsedDate = null;
 		try {

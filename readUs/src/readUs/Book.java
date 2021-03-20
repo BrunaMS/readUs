@@ -1,5 +1,4 @@
 package readUs;
-
 import org.json.JSONObject;
 
 public class Book extends Literature{
@@ -10,6 +9,18 @@ public class Book extends Literature{
 	public Book() {
 		
 	}
+
+
+	// Get and Set
+	public String[] getAuthor() {
+		return author;
+	}
+
+	
+	public void setAuthor(String[] author) {
+		this.author = author;
+	}
+
 
 	
 	public JSONObject toJson() {
@@ -49,15 +60,5 @@ public class Book extends Literature{
 		output += "\n";
 		return output;	
 	}
-
-	// Get and Set
-	public String[] getAuthor() {
-		return author;
-	}
-
 	
-	public void setAuthor(String[] author) {
-		this.author = author;
-	}
-
 }
