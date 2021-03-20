@@ -15,14 +15,15 @@ public class Comic extends Literature{
 		public Comic() {
 			
 		}
-	
-		//Retorna os atributos
+		
+		// Retorna os atributos
 		@Override
 		public String toString() {
-			return "HQ [Nome:" + name + "Roteirista(s):"+ writer+ "Ilustrador(es):"+penciller+ "Finalista(s)"+inker+"Letrista(s)"+letterer+ "Colorista(s)"+ collorist+"Personagens Principais:"
-					+ mainCharacters+", Editora:" + publisher + ", Nacionalidade:" + nationality + ", Primeira Edição:"
-					+ firstEdition + ", Linguagem Original =" + originalLanguage + ", Prêmios:" + Arrays.toString(awards)
-					+ ", Número de Páginas =" + numberPages + "Número de Páginas Lidas:"+ numberPagesRead+", Gênero =" + genre +"]";
+			return "HQ [Nome:" + name + "Roteirista(s):"+ writer + "Ilustrador(es):" + penciller + "Finalista(s)"
+					+ inker + "Letrista(s)" + letterer + "Colorista(s)" + collorist + "Personagens Principais:"
+					+ mainCharacters +", Editora:" + publisher + ", Nacionalidade:" + nationality + ", Primeira Edicao:"
+					+ firstEdition + ", Linguagem Original =" + originalLanguage + ", Premios:" + Arrays.toString(awards)
+					+ ", Numero de Paginas =" + numberPages + "Numero de Paginas Lidas:"+ numberPagesRead +", Genero =" + genre + "]";
 		}
 		
 // Gets and Sets

@@ -31,9 +31,9 @@ public abstract class Literature {
 	//Retorna os atributos
 	@Override
 	public String toString() {
-		return "Obra [Nome:" + name + ", Editora:" + publisher + ", Nacionalidade:" + nationality + ", Primeira Edi��o:"
-				+ firstEdition + ", Linguagem Original =" + originalLanguage + ", Pr�mios:" + Arrays.toString(awards)
-				+ ", N�mero de P�ginas =" + numberPages + "N�mero de P�ginas Lidas:"+ numberPagesRead+", G�nero =" + genre +"]";
+		return "Obra [Nome:" + name + ", Editora:" + publisher + ", Nacionalidade:" + nationality + ", Primeira Edicao:"
+				+ firstEdition + ", Linguagem Original =" + originalLanguage + ", Premios:" + Arrays.toString(awards)
+				+ ", Numero de Paginas =" + numberPages + "Numero de Paginas Lidas:"+ numberPagesRead+", Genero =" + genre +"]";
 	}
 
 	

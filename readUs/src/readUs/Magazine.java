@@ -15,13 +15,13 @@ public class Magazine extends Literature {
 			}
 			
 			
-	//Retorna os atributos
+	// Retorna os atributos
 			@Override
 			public String toString() {
-				return "Revista [Nome:" + name + "Manchete"+ headline + "Frequência da publicação:"+frequency+"Data da publicação"+coverDate
-			+", Editora:" + publisher + ", Nacionalidade:" + nationality + ", Primeira Edição:"
-						+ firstEdition + ", Linguagem Original =" + originalLanguage + ", Prêmios:" + Arrays.toString(awards)
-						+ ", Número de Páginas =" + numberPages + "Número de Páginas Lidas:"+ numberPagesRead+", Gênero =" + genre +"]";
+				return "Revista [Nome:" + name + "Manchete"+ headline + "Frequencia da publicacao:"+frequency+"Data da publicacao"+coverDate
+			+", Editora:" + publisher + ", Nacionalidade:" + nationality + ", Primeira Edicao:"
+						+ firstEdition + ", Linguagem Original =" + originalLanguage + ", Premios:" + Arrays.toString(awards)
+						+ ", Numero de Paginas =" + numberPages + "Numero de Paginas Lidas:"+ numberPagesRead+", Genero =" + genre +"]";
 			}
 
 

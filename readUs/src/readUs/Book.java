@@ -12,9 +12,9 @@ public class Book extends Literature{
 	}
 
 	public String toString() {
-		return "Livro [Nome:" + name + "Autor(es):"+ author+ ", Editora:" + publisher + ", Nacionalidade:" + nationality + ", Primeira Edi��o:"
-				+ firstEdition + ", Linguagem Original =" + originalLanguage + ", Pr�mios:" + Arrays.toString(awards)
-				+ ", N�mero de P�ginas =" + numberPages + "N�mero de P�ginas Lidas:"+ numberPagesRead+", G�nero =" + genre +"]";
+		return "Livro [Nome:" + name + "Autor(es):"+ author+ ", Editora:" + publisher + ", Nacionalidade:" + nationality + ", Primeira Edicao:"
+				+ firstEdition + ", Linguagem Original =" + originalLanguage + ", Premios:" + Arrays.toString(awards)
+				+ ", Numero de Paginas =" + numberPages + "Numero de Paginas Lidas:"+ numberPagesRead+", Genero =" + genre +"]";
 	}
 
 	// Get and Set
