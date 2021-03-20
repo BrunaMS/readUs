@@ -11,12 +11,10 @@ public class Book extends Literature{
 		
 	}
 
-	
-	@//Retorna os atributosOverride
 	public String toString() {
-		return "Livro [Nome:" + name + "Autor(es):"+ author+ ", Editora:" + publisher + ", Nacionalidade:" + nationality + ", Primeira Edição:"
-				+ firstEdition + ", Linguagem Original =" + originalLanguage + ", Prêmios:" + Arrays.toString(awards)
-				+ ", Número de Páginas =" + numberPages + "Número de Páginas Lidas:"+ numberPagesRead+", Gênero =" + genre +"]";
+		return "Livro [Nome:" + name + "Autor(es):"+ author+ ", Editora:" + publisher + ", Nacionalidade:" + nationality + ", Primeira Ediï¿½ï¿½o:"
+				+ firstEdition + ", Linguagem Original =" + originalLanguage + ", Prï¿½mios:" + Arrays.toString(awards)
+				+ ", Nï¿½mero de Pï¿½ginas =" + numberPages + "Nï¿½mero de Pï¿½ginas Lidas:"+ numberPagesRead+", Gï¿½nero =" + genre +"]";
 	}
 
 	// Get and Set

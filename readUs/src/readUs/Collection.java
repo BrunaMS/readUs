@@ -50,7 +50,8 @@ public class Collection {
 	public void addLiterature(String name, String publisher, String nationality, int firstEdition,
 			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre, 
 			String author) {
-		Literature newBook = new Book();
+		
+		Book newBook = new Book();
 		books[qntBooks] = newBook;
 		qntBooks++;
 		
@@ -67,8 +68,10 @@ public class Collection {
 	}
 	
 	public void addLiterature(String name, String publisher, String nationality, int firstEdition,
-			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre) {
-		Literature newMagazine = new Magazine();
+			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre,
+			String[] headline, String frequency, String coverDate) {
+		
+		Magazine newMagazine = new Magazine();
 		books[qntBooks] = newMagazine;
 		qntBooks++;
 		
@@ -81,14 +84,18 @@ public class Collection {
 		newMagazine.setNumberPages(numberPages);
 		newMagazine.setNumberPagesRead(numberPagesRead);
 		newMagazine.setGenre(genre);
+		newMagazine.setHeadline(headline);
+		newMagazine.setFrequency(frequency);
+		newMagazine.setCoverDate(coverDate);
 	}
 	
 	// Comic
 	public void addLiterature(String name, String publisher, String nationality, int firstEdition,
 			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre,
-			String[] writer, String[] penciller, String[] inker, String[] letterer, String[] colorist,
+			String[] writer, String[] penciller, String[] inker, String[] letterer, String[] collorist,
 			String[] mainCharacters) {
-		Literature newComic = new Comic();
+		
+		Comic newComic = new Comic();
 		books[qntBooks] = newComic;
 		qntBooks++;
 		
@@ -106,30 +113,8 @@ public class Collection {
 		newComic.setInker(inker);
 		newComic.setLetterer(letterer);
 		newComic.setPenciller(penciller);
-		newComic.setColorist(colorist);
+		newComic.setCollorist(collorist);
 		newComic.setMainCharacters(mainCharacters);
-	}
-	
-	//	(articles)
-	public void addLiterature(String name, String publisher, String nationality, int firstEdition,
-			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre, 
-			String[] headline, String frequency, String coverDate) {
-		Literature newArticle = new Article();
-		books[qntBooks] = newArticle;
-		qntBooks++;
-		
-		newArticle.setName(name);
-		newArticle.setPublisher(publisher);
-		newArticle.setNationality(nationality);
-		newArticle.setFirstEdition(firstEdition);
-		newArticle.setOriginalLanguage(originalLanguage);
-		newArticle.setAwards(awards);
-		newArticle.setNumberPages(numberPages);
-		newArticle.setNumberPagesRead(numberPagesRead);
-		newArticle.setGenre(genre);
-		newArticle.setHeadline(headline);
-		newArticle.setFrequency(frequency);
-		newArticle.setCoverDate(coverDate);
 	}
 	
 	public void removeBook(String removedBookName) {
@@ -244,7 +229,8 @@ public class Collection {
 	//String author
 	public static void main(String[] args){
 		Collection	myLibrary = new Collection();
-		myLibrary.addLiterature("I am four number", "HarperTorch", "English", 2010, "English", [""], 440, 0, "Science fiction", "Pittacus Lore"); 
+		String[] awards = new String[0];
+		myLibrary.addLiterature("I am four number", "HarperTorch", "English", 2010, "English", awards, 440, 0, "Science fiction", "Pittacus Lore"); 
 		System.out.println(myLibrary.toString());
 	}
 }

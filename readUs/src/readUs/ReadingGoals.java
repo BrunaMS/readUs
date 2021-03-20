@@ -115,8 +115,8 @@ public class ReadingGoals{
 	
 	public static void main(String[] args){
 		// goalType typeGoal, long desiredNumber, long concludedNumber
-		ReadingGoals myGoals = new ReadingGoals(PAGES, 1000, 100);
-		ReadingGoals myLimitedGoals = new ReadingGoals(PAGES, 1000, 100, "31122021");
+		ReadingGoals myGoals = new ReadingGoals(goalType.PAGES, 1000, 100);
+		ReadingGoals myLimitedGoals = new ReadingGoals(goalType.PAGES, 1000, 100, "31122021");
 		
 	}
 	

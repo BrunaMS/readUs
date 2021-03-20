@@ -52,6 +52,10 @@ public abstract class Literature {
 		return publisher;
 	}
 
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
 
 	public void setAuthor(String publisher) {
 		this.publisher = publisher;
