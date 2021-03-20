@@ -53,13 +53,34 @@ public class Collection {
 		Literature newBook = new Book();
 		books[qntBooks] = newBook;
 		qntBooks++;
+		
+		newBook.setName(name);
+		newBook.setPublisher(publisher);
+		newBook.setNationality(nationality);
+		newBook.setFirstEdition(firstEdition);
+		newBook.setOriginalLanguage(originalLanguage);
+		newBook.setAwards(awards);
+		newBook.setNumberPages(numberPages);
+		newBook.setNumberPagesRead(numberPagesRead);
+		newBook.setGenre(genre);
+		newBook.setAuthor(author);
 	}
 	
 	public void addLiterature(String name, String publisher, String nationality, int firstEdition,
 			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre) {
-		Literature newBook = new Magazine();
-		books[qntBooks] = newBook;
+		Literature newMagazine = new Magazine();
+		books[qntBooks] = newMagazine;
 		qntBooks++;
+		
+		newMagazine.setName(name);
+		newMagazine.setPublisher(publisher);
+		newMagazine.setNationality(nationality);
+		newMagazine.setFirstEdition(firstEdition);
+		newMagazine.setOriginalLanguage(originalLanguage);
+		newMagazine.setAwards(awards);
+		newMagazine.setNumberPages(numberPages);
+		newMagazine.setNumberPagesRead(numberPagesRead);
+		newMagazine.setGenre(genre);
 	}
 	
 	// Comic
@@ -67,19 +88,49 @@ public class Collection {
 			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre,
 			String[] writer, String[] penciller, String[] inker, String[] letterer, String[] colorist,
 			String[] mainCharacters) {
-		Literature newBook = new Comic();
-		books[qntBooks] = newBook;
+		Literature newComic = new Comic();
+		books[qntBooks] = newComic;
 		qntBooks++;
+		
+		newComic.setName(name);
+		newComic.setPublisher(publisher);
+		newComic.setNationality(nationality);
+		newComic.setFirstEdition(firstEdition);
+		newComic.setOriginalLanguage(originalLanguage);
+		newComic.setAwards(awards);
+		newComic.setNumberPages(numberPages);
+		newComic.setNumberPagesRead(numberPagesRead);
+		newComic.setGenre(genre);
+		newComic.setWriter(writer);
+		newComic.setPenciller(penciller);
+		newComic.setInker(inker);
+		newComic.setLetterer(letterer);
+		newComic.setPenciller(penciller);
+		newComic.setColorist(colorist);
+		newComic.setMainCharacters(mainCharacters);
 	}
 	
-	// TODO (articles)
-//	public void addLiterature(String name, String publisher, String nationality, int firstEdition,
-//			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre, 
-//			int numberPages, String genre) {
-//		Literature newBook = new Article();
-//		books[qntBooks] = newBook;
-//		qntBooks++;
-//	}
+	//	(articles)
+	public void addLiterature(String name, String publisher, String nationality, int firstEdition,
+			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre, 
+			String[] headline, String frequency, String coverDate) {
+		Literature newArticle = new Article();
+		books[qntBooks] = newArticle;
+		qntBooks++;
+		
+		newArticle.setName(name);
+		newArticle.setPublisher(publisher);
+		newArticle.setNationality(nationality);
+		newArticle.setFirstEdition(firstEdition);
+		newArticle.setOriginalLanguage(originalLanguage);
+		newArticle.setAwards(awards);
+		newArticle.setNumberPages(numberPages);
+		newArticle.setNumberPagesRead(numberPagesRead);
+		newArticle.setGenre(genre);
+		newArticle.setHeadline(headline);
+		newArticle.setFrequency(frequency);
+		newArticle.setCoverDate(coverDate);
+	}
 	
 	public void removeBook(String removedBookName) {
 		int idx = getBookIndex(books, removedBookName);
@@ -135,9 +186,9 @@ public class Collection {
 	private void orderLibraryZA() {
         for (int i = 0; i < qntBooks; i++) {
             for (int j = i + 1; j < qntBooks; j++) { 
-                if (books[i].getName().compareTo(books[j].getName()) > 0){ //  > 0: Book[i]  > Book[j]
-                	Literature temp = books[i];						 // == 0: Book[i] == Book[j]
-                    books[i] = books[j];						 //  < 0: Book[i]  < Book[j]
+                if (books[i].getName().compareTo(books[j].getName()) > 0){  //  > 0: Book[i]  > Book[j]
+                	Literature temp = books[i];						 		// == 0: Book[i] == Book[j]
+                    books[i] = books[j];						 			//  < 0: Book[i]  < Book[j]
                     books[j] = temp;
                 }
             }
@@ -188,8 +239,12 @@ public class Collection {
 		return libraryJson.toString();
 		
 	}
-	
+	//String name, String publisher, String nationality, int firstEdition,
+	//String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre, 
+	//String author
 	public static void main(String[] args){
-		
+		Collection	myLibrary = new Collection();
+		myLibrary.addLiterature("I am four number", "HarperTorch", "English", 2010, "English", [""], 440, 0, "Science fiction", "Pittacus Lore"); 
+		System.out.println(myLibrary.toString());
 	}
 }

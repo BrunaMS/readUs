@@ -31,9 +31,9 @@ public abstract class Literature {
 	//Retorna os atributos
 	@Override
 	public String toString() {
-		return "Obra [Nome:" + name + ", Editora:" + publisher + ", Nacionalidade:" + nationality + ", Primeira Edição:"
-				+ firstEdition + ", Linguagem Original =" + originalLanguage + ", Prêmios:" + Arrays.toString(awards)
-				+ ", Número de Páginas =" + numberPages + "Número de Páginas Lidas:"+ numberPagesRead+", Gênero =" + genre +"]";
+		return "Obra [Nome:" + name + ", Editora:" + publisher + ", Nacionalidade:" + nationality + ", Primeira Ediï¿½ï¿½o:"
+				+ firstEdition + ", Linguagem Original =" + originalLanguage + ", Prï¿½mios:" + Arrays.toString(awards)
+				+ ", Nï¿½mero de Pï¿½ginas =" + numberPages + "Nï¿½mero de Pï¿½ginas Lidas:"+ numberPagesRead+", Gï¿½nero =" + genre +"]";
 	}
 
 	
@@ -148,5 +148,8 @@ public abstract class Literature {
 	
 	public long getProgress() {
 		return this.progress;
+	}
+	
+	public static void main(String[] args){
 	}
 }
