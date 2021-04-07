@@ -10,6 +10,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import javax.swing.JRadioButton;
 
 public class MainFrame extends JFrame {
 
@@ -45,7 +46,7 @@ public class MainFrame extends JFrame {
 		setContentPane(contentPane);
 		
 		JLabel titleLabel = new JLabel("ReadUs!");
-		titleLabel.setFont(new Font("EB Garamond 12 All SC", Font.BOLD, 24));
+		titleLabel.setFont(new Font("Dialog", Font.BOLD, 24));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(titleLabel, BorderLayout.NORTH);
 	}
