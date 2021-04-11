@@ -6,13 +6,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JRadioButton;
 
-public class MainFrame extends JFrame {
+public class GoalsView extends JFrame {
 
 	private JPanel contentPane;
 
@@ -23,7 +18,7 @@ public class MainFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainFrame frame = new MainFrame();
+					GoalsView frame = new GoalsView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,20 +30,13 @@ public class MainFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainFrame() {
-		setBackground(Color.WHITE);
+	public GoalsView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
-		JLabel titleLabel = new JLabel("ReadUs!");
-		titleLabel.setFont(new Font("Dialog", Font.BOLD, 24));
-		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(titleLabel, BorderLayout.NORTH);
 	}
 
 }

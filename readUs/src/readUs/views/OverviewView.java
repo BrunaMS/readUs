@@ -19,7 +19,7 @@ import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 
-public class overview extends JFrame {
+public class OverviewView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtOsSeusLivros;
@@ -32,7 +32,7 @@ public class overview extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					overview frame = new overview();
+					OverviewView frame = new OverviewView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +44,7 @@ public class overview extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public overview() {
+	public OverviewView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1128, 556);
 		contentPane = new JPanel();
@@ -57,7 +57,7 @@ public class overview extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JButton overview = new JButton("Visão Geral");
+		JButton overview = new JButton("Visï¿½o Geral");
 		overview.setBackground(new Color(255, 255, 255));
 		overview.setForeground(Color.BLACK);
 		overview.addActionListener(new ActionListener() {
@@ -103,7 +103,8 @@ public class overview extends JFrame {
 		txtFaltamApeas.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		ImageIcon image = new ImageIcon(getClass().getResource("/imagem/Read Us.jpg")); 
+		System.out.println("Working Directory = " + System.getProperty("user.dir"));
+		ImageIcon image = new ImageIcon(getClass().getResource("/Imagem/Read Us.png")); 
 		JLabel label = new JLabel(image);
 		lblNewLabel.setBounds(46, 48, 96, 148);
 		panel.add(lblNewLabel);

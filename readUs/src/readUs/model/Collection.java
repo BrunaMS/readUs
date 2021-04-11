@@ -13,11 +13,11 @@ public class Collection {
 		PROGRESS
 	}
 
-	private Literature[] books;
 	private int qntBooks;
-	private sortType typeSorting;
 	private int maxBooks;
 	private int maxAwards;
+	private Literature[] books;
+	private sortType typeSorting;
 	
 	
 	public Collection(){
