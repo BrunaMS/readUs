@@ -1,4 +1,4 @@
-package readUs;
+package readUs.model;
 
 //Source: https://jar-download.com/artifacts/org.json
 import org.json.JSONObject;
@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class ReadingGoals{
 	
-	enum goalType {
+	protected enum goalType {
 		PAGES,
 		BOOKS,
 		CHAPTERS,

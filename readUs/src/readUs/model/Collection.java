@@ -1,11 +1,11 @@
-package readUs;
+package readUs.model;
 
 // Source: https://jar-download.com/artifacts/org.json
 import org.json.JSONObject;
 
 public class Collection {
 
-	enum sortType {
+	protected enum sortType {
 		NAME_A_Z,
 		NAME_Z_A,
 		FIRST_EDITION,

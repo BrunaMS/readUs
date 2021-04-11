@@ -1,4 +1,4 @@
-package readUs;
+package readUs.model;
 
 import org.json.JSONObject;
 

@@ -1,7 +1,7 @@
-package readUs;
+package readUs.model;
 
-import readUs.Collection.sortType;
-import readUs.ReadingGoals.goalType;
+import readUs.model.Collection.sortType;
+import readUs.model.ReadingGoals.goalType;
 
 public final class Test {
 	public static void main(String[] args) {
