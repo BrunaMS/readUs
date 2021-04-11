@@ -26,7 +26,11 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
 
 public class MainView extends JFrame {
-
+	JButton goalsButton;
+	JButton libraryButton;
+	JButton wishlistButton;
+	JButton overviewButton;
+	
 	private JPanel contentPane;
 	private InitViews viewsInitializationControl;
 
@@ -51,6 +55,38 @@ public class MainView extends JFrame {
 		viewsInitializationControl.initWishlistFrame(this);
 	}
 	
+	public void onGoalsView() {
+		goalsButton.setBackground(Color.WHITE);
+		goalsButton.setEnabled(false);
+		libraryButton.setEnabled(true);
+		wishlistButton.setEnabled(true);
+		overviewButton.setEnabled(true);
+	}
+	
+	public void onLibraryView() {
+		libraryButton.setBackground(Color.WHITE);
+		goalsButton.setEnabled(true);
+		libraryButton.setEnabled(false);
+		wishlistButton.setEnabled(true);
+		overviewButton.setEnabled(true);
+	}
+	
+	public void onWishlistView() {
+		wishlistButton.setBackground(Color.WHITE);
+		goalsButton.setEnabled(true);
+		libraryButton.setEnabled(true);
+		wishlistButton.setEnabled(false);
+		overviewButton.setEnabled(true);
+	}
+	
+	public void onOverviewView() {
+		overviewButton.setBackground(Color.WHITE);
+		goalsButton.setEnabled(true);
+		libraryButton.setEnabled(true);
+		wishlistButton.setEnabled(true);
+		overviewButton.setEnabled(false);
+	}
+	
 	private void initComponents() {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,54 +97,34 @@ public class MainView extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
-		
-		JLabel lblBemvindoa = new JLabel("Bem-vindo(a)!");
-		lblBemvindoa.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBemvindoa.setFont(new Font("URW Bookman L", Font.BOLD, 40));
-		lblBemvindoa.setForeground(Color.BLACK);
-		
-		JLabel lblNewLabel = new JLabel("O que deseja fazer hoje?");
-		lblNewLabel.setFont(new Font("URW Bookman L", Font.BOLD, 18));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 1131, Short.MAX_VALUE)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(12)
-					.addComponent(lblBemvindoa, GroupLayout.DEFAULT_SIZE, 1107, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 1118, GroupLayout.PREFERRED_SIZE)
-					.addGap(3))
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 1118, Short.MAX_VALUE)
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(84)
-					.addComponent(lblBemvindoa)
-					.addGap(3)
-					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
+					.addContainerGap(454, Short.MAX_VALUE)
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))
 		);
 		panel.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		JButton goalsButton = new JButton("Metas");
+		goalsButton = new JButton("Metas");
 		goalsButton.setFont(new Font("L M Mono Lt10", Font.BOLD, 20));
 		goalsButton.setForeground(Color.BLACK);
 		goalsButton.setBackground(Color.PINK);
 		goalsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				initGoalFrame();
 			}
 		});
 		panel.add(goalsButton);
 		
-		JButton libraryButton = new JButton("Biblioteca");
+		libraryButton = new JButton("Biblioteca");
 		libraryButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				initLibraryFrame();
 			}
 		});
 		libraryButton.setFont(new Font("L M Mono Lt10", Font.BOLD, 20));
@@ -117,9 +133,10 @@ public class MainView extends JFrame {
 		libraryButton.setBackground(Color.PINK);
 		panel.add(libraryButton);
 		
-		JButton wishlistButton = new JButton("Lista de Desejos");
+		wishlistButton = new JButton("Lista de Desejos");
 		wishlistButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				initWishlistFrame();
 			}
 		});
 		wishlistButton.setFont(new Font("L M Mono Lt10", Font.BOLD, 20));
@@ -127,9 +144,10 @@ public class MainView extends JFrame {
 		wishlistButton.setBackground(Color.PINK);
 		panel.add(wishlistButton);
 		
-		JButton overviewButton = new JButton("Visão Geral");
+		overviewButton = new JButton("Visão Geral");
 		overviewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				initOverviewFrame();
 			}
 		});
 		overviewButton.setFont(new Font("L M Mono Lt10", Font.BOLD, 20));

@@ -19,7 +19,7 @@ import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 
-public class OverviewView extends JFrame {
+public class OverviewView extends MainView {
 
 	private JPanel contentPane;
 	private JTextField txtOsSeusLivros;
