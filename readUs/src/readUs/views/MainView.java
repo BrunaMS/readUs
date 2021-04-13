@@ -31,6 +31,9 @@ public class MainView extends JFrame {
 	JButton wishlistButton;
 	JButton overviewButton;
 	
+	JPanel viewsPanel;
+	JPanel buttonsPanel;
+	
 	private JPanel contentPane;
 	private InitViews viewsInitializationControl;
 
@@ -40,19 +43,19 @@ public class MainView extends JFrame {
 	}
 	
 	private void initGoalFrame(){
-		viewsInitializationControl.initGoalFrame(this);
+		viewsInitializationControl.initGoalFrame(this, viewsPanel);
 	}
 	
 	private void initLibraryFrame(){
-		viewsInitializationControl.initLibraryFrame(this);
+		viewsInitializationControl.initLibraryFrame(this, viewsPanel);
 	}
 	
 	private void initOverviewFrame(){
-		viewsInitializationControl.initOverviewFrame(this);
+		viewsInitializationControl.initOverviewFrame(this, viewsPanel);
 	}
 	
 	private void initWishlistFrame(){
-		viewsInitializationControl.initWishlistFrame(this);
+		viewsInitializationControl.initWishlistFrame(this, viewsPanel);
 	}
 	
 	public void onGoalsView() {
@@ -96,19 +99,25 @@ public class MainView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JPanel panel = new JPanel();
+		buttonsPanel = new JPanel();
+		viewsPanel = new JPanel();
+
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 1118, Short.MAX_VALUE)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(buttonsPanel, GroupLayout.DEFAULT_SIZE, 1118, Short.MAX_VALUE)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(12)
+					.addComponent(viewsPanel, GroupLayout.DEFAULT_SIZE, 1106, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(454, Short.MAX_VALUE)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))
+					.addComponent(viewsPanel, GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(buttonsPanel, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))
 		);
-		panel.setLayout(new GridLayout(1, 0, 0, 0));
+		buttonsPanel.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		goalsButton = new JButton("Metas");
 		goalsButton.setFont(new Font("L M Mono Lt10", Font.BOLD, 20));
@@ -119,7 +128,7 @@ public class MainView extends JFrame {
 				initGoalFrame();
 			}
 		});
-		panel.add(goalsButton);
+		buttonsPanel.add(goalsButton);
 		
 		libraryButton = new JButton("Biblioteca");
 		libraryButton.addActionListener(new ActionListener() {
@@ -131,7 +140,7 @@ public class MainView extends JFrame {
 		libraryButton.setForeground(Color.BLACK);
 		libraryButton.setEnabled(true);
 		libraryButton.setBackground(Color.PINK);
-		panel.add(libraryButton);
+		buttonsPanel.add(libraryButton);
 		
 		wishlistButton = new JButton("Lista de Desejos");
 		wishlistButton.addActionListener(new ActionListener() {
@@ -142,7 +151,7 @@ public class MainView extends JFrame {
 		wishlistButton.setFont(new Font("L M Mono Lt10", Font.BOLD, 20));
 		wishlistButton.setForeground(Color.BLACK);
 		wishlistButton.setBackground(Color.PINK);
-		panel.add(wishlistButton);
+		buttonsPanel.add(wishlistButton);
 		
 		overviewButton = new JButton("Visão Geral");
 		overviewButton.addActionListener(new ActionListener() {
@@ -153,8 +162,52 @@ public class MainView extends JFrame {
 		overviewButton.setFont(new Font("L M Mono Lt10", Font.BOLD, 20));
 		overviewButton.setForeground(Color.BLACK);
 		overviewButton.setBackground(Color.PINK);
-		panel.add(overviewButton);
+		buttonsPanel.add(overviewButton);
 		contentPane.setLayout(gl_contentPane);
+	}
+
+	public void initWishList() {
+		wishlistButton.setEnabled(false);
+		wishlistButton.setBackground(Color.WHITE);
+		libraryButton.setEnabled(true);
+		libraryButton.setBackground(Color.PINK);
+		overviewButton.setEnabled(true);
+		overviewButton.setBackground(Color.PINK);
+		goalsButton.setEnabled(true);
+		goalsButton.setBackground(Color.PINK);
+	}
+
+	public void initLibrary() {
+		wishlistButton.setEnabled(true);
+		wishlistButton.setBackground(Color.PINK);
+		libraryButton.setEnabled(false);
+		libraryButton.setBackground(Color.WHITE);
+		overviewButton.setEnabled(true);
+		overviewButton.setBackground(Color.PINK);
+		goalsButton.setEnabled(true);
+		goalsButton.setBackground(Color.PINK);
+	}
+	
+	public void initGoals() {
+		wishlistButton.setEnabled(true);
+		wishlistButton.setBackground(Color.PINK);
+		libraryButton.setEnabled(true);
+		libraryButton.setBackground(Color.PINK);
+		overviewButton.setEnabled(true);
+		overviewButton.setBackground(Color.PINK);
+		goalsButton.setEnabled(false);
+		goalsButton.setBackground(Color.WHITE);
+	}
+	
+	public void initOverview() {
+		wishlistButton.setEnabled(true);
+		wishlistButton.setBackground(Color.PINK);
+		libraryButton.setEnabled(true);
+		libraryButton.setBackground(Color.PINK);
+		overviewButton.setEnabled(false);
+		overviewButton.setBackground(Color.WHITE);
+		goalsButton.setEnabled(true);
+		goalsButton.setBackground(Color.PINK);
 	}
 
 	/**

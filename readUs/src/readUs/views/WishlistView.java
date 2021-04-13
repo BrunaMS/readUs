@@ -1,41 +1,36 @@
 package readUs.views;
 
-import java.awt.Color;
-
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
 
-public class LibraryView extends JPanel {
+public class WishlistView extends JPanel {
 
 	/**
-	 * Create the frame.
+	 * Create the panel.
 	 */
-	public LibraryView() {
-		initComponents();
+	public WishlistView() {
 		this.setSize(500, 500);
 		
-		JLabel lblNewLabel = new JLabel("Biblioteca");
-		
+		JLabel lblNewLabel = new JLabel("Lista de Desejos");
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(392)
+					.addGap(466)
 					.addComponent(lblNewLabel)
-					.addContainerGap(562, Short.MAX_VALUE))
+					.addContainerGap(488, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(314)
+					.addGap(346)
 					.addComponent(lblNewLabel)
-					.addContainerGap(377, Short.MAX_VALUE))
+					.addContainerGap(345, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
+
 	}
 
-	private void initComponents() {		
-	}
 }

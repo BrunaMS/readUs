@@ -3,66 +3,75 @@ package readUs.controller;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.JPanel;
+
 import readUs.views.GoalsView;
 import readUs.views.LibraryView;
 import readUs.views.MainView;
 import readUs.views.OverviewView;
+import readUs.views.WishlistView;
 
 public class InitViews {
-	public void initGoalFrame(MainView frame){
-		GoalsView goalFrame = new GoalsView();
+	GoalsView goalFrame;
+	LibraryView libFrame; 
+	OverviewView overviewFrame;
+	WishlistView wishlistFrame;
+	
+	public InitViews() {
+		goalFrame = new GoalsView();
+		libFrame = new LibraryView();
+		overviewFrame = new OverviewView();
+		wishlistFrame = new WishlistView();
+
+		libFrame.setVisible(false);
+		overviewFrame.setVisible(false);
+		wishlistFrame.setVisible(false);
+		goalFrame.setVisible(false);
+		
+	}
+	
+	public void initGoalFrame(MainView frame, JPanel panel){
+		panel.add(goalFrame);
+		libFrame.setVisible(false);
+		overviewFrame.setVisible(false);
+		wishlistFrame.setVisible(false);
+		
+		frame.initGoals();
 		goalFrame.setVisible(true);
-		frame.setVisible(false);
-		goalFrame.onGoalsView();
-		goalFrame.addWindowListener(new WindowAdapter() {
-		    public void windowClosing(WindowEvent e) {
-		    	frame.setVisible(true);
-		    	frame.setAutoRequestFocus(true);
-		    }
-		});
+		goalFrame.setEnabled(true);
 	}
 	
-	public void initLibraryFrame(MainView frame){
-		LibraryView libFrame = new LibraryView();
+	public void initLibraryFrame(MainView frame, JPanel panel){
+		panel.add(libFrame);
+		goalFrame.setVisible(false);
+		overviewFrame.setVisible(false);
+		wishlistFrame.setVisible(false);
+		
+		frame.initLibrary();
 		libFrame.setVisible(true);
-		libFrame.onLibraryView();
-		frame.setVisible(false);
-		
-		libFrame.addWindowListener(new WindowAdapter() {
-		    public void windowClosing(WindowEvent e) {
-		    	frame.setVisible(true);
-		    	frame.setAutoRequestFocus(true);
-		    }
-		});
+		libFrame.setEnabled(true);
 	}
 	
-	public void initOverviewFrame(MainView frame){
-		OverviewView overviewFrame = new OverviewView();
+	public void initOverviewFrame(MainView frame, JPanel panel){
+		panel.add(overviewFrame);
+		goalFrame.setVisible(false);
+		libFrame.setVisible(false);
+		wishlistFrame.setVisible(false);
+	
+		frame.initOverview();
 		overviewFrame.setVisible(true);
-		overviewFrame.onOverviewView();
-		frame.setVisible(false);
-		
-		overviewFrame.addWindowListener(new WindowAdapter() {
-		    public void windowClosing(WindowEvent e) {
-		    	frame.setVisible(true);
-		    	frame.setAutoRequestFocus(true);
-		    }
-		});
+		overviewFrame.setEnabled(true);
 	}
 	
-	public void initWishlistFrame(MainView frame){
-		LibraryView wishlistFrame = new LibraryView();
-		wishlistFrame.initWishList();
-		wishlistFrame.onWishlistView();
-		wishlistFrame.setVisible(true);
-		frame.setVisible(false);
+	public void initWishlistFrame(MainView frame, JPanel panel){
+		panel.add(wishlistFrame);
+		goalFrame.setVisible(false);
+		libFrame.setVisible(false);
+		overviewFrame.setVisible(false);
 		
-		wishlistFrame.addWindowListener(new WindowAdapter() {
-		    public void windowClosing(WindowEvent e) {
-		    	frame.setVisible(true);
-		    	frame.setAutoRequestFocus(true);
-		    }
-		});
+		frame.initWishList();
+		wishlistFrame.setVisible(true);
+		wishlistFrame.setEnabled(true);
 	}
 
 }
