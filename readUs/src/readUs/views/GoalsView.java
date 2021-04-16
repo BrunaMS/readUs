@@ -31,8 +31,8 @@ public class GoalsView extends JPanel {
 		initComponents();
 		this.setSize(500, 500);
 		
-		JButton btnNewButton = new JButton("Criar nova meta");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnCreateNewGoal = new JButton("Criar nova meta");
+		btnCreateNewGoal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 AddGoal newGoal = new AddGoal();
 				 newGoal.setVisible(true);
@@ -42,19 +42,19 @@ public class GoalsView extends JPanel {
 			}
 		});
 		
-		JButton btnNewButton_1 = new JButton("Visualizar metas");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btnSeeGoals = new JButton("Visualizar metas");
+		btnSeeGoals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
-		JButton btnNewButton_1_1 = new JButton("Atualizar meta");
-		btnNewButton_1_1.addActionListener(new ActionListener() {
+		JButton btnUpdateGoals = new JButton("Atualizar meta");
+		btnUpdateGoals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
-		JButton btnNewButton_1_2 = new JButton("Deletar meta");
+		JButton btnDeleteGoals = new JButton("Deletar meta");
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -62,23 +62,23 @@ public class GoalsView extends JPanel {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(160)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton_1_2, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnDeleteGoals, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnUpdateGoals, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnSeeGoals, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnCreateNewGoal, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(180, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(131)
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnCreateNewGoal, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnSeeGoals, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnUpdateGoals, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(btnNewButton_1_2, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnDeleteGoals, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(187, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);

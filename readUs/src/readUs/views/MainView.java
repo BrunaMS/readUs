@@ -153,7 +153,7 @@ public class MainView extends JFrame {
 		wishlistButton.setBackground(Color.PINK);
 		buttonsPanel.add(wishlistButton);
 		
-		overviewButton = new JButton("Visão Geral");
+		overviewButton = new JButton("Inicio");
 		overviewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				initOverviewFrame();
