@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class ReadingGoals{
 	
-	protected enum goalType {
+	public enum goalType {
 		PAGES,
 		BOOKS,
 		CHAPTERS,
