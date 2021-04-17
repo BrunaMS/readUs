@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 public class Collection {
 
-	protected enum sortType {
+	public enum sortType {
 		NAME_A_Z,
 		NAME_Z_A,
 		FIRST_EDITION,
@@ -124,7 +124,7 @@ public class Collection {
 			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre,
 			String[] writer, String[] penciller, String[] inker, String[] letterer, String[] collorist,
 			String[] mainCharacters) {
-		if(qntBooks < (this.maxBooks - 1)) {
+		if(qntBooks < (this.maxBooks)) {
 			Comic newComic = new Comic();
 			
 			newComic.setName(name);
@@ -212,7 +212,7 @@ public class Collection {
 	private void orderLibraryZA() {
         for (int i = 0; i < qntBooks; i++) {
             for (int j = i + 1; j < qntBooks; j++) { 
-                if (books[i].getName().compareTo(books[j].getName()) > 0){  //  > 0: Book[i]  > Book[j]
+                if (books[i].getName().compareTo(books[j].getName()) < 0){  //  > 0: Book[i]  > Book[j]
                 	Literature temp = books[i];						 		// == 0: Book[i] == Book[j]
                     books[i] = books[j];						 			//  < 0: Book[i]  < Book[j]
                     books[j] = temp;
