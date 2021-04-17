@@ -39,6 +39,11 @@ public class GoalsView extends JPanel {
 				 JFrame newWindow = new JFrame();
 				 newWindow.getContentPane().add(newGoal);
 				 newWindow.setVisible(true);
+				 newWindow.setBounds(100, 100, 600, 500);
+				 newWindow.setLocationRelativeTo(null);
+				 //newGoal.setSize(500, 500);
+				 //newWindow.setExtendedState(newWindow.getExtendedState() | JFrame.NORMAL);
+				
 			}
 		});
 		

@@ -40,6 +40,7 @@ public class MainView extends JFrame {
 	public MainView() {
 		viewsInitializationControl = new InitViews();
 		initComponents();
+		this.setLocationRelativeTo(null);
 	}
 	
 	private void initGoalFrame(){
