@@ -40,6 +40,7 @@ public class MainView extends JFrame {
 	public MainView() {
 		viewsInitializationControl = new InitViews();
 		initComponents();
+		this.setLocationRelativeTo(null);
 	}
 	
 	private void initGoalFrame(){
@@ -153,7 +154,7 @@ public class MainView extends JFrame {
 		wishlistButton.setBackground(Color.PINK);
 		buttonsPanel.add(wishlistButton);
 		
-		overviewButton = new JButton("Visão Geral");
+		overviewButton = new JButton("Inicio");
 		overviewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				initOverviewFrame();

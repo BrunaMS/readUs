@@ -11,12 +11,16 @@ import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.GridLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.Font;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GoalsView extends JPanel {
 
@@ -27,22 +31,60 @@ public class GoalsView extends JPanel {
 		initComponents();
 		this.setSize(500, 500);
 		
-		JLabel lblNewLabel = new JLabel("Metas");
+		JButton btnCreateNewGoal = new JButton("Criar nova meta");
+		btnCreateNewGoal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 AddGoal newGoal = new AddGoal();
+				 newGoal.setVisible(true);
+				 JFrame newWindow = new JFrame();
+				 newWindow.getContentPane().add(newGoal);
+				 newWindow.setVisible(true);
+				 newWindow.setBounds(100, 100, 600, 500);
+				 newWindow.setLocationRelativeTo(null);
+				 //newGoal.setSize(500, 500);
+				 //newWindow.setExtendedState(newWindow.getExtendedState() | JFrame.NORMAL);
+				
+			}
+		});
+		
+		JButton btnSeeGoals = new JButton("Visualizar metas");
+		btnSeeGoals.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		JButton btnUpdateGoals = new JButton("Atualizar meta");
+		btnUpdateGoals.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		JButton btnDeleteGoals = new JButton("Deletar meta");
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(392)
-					.addComponent(lblNewLabel)
-					.addContainerGap(64, Short.MAX_VALUE))
+					.addGap(160)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnDeleteGoals, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnUpdateGoals, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnSeeGoals, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnCreateNewGoal, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(180, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(323)
-					.addComponent(lblNewLabel)
-					.addContainerGap(115, Short.MAX_VALUE))
+					.addGap(131)
+					.addComponent(btnCreateNewGoal, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnSeeGoals, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnUpdateGoals, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnDeleteGoals, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(187, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 	}
