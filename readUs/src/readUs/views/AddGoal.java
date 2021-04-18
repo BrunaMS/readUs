@@ -15,9 +15,13 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 import readUs.controller.ReadingGoalsController;
+import readUs.model.ReadingGoals;
 import readUs.model.ReadingGoals.goalType;
 
 import java.awt.event.ItemListener;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.awt.event.ItemEvent;
 import javax.swing.JButton;
@@ -26,26 +30,27 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.text.MaskFormatter;
+import javax.swing.text.NumberFormatter;
 
 import java.awt.Color;
 import javax.swing.JFormattedTextField;
 import javax.swing.JScrollBar;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.sql.Timestamp;
 
 public class AddGoal extends JPanel {
-	private JTextField textFieldDesiredNumber;
-	private JTextField textFieldConcludedNumber;
+
+	ReadingGoalsController GoalsControl;
 
 	/**
-	 * Criacao do painel para a adição de novas metas
+	 * Creation of panel for new goals
 	 */
-	public AddGoal() {
 
+	public AddGoal(ReadingGoalsController GoalsControl) {
+
+		this.GoalsControl = GoalsControl;
 		boolean result = false;
-		ReadingGoalsController GoalsControl = new ReadingGoalsController();
-
-		// public boolean getResult() {
-		// return result;
-		// }
 
 		JLabel lblTitle = new JLabel("Nova Meta");
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 31));
@@ -53,24 +58,16 @@ public class AddGoal extends JPanel {
 		JComboBox goalSelection = new JComboBox();
 		goalSelection.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		goalSelection.addItem("Páginas");
+		goalSelection.addItem("Paginas");
 		goalSelection.addItem("Livros");
-		goalSelection.addItem("Capítulos");
+		goalSelection.addItem("Capitulos");
 		goalSelection.addItem("Palavras");
 
 		JLabel lblGoalType = new JLabel("Tipo de objetivo");
 		lblGoalType.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		textFieldDesiredNumber = new JTextField();
-		textFieldDesiredNumber.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldDesiredNumber.setColumns(10);
-
 		JLabel lblDesiredNumber = new JLabel("N\u00FAmero Desejado");
 		lblDesiredNumber.setFont(new Font("Tahoma", Font.PLAIN, 14));
-
-		textFieldConcludedNumber = new JTextField();
-		textFieldConcludedNumber.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldConcludedNumber.setColumns(10);
 
 		JLabel lblConcludedNumber = new JLabel("N\u00FAmero Concluido");
 		lblConcludedNumber.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -99,14 +96,24 @@ public class AddGoal extends JPanel {
 
 		for (int days = 1; days <= 31; days++) {
 
-			dayBeggining.addItem(String.valueOf(days));
-			dayEnd.addItem(String.valueOf(days));
+			String stringDays = String.valueOf(days);
+
+			while (stringDays.length() < 2) {
+				stringDays = "0" + stringDays;
+			}
+			dayBeggining.addItem(stringDays);
+			dayEnd.addItem(String.valueOf(stringDays));
+
 		}
 
-		for (int month = 1; month <= 12; month++) {
+		for (int month = 01; month <= 12; month++) {
 
-			monthBeggining.addItem(String.valueOf(month));
-			monthEnd.addItem(String.valueOf(month));
+			String stringMonth = String.valueOf(month);
+			while (stringMonth.length() < 2) {
+				stringMonth = "0" + stringMonth;
+			}
+			monthBeggining.addItem(stringMonth);
+			monthEnd.addItem(stringMonth);
 		}
 
 		for (int year = 2000; year <= 2030; year++) {
@@ -153,11 +160,39 @@ public class AddGoal extends JPanel {
 			}
 		});
 
-		// public void dateValidation(int day, int month, int year) {
+		NumberFormat format = NumberFormat.getInstance();
+		NumberFormatter formatter = new NumberFormatter(format);
+		formatter.setValueClass(Integer.class);
+		formatter.setMinimum(0);
+		formatter.setMaximum(Integer.MAX_VALUE);
+		formatter.setAllowsInvalid(false);
 
-		// }
-		// }
-		// }
+		JFormattedTextField formattedDesiredNumber = new JFormattedTextField(formatter);
+		formattedDesiredNumber.setFont(new Font("Tahoma", Font.PLAIN, 14));
+
+		formattedDesiredNumber.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if ((e.getKeyCode() == KeyEvent.VK_DELETE || e.getKeyCode() == KeyEvent.VK_BACK_SPACE)
+						&& formattedDesiredNumber.getText().length() == 1) {
+
+					formattedDesiredNumber.setText("0");
+				}
+			}
+		});
+
+		JFormattedTextField formattedConcludedNumber = new JFormattedTextField(formatter);
+		formattedConcludedNumber.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if ((e.getKeyCode() == KeyEvent.VK_DELETE || e.getKeyCode() == KeyEvent.VK_BACK_SPACE)
+						&& formattedConcludedNumber.getText().length() == 1) {
+
+					formattedConcludedNumber.setText("0");
+				}
+			}
+		});
+		formattedConcludedNumber.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		JLabel lblBlankField = new JLabel("0");
 		lblBlankField.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -168,164 +203,119 @@ public class AddGoal extends JPanel {
 		JButton saveButton = new JButton("Salvar");
 		saveButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		// Save and validate user data
+		// Validate user data when the save button is clicked
 
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String typeGoalfield = (String) goalSelection.getSelectedItem();
+				String typeGoalField = (String) goalSelection.getSelectedItem();
 				lblBlankField.setVisible(false);
-				boolean detectError = false;
-				String error = "Erros:\n";
+				GoalsControl.setDetectError(false);
+				GoalsControl.setError("Erros:\n");
 
 				if (chckbxDefDates.isSelected()) {
-					if (textFieldDesiredNumber.getText().isEmpty()) {
 
-						error = error
-								+ "O campo numero desejado não pode ser deixado vazio. Por favor insira um número.\n";
-						detectError = true;
-					}
-					if (textFieldConcludedNumber.getText().isEmpty()) {
+					// Checks if all fields are filled
 
-						error = error
-								+ "O campo numero concluido não pode ser deixado vazio. Por favor insira um número.\n";
-						detectError = true;
-					}
-					if (dayBeggining.getItemCount() == 0) {
+					boolean test1 = GoalsControl.checkEmptyFields(formattedDesiredNumber.getText(), "DesiredNumber");
+					boolean test2 = GoalsControl.checkEmptyFields(formattedConcludedNumber.getText(),
+							"ConcludedNumber");
 
-						error = error + "O campo dia do inicio pode ser deixado vazio. Por favor escolha uma opção.\n";
-						detectError = true;
-					}
-					if (monthBeggining.getItemCount() == 0) {
+					// Checks if desired number is smaller than concluded number
 
-						error = error + "O campo mes do inicio pode ser deixado vazio. Por favor escolha uma opção.\n";
-						detectError = true;
+					if (test1 == false && test2 == false) {
+						GoalsControl.validateDesiredConcluded(
+								Float.valueOf(formattedDesiredNumber.getText().replace(".", "")),
+								Float.valueOf(formattedConcludedNumber.getText().replace(".", "")));
 					}
-					if (yearBeggining.getItemCount() == 0) {
 
-						error = error + "O campo ano do inicio pode ser deixado vazio. Por favor escolha uma opção.\n";
-						detectError = true;
-					}
-					if (dayEnd.getItemCount() == 0) {
+					// Continues checking if fields are filled
 
-						error = error + "O campo dia do inicio pode ser deixado vazio. Por favor escolha uma opção.\n";
-						detectError = true;
-					}
-					if (monthEnd.getItemCount() == 0) {
+					GoalsControl.checkEmptyFields(String.valueOf(dayBeggining.getItemCount()), "DayBeggining");
+					GoalsControl.checkEmptyFields(String.valueOf(monthBeggining.getItemCount()), "MonthBeggining");
+					GoalsControl.checkEmptyFields(String.valueOf(yearBeggining.getItemCount()), "YearBeggining");
 
-						error = error + "O campo mes do inicio pode ser deixado vazio. Por favor escolha uma opção.\n";
-						detectError = true;
-					}
-					if (yearEnd.getItemCount() == 0) {
-
-						error = error + "O campo ano do inicio pode ser deixado vazio. Por favor escolha uma opção.\n";
-						detectError = true;
-					}
+					GoalsControl.checkEmptyFields(String.valueOf(dayEnd.getItemCount()), "DayEnd");
+					GoalsControl.checkEmptyFields(String.valueOf(monthEnd.getItemCount()), "MonthEnd");
+					GoalsControl.checkEmptyFields(String.valueOf(yearEnd.getItemCount()), " YearEnd");
 
 					// Validates user inserted date
 
-					// Begging of goal date
+					// Begging of goal date validation
 
-					if (Integer.valueOf((String) monthBeggining.getSelectedItem()) == 4
-							|| Integer.valueOf((String) monthBeggining.getSelectedItem()) == 6
-							|| Integer.valueOf((String) monthBeggining.getSelectedItem()) == 9
-							|| Integer.valueOf((String) monthBeggining.getSelectedItem()) == 11) {
-						if (Integer.valueOf((String) dayBeggining.getSelectedItem()) == 31) {
-							error = error + "Data inválida. Cheque a data e tente novamente.\n";
-							detectError = true;
-						}
+					int validDayBeggining = Integer.valueOf((String) dayBeggining.getSelectedItem());
+					int validMonthBeggining = Integer.valueOf((String) monthBeggining.getSelectedItem());
+					int validYearBeggining = Integer.valueOf((String) yearBeggining.getSelectedItem());
+
+					GoalsControl.validateDate(validDayBeggining, validMonthBeggining, validYearBeggining);
+
+					// End of goal date validation
+
+					int validDayEnd = Integer.valueOf((String) dayEnd.getSelectedItem());
+					int validMonthEnd = Integer.valueOf((String) monthEnd.getSelectedItem());
+					int validYearEnd = Integer.valueOf((String) yearEnd.getSelectedItem());
+
+					GoalsControl.validateDate(validDayEnd, validMonthEnd, validYearEnd);
+
+					GoalsControl.validateDateInterval(validDayBeggining, validMonthBeggining, validYearBeggining,
+							validDayEnd, validMonthEnd, validYearEnd);
+
+					// Checks if an error is detected
+
+					boolean detectError = GoalsControl.isDetectError();
+					String error = GoalsControl.getError();
+					if (detectError == true) {
+						lblBlankField.setVisible(true);
+						lblBlankField.setText("<html>"
+								+ error.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>")
+								+ "</html>");
 					}
 
-					else if (Integer.valueOf((String) monthBeggining.getSelectedItem()) == 2) {
-						if ((Integer.valueOf((String) yearBeggining.getSelectedItem()) % 4 == 0
-								&& Integer.valueOf((String) yearBeggining.getSelectedItem()) % 100 != 0)
-								|| (Integer.valueOf((String) yearBeggining.getSelectedItem()) % 400 == 0)) {
-							if (Integer.valueOf((String) dayBeggining.getSelectedItem()) > 29) {
-								error = error + "Data inválida. Cheque a data e tente novamente.\n";
-								detectError = true;
-							} else {
-								if (Integer.valueOf((String) dayBeggining.getSelectedItem()) > 28) {
-									error = error + "Data inválida. Cheque a data e tente novamente.\n";
-									detectError = true;
-								}
-							}
-						}
+					else {
+
+						String BegginingDate = String.valueOf(validDayBeggining) + String.valueOf(validMonthBeggining)
+								+ String.valueOf(validYearBeggining);
+
+						String EndDate = String.valueOf(validDayEnd) + String.valueOf(validMonthEnd)+
+										String.valueOf(validYearEnd);
+
+						GoalsControl.saveValues(typeGoalField,
+								Float.parseFloat(formattedDesiredNumber.getText().replace(".", "")),
+								Float.parseFloat(formattedConcludedNumber.getText().replace(".", "")), EndDate,
+								BegginingDate);
+
 					}
 
-					// End of goal date
-
-					if (Integer.valueOf((String) monthEnd.getSelectedItem()) == 4
-							|| Integer.valueOf((String) monthEnd.getSelectedItem()) == 6
-							|| Integer.valueOf((String) monthEnd.getSelectedItem()) == 9
-							|| Integer.valueOf((String) monthEnd.getSelectedItem()) == 11) {
-						if (Integer.valueOf((String) dayEnd.getSelectedItem()) == 31) {
-							error = error + "Data inválida. Cheque a data e tente novamente.\n";
-							detectError = true;
-						}
-					} else if (Integer.valueOf((String) monthEnd.getSelectedItem()) == 2) {
-						if ((Integer.valueOf((String) yearEnd.getSelectedItem()) % 4 == 0
-								&& Integer.valueOf((String) yearEnd.getSelectedItem()) % 100 != 0)
-								|| (Integer.valueOf((String) yearEnd.getSelectedItem()) % 400 == 0)) {
-							if (Integer.valueOf((String) dayEnd.getSelectedItem()) > 29) {
-								error = error + "Data inválida. Cheque a data e tente novamente.\n";
-								detectError = true;
-							}
-						} else {
-							if (Integer.valueOf((String) dayEnd.getSelectedItem()) > 28) {
-								error = error + "Data inválida. Cheque a data e tente novamente.\n";
-								detectError = true;
-							}
-						}
-					}
-					/*if (Integer.parseInt(textFieldDesiredNumber.getText()) > Integer.parseInt(textFieldConcludedNumber.getText())) {
-						error = error
-								+ "O número concluido não pode ser maior que o desejado. Por favor confira seus valores.\n";
-						detectError = true;
-					}*/
 				} else {
 
-					if (textFieldDesiredNumber.getText().isEmpty()) {
+					// Checks if all fields are filled
 
-						error = error
-								+ "O campo numero desejado não pode ser deixado vazio. Por favor insira um número.\n";
-						detectError = true;
+					boolean test1 = GoalsControl.checkEmptyFields(formattedDesiredNumber.getText(), "DesiredNumber");
+					boolean test2 = GoalsControl.checkEmptyFields(formattedConcludedNumber.getText(),
+							"ConcludedNumber");
+
+					// Checks if desired number is smaller than concluded number
+					if (test1 == false && test2 == false) {
+						GoalsControl.validateDesiredConcluded(
+								Float.valueOf(formattedDesiredNumber.getText().replace(".", "")),
+								Float.valueOf(formattedConcludedNumber.getText().replace(".", "")));
 					}
-					if (textFieldConcludedNumber.getText().isEmpty()) {
 
-						error = error
-								+ "O campo numero concluido não pode ser deixado vazio. Por favor insira um número.\n";
-						detectError = true;
-
-					}
-					/*if (Integer.parseInt(textFieldDesiredNumber.getText()) > Integer.parseInt(textFieldConcludedNumber.getText())) {
-					error = error
-							+ "O número concluido não pode ser maior que o desejado. Por favor confira seus valores.\n";
-					detectError = true;
-				}*/
 				}
 
-				if (detectError = true) {
+				// Checks if an error is detected
+				boolean detectError = GoalsControl.isDetectError();
+				String error = GoalsControl.getError();
+				if (detectError == true) {
 					lblBlankField.setVisible(true);
-
 					lblBlankField.setText(
 							"<html>" + error.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>")
 									+ "</html>");
 				}
 
 				else {
-					switch (typeGoalfield) {
-					case "Páginas":
-						GoalsControl.addGoal(goalType.PAGES, Float.parseFloat(textFieldDesiredNumber.getText()),
-								Float.parseFloat(textFieldConcludedNumber.getText()));
-					case "Livros":
-						GoalsControl.addGoal(goalType.BOOKS, Float.parseFloat(textFieldDesiredNumber.getText()),
-								Float.parseFloat(textFieldConcludedNumber.getText()));
-					case "Capítulos":
-						GoalsControl.addGoal(goalType.CHAPTERS, Float.parseFloat(textFieldDesiredNumber.getText()),
-								Float.parseFloat(textFieldConcludedNumber.getText()));
-					case "Palavras":
-						GoalsControl.addGoal(goalType.WORDS, Float.parseFloat(textFieldDesiredNumber.getText()),
-								Float.parseFloat(textFieldConcludedNumber.getText()));
-					}
+					GoalsControl.saveValues(typeGoalField,
+							Float.parseFloat(formattedDesiredNumber.getText().replace(".", "")),
+							Float.parseFloat(formattedConcludedNumber.getText().replace(".", "")));
 
 				}
 			}
@@ -333,110 +323,115 @@ public class AddGoal extends JPanel {
 		}
 
 		);
-		
-		MaskFormatter maskinteiro = null;
-		try {
-			maskinteiro = new MaskFormatter("######");
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(202)
-									.addComponent(lblTitle))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(58)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
+				.createSequentialGroup()
+				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
+						.createSequentialGroup()
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup().addGap(202).addComponent(lblTitle))
+								.addGroup(groupLayout.createSequentialGroup().addGap(58).addGroup(groupLayout
+										.createParallelGroup(Alignment.LEADING)
 										.addGroup(groupLayout.createSequentialGroup()
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addGroup(groupLayout.createSequentialGroup()
-													.addComponent(lblEnd, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-													.addGap(18)
-													.addComponent(dayEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-													.addPreferredGap(ComponentPlacement.UNRELATED)
-													.addComponent(monthEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-													.addPreferredGap(ComponentPlacement.UNRELATED)
-													.addComponent(yearEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-												.addComponent(lblBlankField, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE))
-											.addGap(21))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addComponent(chckbxDefDates)
-												.addComponent(lblDesiredNumber, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
-												.addComponent(lblGoalType, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
-												.addComponent(lblConcludedNumber, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
-												.addGroup(groupLayout.createSequentialGroup()
-													.addComponent(lblBeggining)
-													.addPreferredGap(ComponentPlacement.UNRELATED)
-													.addComponent(dayBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-													.addGap(10)
-													.addComponent(monthBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-													.addPreferredGap(ComponentPlacement.UNRELATED)
-													.addComponent(yearBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-											.addGap(103)
-											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addComponent(textFieldConcludedNumber, GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-												.addComponent(goalSelection, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
-												.addComponent(textFieldDesiredNumber, GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))))))
-							.addGap(3))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(233)
-							.addComponent(saveButton, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 236, Short.MAX_VALUE)))
-					.addGap(27))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addGap(18)
-					.addComponent(lblTitle, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-					.addGap(44)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(goalSelection, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblGoalType, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textFieldDesiredNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblDesiredNumber, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblConcludedNumber, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textFieldConcludedNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(16)
-					.addComponent(chckbxDefDates)
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblBeggining, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-						.addComponent(monthBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(yearBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(dayBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblEnd, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-						.addComponent(dayEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(monthEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(yearEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblBlankField, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(saveButton)
-					.addGap(44))
-		);
+												.addPreferredGap(ComponentPlacement.RELATED)
+												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+														.addGroup(groupLayout.createSequentialGroup()
+																.addComponent(lblEnd, GroupLayout.PREFERRED_SIZE, 25,
+																		GroupLayout.PREFERRED_SIZE)
+																.addGap(18)
+																.addComponent(dayEnd, GroupLayout.PREFERRED_SIZE,
+																		GroupLayout.DEFAULT_SIZE,
+																		GroupLayout.PREFERRED_SIZE)
+																.addPreferredGap(ComponentPlacement.UNRELATED)
+																.addComponent(monthEnd, GroupLayout.PREFERRED_SIZE,
+																		GroupLayout.DEFAULT_SIZE,
+																		GroupLayout.PREFERRED_SIZE)
+																.addPreferredGap(ComponentPlacement.UNRELATED)
+																.addComponent(yearEnd, GroupLayout.PREFERRED_SIZE,
+																		GroupLayout.DEFAULT_SIZE,
+																		GroupLayout.PREFERRED_SIZE))
+														.addComponent(lblBlankField, GroupLayout.PREFERRED_SIZE, 481,
+																GroupLayout.PREFERRED_SIZE))
+												.addGap(21))
+										.addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout
+												.createParallelGroup(Alignment.LEADING).addComponent(chckbxDefDates)
+												.addComponent(lblDesiredNumber, GroupLayout.PREFERRED_SIZE, 120,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(lblGoalType, GroupLayout.PREFERRED_SIZE, 120,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(lblConcludedNumber, GroupLayout.PREFERRED_SIZE, 120,
+														GroupLayout.PREFERRED_SIZE)
+												.addGroup(groupLayout.createSequentialGroup().addComponent(lblBeggining)
+														.addPreferredGap(ComponentPlacement.UNRELATED)
+														.addComponent(dayBeggining, GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+														.addGap(10)
+														.addComponent(monthBeggining, GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(ComponentPlacement.UNRELATED)
+														.addComponent(yearBeggining, GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+														.addGroup(groupLayout.createSequentialGroup().addGap(103)
+																.addGroup(groupLayout
+																		.createParallelGroup(Alignment.TRAILING, false)
+																		.addComponent(formattedDesiredNumber,
+																				Alignment.LEADING)
+																		.addComponent(goalSelection, Alignment.LEADING,
+																				0, 169, Short.MAX_VALUE)))
+														.addGroup(Alignment.TRAILING,
+																groupLayout.createSequentialGroup()
+																		.addPreferredGap(ComponentPlacement.RELATED)
+																		.addComponent(formattedConcludedNumber,
+																				GroupLayout.PREFERRED_SIZE, 169,
+																				GroupLayout.PREFERRED_SIZE)))
+												.addPreferredGap(ComponentPlacement.RELATED, 89, Short.MAX_VALUE)))))
+						.addGap(3))
+						.addGroup(groupLayout.createSequentialGroup().addGap(233)
+								.addComponent(saveButton, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED, 233, Short.MAX_VALUE)))
+				.addGap(27)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(18)
+						.addComponent(lblTitle, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE).addGap(44)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(goalSelection, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblGoalType, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+						.addGap(18)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblDesiredNumber, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+								.addComponent(formattedDesiredNumber, GroupLayout.PREFERRED_SIZE,
+										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGap(18)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblConcludedNumber, GroupLayout.PREFERRED_SIZE, 20,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(formattedConcludedNumber, GroupLayout.PREFERRED_SIZE, 23,
+										GroupLayout.PREFERRED_SIZE))
+						.addGap(16).addComponent(chckbxDefDates).addGap(18)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblBeggining, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+								.addComponent(monthBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(yearBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(dayBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE))
+						.addGap(18)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblEnd, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+								.addComponent(dayEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(monthEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(yearEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(lblBlankField, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
+						.addGap(18).addComponent(saveButton).addGap(44)));
 		setLayout(groupLayout);
-
-	}
-
-	private void dataValidation(JComboBox dayBeggining, JComboBox monthBeggining) {
-		// TODO Auto-generated method stub
 
 	}
 }
