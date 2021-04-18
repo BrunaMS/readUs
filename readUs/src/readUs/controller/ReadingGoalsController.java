@@ -54,7 +54,7 @@ public class ReadingGoalsController {
 	}
 
 	
-	
+	//Add goals
 
 	public boolean addGoal(goalType typeGoal, float desiredNumber, float concludedNumber){
 		if (numbGoals>=maxGoals){
@@ -81,6 +81,8 @@ public class ReadingGoalsController {
 		
 	     ReadingGoals newGoal = new ReadingGoals();
 		
+	    
+	     
 		newGoal.addReadingGoals(typeGoal, desiredNumber, concludedNumber,endDate, begginingDate);
 		
 		userGoals[numbGoals]=newGoal;
@@ -90,10 +92,82 @@ public class ReadingGoalsController {
 		
 	}
 
+	//Updates goals 
+
+	public boolean updateGoal(goalType typeGoal, float desiredNumber, float concludedNumber, int index){
+	
+			
+		
+		ReadingGoals newGoal = new ReadingGoals();
+		
+		newGoal.addReadingGoals(typeGoal, desiredNumber, concludedNumber);
+		
+		userGoals[index]=newGoal;
+		
+	   		
+		return true;
+		
+	}
+	
+	public boolean updateGoal(goalType typeGoal, float desiredNumber, float concludedNumber, String endDate, String begginingDate,  int index) {
+		
+		
+	     ReadingGoals newGoal = new ReadingGoals();
+		
+	    
+	     
+		newGoal.addReadingGoals(typeGoal, desiredNumber, concludedNumber,endDate, begginingDate);
+		
+		userGoals[index]=newGoal;
+		
+	    
+		return true;
+		
+	}
 
 
-
-
+	
+	//Save values updated by the user
+	
+	public void updateValues(String typeGoalField, float DesiredNumber, float ConcludedNumber,int index) {
+	
+	switch (typeGoalField) {
+	case "Paginas":
+		updateGoal(goalType.PAGES,DesiredNumber,ConcludedNumber,index);
+		break;
+	case "Livros":
+		updateGoal(goalType.BOOKS,DesiredNumber,ConcludedNumber,index);
+		break;
+	case "Capitulos":
+		updateGoal(goalType.CHAPTERS,DesiredNumber,ConcludedNumber,index);
+		break;
+	case "Palavras":
+		updateGoal(goalType.WORDS,DesiredNumber,ConcludedNumber,index);
+		break;
+	}
+	
+	}
+	
+	public void updateValues(String typeGoalField, float DesiredNumber, float ConcludedNumber, String endDate, String begginingDate, int index) {
+		
+		switch (typeGoalField) {
+		case "Paginas":
+			updateGoal(goalType.PAGES,DesiredNumber,ConcludedNumber,endDate,begginingDate, index);
+			break;
+		case "Livros":
+			updateGoal(goalType.BOOKS,DesiredNumber,ConcludedNumber,endDate,begginingDate, index);
+			break;
+		case "Capitulos":
+			updateGoal(goalType.CHAPTERS,DesiredNumber,ConcludedNumber,endDate,begginingDate,index);
+			break;
+		case "Palavras":
+			updateGoal(goalType.WORDS,DesiredNumber,ConcludedNumber,endDate,begginingDate,index);
+			break;
+		}
+		
+		}
+	
+	
 	
 	//Save values inserted by the user
 	
@@ -226,14 +300,44 @@ public class ReadingGoalsController {
 			int yearEnd) {
 
 		// Changes the string to the appropriate format
-		String begginingDate = String.valueOf(dayBeggining) + String.valueOf(monthBeggining)
-				+ String.valueOf(yearBeggining);
-		String endDate = String.valueOf(dayEnd) + String.valueOf(monthEnd) + String.valueOf(yearEnd);
+		
+		
+		String stringValidDayBeggining = String.valueOf(dayBeggining);
+		String stringValidMonthBeggining = String.valueOf(monthBeggining);
+		String stringValidYearBeggining = String.valueOf(yearBeggining);
+		
+		while (stringValidDayBeggining.length() < 2) {
+			stringValidDayBeggining= "0" + stringValidDayBeggining;
+		}
+		while (stringValidMonthBeggining.length() < 2) {
+			stringValidMonthBeggining= "0" + stringValidMonthBeggining;
+		}
+		
+		String begginingDate = stringValidDayBeggining+stringValidMonthBeggining+stringValidYearBeggining;
+		
+		String stringValidDayEnd = String.valueOf(dayEnd);
+		String stringValidMonthEnd = String.valueOf(monthEnd);
+		String stringValidYearEnd = String.valueOf(yearEnd);
+		
+		while (stringValidDayEnd.length() < 2) {
+			stringValidDayEnd= "0" + stringValidDayEnd;
+		}
+		while (stringValidMonthEnd.length() < 2) {
+			stringValidMonthEnd= "0" + stringValidMonthEnd;
+		}
+		
+		String endDate = stringValidDayEnd+stringValidMonthEnd+stringValidYearEnd;
+		
+		
 
+		
+		
+		
 		
 		
 		// Convert string to time stamp
-
+		
+		
 		Timestamp timeStampBeggining = ReadingGoals.dateToTimestamp(begginingDate);
 		Timestamp timeStampEnd = ReadingGoals.dateToTimestamp(endDate);
 

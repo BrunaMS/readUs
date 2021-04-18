@@ -51,8 +51,7 @@ public class GoalsView extends JPanel {
 				newWindow.setVisible(true);
 				newWindow.setBounds(100, 100, 600, 500);
 				newWindow.setLocationRelativeTo(null);
-				// newGoal.setSize(500, 500);
-				// newWindow.setExtendedState(newWindow.getExtendedState() | JFrame.NORMAL);
+				
 
 			}
 		});
@@ -60,7 +59,13 @@ public class GoalsView extends JPanel {
 		JButton btnSeeGoals = new JButton("Visualizar metas");
 		btnSeeGoals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				VisualizeGoals visualizeGoal = new VisualizeGoals(GoalsControl);
+				visualizeGoal.setVisible(true);
+				JFrame newWindow = new JFrame();
+				newWindow.getContentPane().add(visualizeGoal);
+				newWindow.setVisible(true);
+				newWindow.setBounds(100, 100, 600, 500);
+				newWindow.setLocationRelativeTo(null);
 			}
 		});
 
@@ -78,6 +83,18 @@ public class GoalsView extends JPanel {
 		});
 
 		JButton btnDeleteGoals = new JButton("Deletar meta");
+		btnDeleteGoals.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DeleteGoal deleteGoal = new DeleteGoal(GoalsControl);
+				deleteGoal.setVisible(true);
+				JFrame newWindow = new JFrame();
+				newWindow.getContentPane().add(deleteGoal);
+				newWindow.setVisible(true);
+				newWindow.setBounds(100, 100, 600, 500);
+				newWindow.setLocationRelativeTo(null);
+			}
+		});
+		
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout

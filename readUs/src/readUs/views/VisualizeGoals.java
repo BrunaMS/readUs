@@ -8,12 +8,15 @@ import javax.swing.JScrollBar;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
-public class VisualizeGoals extends JPanel {
+import readUs.controller.ReadingGoalsController;
 
+public class VisualizeGoals extends JPanel {
+	ReadingGoalsController GoalsControl;
 	/**
 	 * Create the panel.
 	 */
-	public VisualizeGoals() {
+	public VisualizeGoals(ReadingGoalsController GoalsControl) {
+		this.GoalsControl = GoalsControl;
 		
 		JLabel lblMetas = new JLabel("Metas");
 		lblMetas.setFont(new Font("Tahoma", Font.PLAIN, 22));
