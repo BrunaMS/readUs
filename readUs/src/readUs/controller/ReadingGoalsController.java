@@ -57,18 +57,11 @@ public class ReadingGoalsController {
 	
 
 	public boolean addGoal(goalType typeGoal, float desiredNumber, float concludedNumber){
-		ReadingGoals newGoal;
 		if (numbGoals>=maxGoals){
 			return false;
-		}
-<<<<<<< HEAD
-		newGoal = new ReadingGoals(typeGoal,desiredNumber,concludedNumber);
-		userGoals[numbGoals] = newGoal;
-		numbGoals = numbGoals + 1;	
-=======
+		}	
 		
-		
-	  ReadingGoals newGoal = new ReadingGoals();
+		ReadingGoals newGoal = new ReadingGoals();
 		
 		newGoal.addReadingGoals(typeGoal, desiredNumber, concludedNumber);
 		
@@ -93,8 +86,6 @@ public class ReadingGoalsController {
 		userGoals[numbGoals]=newGoal;
 		
 	    numbGoals++;
-		
->>>>>>> ead49aa7599dca0a42c670ddc3a0493788b761fa
 		return true;
 		
 	}
@@ -152,7 +143,7 @@ public class ReadingGoalsController {
 
 		if (month == 4 || month == 6 || month == 9 || month == 11) {
 			if (day == 31) {
-				error = error + "Data inválida. Cheque a data e tente novamente.\n";
+				error = error + "Data invï¿½lida. Cheque a data e tente novamente.\n";
 				detectError = true;
 			}
 		}
@@ -160,11 +151,11 @@ public class ReadingGoalsController {
 		else if (month == 2) {
 			if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
 				if (day > 29) {
-					error = error + "Data inválida. Cheque a data e tente novamente.\n";
+					error = error + "Data invï¿½lida. Cheque a data e tente novamente.\n";
 					detectError = true;
 				} else {
 					if (day > 28) {
-						error = error + "Data inválida. Cheque a data e tente novamente.\n";
+						error = error + "Data invï¿½lida. Cheque a data e tente novamente.\n";
 						detectError = true;
 					}
 				}
@@ -179,35 +170,35 @@ public class ReadingGoalsController {
 		if (field.isEmpty() || field == "0" || field == "") {
 			switch (typefield) {
 			case "DesiredNumber":
-				error = error + "O campo numero desejado não pode ser deixado vazio. Por favor insira um número.\n";
+				error = error + "O campo numero desejado nï¿½o pode ser deixado vazio. Por favor insira um nï¿½mero.\n";
 				detectError = true;
 				break;
 			case "ConcludedNumber":
-				error = error + "O campo numero concluido não pode ser deixado vazio. Por favor insira um número.\n";
+				error = error + "O campo numero concluido nï¿½o pode ser deixado vazio. Por favor insira um nï¿½mero.\n";
 				detectError = true;
 				break;
 			case "DayBeggining":
-				error = error + "O campo dia do inicio não pode ser deixado vazio. Por favor insira um número.\n";
+				error = error + "O campo dia do inicio nï¿½o pode ser deixado vazio. Por favor insira um nï¿½mero.\n";
 				detectError = true;
 				break;
 			case "MonthBeggining":
-				error = error + "O campo mes do inicio não pode ser deixado vazio. Por favor insira um número.\n";
+				error = error + "O campo mes do inicio nï¿½o pode ser deixado vazio. Por favor insira um nï¿½mero.\n";
 				detectError = true;
 				break;
 			case "YearBeggining":
-				error = error + "O campo mes do inicio não pode ser deixado vazio. Por favor insira um número.\n";
+				error = error + "O campo mes do inicio nï¿½o pode ser deixado vazio. Por favor insira um nï¿½mero.\n";
 				detectError = true;
 				break;
 			case "DayEnd":
-				error = error + "O campo dia do fim não pode ser deixado vazio. Por favor insira um número.\n";
+				error = error + "O campo dia do fim nï¿½o pode ser deixado vazio. Por favor insira um nï¿½mero.\n";
 				detectError = true;
 				break;
 			case "MonthEnd":
-				error = error + "O campo mes do fim não pode ser deixado vazio. Por favor insira um número.\n";
+				error = error + "O campo mes do fim nï¿½o pode ser deixado vazio. Por favor insira um nï¿½mero.\n";
 				detectError = true;
 				break;
 			case "YearEnd":
-				error = error + "O campo mes do fim não pode ser deixado vazio. Por favor insira um número.\n";
+				error = error + "O campo mes do fim nï¿½o pode ser deixado vazio. Por favor insira um nï¿½mero.\n";
 				detectError = true;
 				break;
 			}
@@ -224,7 +215,7 @@ public class ReadingGoalsController {
 		if (desired <= concluded) {
 			
 			error = error
-					+ "O número concluido não pode ser maior ou igual ao desejado. Por favor confira seus valores.\n";
+					+ "O nï¿½mero concluido nï¿½o pode ser maior ou igual ao desejado. Por favor confira seus valores.\n";
 			detectError = true;
 		}
 	}
@@ -248,7 +239,7 @@ public class ReadingGoalsController {
 
 		if (timeStampBeggining.after(timeStampEnd)) {
 			error = error
-					+ "A data de inicio não pode acontecer apos a data de fim. Por favor confira suas datas e tente novamente.\n";
+					+ "A data de inicio nï¿½o pode acontecer apos a data de fim. Por favor confira suas datas e tente novamente.\n";
 			detectError = true;
 		}
 	}
