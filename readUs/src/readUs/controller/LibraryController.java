@@ -7,7 +7,7 @@ import readUs.model.Literature;
 public class LibraryController {
 	Collection myLibrary = new Collection();
 	
-	public void addBook(){
+	public void test(){
 		// Create an empty array to storage the book awards
 		String[] authorBook1 = {"Pittacus Lore"};
 		String[] awardsBook1 = {""};
@@ -58,33 +58,58 @@ public class LibraryController {
 		sortType sorting;
 		switch(index) {
 		case 0:
-			System.out.println("NAME_A_Z");
 			sorting = sortType.NAME_A_Z;
 			break;
 		case 1:
-			System.out.println("NAME_Z_A");
 			sorting = sortType.NAME_Z_A;
 			break;
 		case 2:
-			System.out.println("FIRST_EDITION");
 			sorting = sortType.FIRST_EDITION;
 			break;
 		case 3:
-			System.out.println("NUMBER_PAGES");
 			sorting = sortType.NUMBER_PAGES;
 			break;
 		case 4:
-			System.out.println("PROGRESS");
 			sorting = sortType.PROGRESS;
 			break;
 		default:
-			System.out.println("default");
 			sorting = sortType.NAME_A_Z;
 		}
 		
 		myLibrary.sortBooks(sorting);
 	}
 	
+	public String[] splitStringArray(String data, String regex) {
+		if(data == null) return null;
+		else return data.split(regex);
+	}
+	
+	public void addBook(String name, String publisher, String nationality, int firstEdition,
+			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre, 
+			String[] author) {
+		myLibrary.addLiterature(name, publisher, nationality, firstEdition, originalLanguage, awards, 
+								numberPages, numberPagesRead, genre, author);
+		
+	}
+	
+	public void addMagazine(String name, String publisher, String nationality, int firstEdition,
+			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre,
+			String[] headline, String frequency, String coverDate) {
+		myLibrary.addLiterature(name, publisher, nationality, firstEdition, originalLanguage, awards, 
+								numberPages, numberPagesRead, genre, headline, frequency, coverDate);
+		
+		
+	}
+	
+	public void addComic(String name, String publisher, String nationality, int firstEdition,
+			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre,
+			String[] writer, String[] penciller, String[] inker, String[] letterer, String[] colourist,
+			String[] mainCharacters) {
+		myLibrary.addLiterature(name, publisher, nationality, firstEdition, originalLanguage, awards, 
+								numberPages, numberPagesRead, genre, writer, penciller, inker, letterer, 
+								colourist, mainCharacters);
+		
+	}
 	
 
 }

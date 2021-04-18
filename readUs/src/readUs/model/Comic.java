@@ -7,7 +7,7 @@ public class Comic extends Literature{
 	private String[] penciller;
 	private String[] inker;
 	private String[] letterer;
-	private String[] collorist;
+	private String[] colourist;
 	private String[] mainCharacters;
 	
 	// Initializes the class attributes
@@ -48,12 +48,12 @@ public class Comic extends Literature{
 		this.letterer = letterer;
 	}
 
-	public String[] getCollorist() {
-		return collorist;
+	public String[] getColourist() {
+		return colourist;
 	}
 
-	public void setCollorist(String[] collorist) {
-		this.collorist = collorist;
+	public void setColourist(String[] colourist) {
+		this.colourist = colourist;
 	}
 
 	public String[] getMainCharacters() {
@@ -90,8 +90,8 @@ public class Comic extends Literature{
 		}
 		output += "\n";
 		output += "Colorista(s): ";
-		for(i = 0; i < collorist.length; i++) {
-			output += "\n" + getCollorist()[i];				
+		for(i = 0; i < colourist.length; i++) {
+			output += "\n" + getColourist()[i];				
 		}
 		output += "\n";
 		output += "Personagens Principais: ";

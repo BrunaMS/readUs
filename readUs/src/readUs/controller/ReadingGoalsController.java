@@ -4,16 +4,23 @@ import readUs.model.ReadingGoals;
 import readUs.model.ReadingGoals.goalType;
 
 public class ReadingGoalsController {
-	ReadingGoals userGoals[];
-	int maxGoals=100;
-	int numbGoals=0;
+	private int maxGoals;
+	private int numbGoals;
+	private ReadingGoals userGoals[];
+	
+	public ReadingGoalsController() {
+		maxGoals = 100;
+		numbGoals = 0;
+	}
 	
 	public boolean addGoal(goalType typeGoal, float desiredNumber, float concludedNumber){
+		ReadingGoals newGoal;
 		if (numbGoals>=maxGoals){
 			return false;
 		}
-		userGoals[numbGoals]=new ReadingGoals(typeGoal,desiredNumber,concludedNumber);
-		numbGoals=numbGoals+1;	
+		newGoal = new ReadingGoals(typeGoal,desiredNumber,concludedNumber);
+		userGoals[numbGoals] = newGoal;
+		numbGoals = numbGoals + 1;	
 		return true;
 		
 	}

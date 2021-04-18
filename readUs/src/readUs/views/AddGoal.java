@@ -10,10 +10,6 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilDateModel;
-
 import readUs.controller.ReadingGoalsController;
 import readUs.model.ReadingGoals.goalType;
 
@@ -36,7 +32,7 @@ public class AddGoal extends JPanel {
 	private JTextField textFieldConcludedNumber;
 
 	/**
-	 * Criacao do painel para a adição de novas metas
+	 * Criacao do painel para a adiï¿½ï¿½o de novas metas
 	 */
 	public AddGoal() {
 
@@ -53,9 +49,9 @@ public class AddGoal extends JPanel {
 		JComboBox goalSelection = new JComboBox();
 		goalSelection.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		goalSelection.addItem("Páginas");
+		goalSelection.addItem("Paginas");
 		goalSelection.addItem("Livros");
-		goalSelection.addItem("Capítulos");
+		goalSelection.addItem("Capitulos");
 		goalSelection.addItem("Palavras");
 
 		JLabel lblGoalType = new JLabel("Tipo de objetivo");
@@ -181,43 +177,43 @@ public class AddGoal extends JPanel {
 					if (textFieldDesiredNumber.getText().isEmpty()) {
 
 						error = error
-								+ "O campo numero desejado não pode ser deixado vazio. Por favor insira um número.\n";
+								+ "O campo numero desejado nao pode ser deixado vazio. Por favor insira um nï¿½mero.\n";
 						detectError = true;
 					}
 					if (textFieldConcludedNumber.getText().isEmpty()) {
 
 						error = error
-								+ "O campo numero concluido não pode ser deixado vazio. Por favor insira um número.\n";
+								+ "O campo numero concluido nao pode ser deixado vazio. Por favor insira um nï¿½mero.\n";
 						detectError = true;
 					}
 					if (dayBeggining.getItemCount() == 0) {
 
-						error = error + "O campo dia do inicio pode ser deixado vazio. Por favor escolha uma opção.\n";
+						error = error + "O campo dia do inicio pode ser deixado vazio. Por favor escolha uma opï¿½ï¿½o.\n";
 						detectError = true;
 					}
 					if (monthBeggining.getItemCount() == 0) {
 
-						error = error + "O campo mes do inicio pode ser deixado vazio. Por favor escolha uma opção.\n";
+						error = error + "O campo mes do inicio pode ser deixado vazio. Por favor escolha uma opï¿½ï¿½o.\n";
 						detectError = true;
 					}
 					if (yearBeggining.getItemCount() == 0) {
 
-						error = error + "O campo ano do inicio pode ser deixado vazio. Por favor escolha uma opção.\n";
+						error = error + "O campo ano do inicio pode ser deixado vazio. Por favor escolha uma opï¿½ï¿½o.\n";
 						detectError = true;
 					}
 					if (dayEnd.getItemCount() == 0) {
 
-						error = error + "O campo dia do inicio pode ser deixado vazio. Por favor escolha uma opção.\n";
+						error = error + "O campo dia do inicio pode ser deixado vazio. Por favor escolha uma opï¿½ï¿½o.\n";
 						detectError = true;
 					}
 					if (monthEnd.getItemCount() == 0) {
 
-						error = error + "O campo mes do inicio pode ser deixado vazio. Por favor escolha uma opção.\n";
+						error = error + "O campo mes do inicio pode ser deixado vazio. Por favor escolha uma opï¿½ï¿½o.\n";
 						detectError = true;
 					}
 					if (yearEnd.getItemCount() == 0) {
 
-						error = error + "O campo ano do inicio pode ser deixado vazio. Por favor escolha uma opção.\n";
+						error = error + "O campo ano do inicio pode ser deixado vazio. Por favor escolha uma opï¿½ï¿½o.\n";
 						detectError = true;
 					}
 
@@ -230,7 +226,7 @@ public class AddGoal extends JPanel {
 							|| Integer.valueOf((String) monthBeggining.getSelectedItem()) == 9
 							|| Integer.valueOf((String) monthBeggining.getSelectedItem()) == 11) {
 						if (Integer.valueOf((String) dayBeggining.getSelectedItem()) == 31) {
-							error = error + "Data inválida. Cheque a data e tente novamente.\n";
+							error = error + "Data invï¿½lida. Cheque a data e tente novamente.\n";
 							detectError = true;
 						}
 					}
@@ -240,11 +236,11 @@ public class AddGoal extends JPanel {
 								&& Integer.valueOf((String) yearBeggining.getSelectedItem()) % 100 != 0)
 								|| (Integer.valueOf((String) yearBeggining.getSelectedItem()) % 400 == 0)) {
 							if (Integer.valueOf((String) dayBeggining.getSelectedItem()) > 29) {
-								error = error + "Data inválida. Cheque a data e tente novamente.\n";
+								error = error + "Data invï¿½lida. Cheque a data e tente novamente.\n";
 								detectError = true;
 							} else {
 								if (Integer.valueOf((String) dayBeggining.getSelectedItem()) > 28) {
-									error = error + "Data inválida. Cheque a data e tente novamente.\n";
+									error = error + "Data invï¿½lida. Cheque a data e tente novamente.\n";
 									detectError = true;
 								}
 							}
@@ -258,7 +254,7 @@ public class AddGoal extends JPanel {
 							|| Integer.valueOf((String) monthEnd.getSelectedItem()) == 9
 							|| Integer.valueOf((String) monthEnd.getSelectedItem()) == 11) {
 						if (Integer.valueOf((String) dayEnd.getSelectedItem()) == 31) {
-							error = error + "Data inválida. Cheque a data e tente novamente.\n";
+							error = error + "Data invï¿½lida. Cheque a data e tente novamente.\n";
 							detectError = true;
 						}
 					} else if (Integer.valueOf((String) monthEnd.getSelectedItem()) == 2) {
@@ -266,19 +262,19 @@ public class AddGoal extends JPanel {
 								&& Integer.valueOf((String) yearEnd.getSelectedItem()) % 100 != 0)
 								|| (Integer.valueOf((String) yearEnd.getSelectedItem()) % 400 == 0)) {
 							if (Integer.valueOf((String) dayEnd.getSelectedItem()) > 29) {
-								error = error + "Data inválida. Cheque a data e tente novamente.\n";
+								error = error + "Data invï¿½lida. Cheque a data e tente novamente.\n";
 								detectError = true;
 							}
 						} else {
 							if (Integer.valueOf((String) dayEnd.getSelectedItem()) > 28) {
-								error = error + "Data inválida. Cheque a data e tente novamente.\n";
+								error = error + "Data invï¿½lida. Cheque a data e tente novamente.\n";
 								detectError = true;
 							}
 						}
 					}
 					/*if (Integer.parseInt(textFieldDesiredNumber.getText()) > Integer.parseInt(textFieldConcludedNumber.getText())) {
 						error = error
-								+ "O número concluido não pode ser maior que o desejado. Por favor confira seus valores.\n";
+								+ "O nï¿½mero concluido nï¿½o pode ser maior que o desejado. Por favor confira seus valores.\n";
 						detectError = true;
 					}*/
 				} else {
@@ -286,24 +282,24 @@ public class AddGoal extends JPanel {
 					if (textFieldDesiredNumber.getText().isEmpty()) {
 
 						error = error
-								+ "O campo numero desejado não pode ser deixado vazio. Por favor insira um número.\n";
+								+ "O campo numero desejado nï¿½o pode ser deixado vazio. Por favor insira um nï¿½mero.\n";
 						detectError = true;
 					}
 					if (textFieldConcludedNumber.getText().isEmpty()) {
 
 						error = error
-								+ "O campo numero concluido não pode ser deixado vazio. Por favor insira um número.\n";
+								+ "O campo numero concluido nï¿½o pode ser deixado vazio. Por favor insira um nï¿½mero.\n";
 						detectError = true;
 
 					}
 					/*if (Integer.parseInt(textFieldDesiredNumber.getText()) > Integer.parseInt(textFieldConcludedNumber.getText())) {
 					error = error
-							+ "O número concluido não pode ser maior que o desejado. Por favor confira seus valores.\n";
+							+ "O nï¿½mero concluido nï¿½o pode ser maior que o desejado. Por favor confira seus valores.\n";
 					detectError = true;
 				}*/
 				}
 
-				if (detectError = true) {
+				if (detectError) {
 					lblBlankField.setVisible(true);
 
 					lblBlankField.setText(
@@ -313,13 +309,14 @@ public class AddGoal extends JPanel {
 
 				else {
 					switch (typeGoalfield) {
-					case "Páginas":
+					case "Paginas":
+						System.out.println("Oi");
 						GoalsControl.addGoal(goalType.PAGES, Float.parseFloat(textFieldDesiredNumber.getText()),
 								Float.parseFloat(textFieldConcludedNumber.getText()));
 					case "Livros":
 						GoalsControl.addGoal(goalType.BOOKS, Float.parseFloat(textFieldDesiredNumber.getText()),
 								Float.parseFloat(textFieldConcludedNumber.getText()));
-					case "Capítulos":
+					case "Capitulos":
 						GoalsControl.addGoal(goalType.CHAPTERS, Float.parseFloat(textFieldDesiredNumber.getText()),
 								Float.parseFloat(textFieldConcludedNumber.getText()));
 					case "Palavras":

@@ -122,7 +122,7 @@ public class Collection {
 	// Comic
 	public void addLiterature(String name, String publisher, String nationality, int firstEdition,
 			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre,
-			String[] writer, String[] penciller, String[] inker, String[] letterer, String[] collorist,
+			String[] writer, String[] penciller, String[] inker, String[] letterer, String[] colourist,
 			String[] mainCharacters) {
 		if(qntBooks < (this.maxBooks)) {
 			Comic newComic = new Comic();
@@ -140,8 +140,7 @@ public class Collection {
 			newComic.setPenciller(penciller);
 			newComic.setInker(inker);
 			newComic.setLetterer(letterer);
-			newComic.setPenciller(penciller);
-			newComic.setCollorist(collorist);
+			newComic.setColourist(colourist);
 			newComic.setMainCharacters(mainCharacters);
 	
 			books[qntBooks] = newComic;

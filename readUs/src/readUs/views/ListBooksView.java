@@ -1,15 +1,12 @@
 package readUs.views;
+import readUs.controller.LibraryController;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import readUs.controller.LibraryController;
-import readUs.model.Collection.sortType;
 
 import javax.swing.JScrollPane;
 import javax.swing.GroupLayout;
@@ -17,8 +14,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
+
+import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -63,7 +61,6 @@ public class ListBooksView extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(comboBox.getSelectedIndex());
 				libControl.setSort(comboBox.getSelectedIndex());
 				updateList();
 				
@@ -99,20 +96,11 @@ public class ListBooksView extends JFrame {
 		);
 		scrollPane.setViewportView(booksList);
 		contentPane.setLayout(gl_contentPane);
-			
 	}
 	
 	public void showBooks(LibraryController libControl){
 		this.libControl = libControl;
-		this.strBooksName = libControl.getAllBooksName();
-		this.qntBooks = libControl.getQntBooks();
-		
-		String booksName = "";
-		for(int i = 0; i < qntBooks; i++) {
-			booksName +=  strBooksName[i] + "\n";
-		}
-		System.out.println(booksName);
-		booksList.setText("<html>" + booksName.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+		updateList();
 	}
 	
 	private void updateList(){
@@ -122,7 +110,12 @@ public class ListBooksView extends JFrame {
 		for(int i = 0; i < qntBooks; i++) {
 			booksName +=  strBooksName[i] + "\n";
 		}
-		System.out.println(booksName);
-		booksList.setText("<html>" + booksName.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+		if(booksName.isEmpty()) {
+			booksList.setForeground(Color.RED);
+			booksList.setText("Sem livros aqui... Que tal adicionar algum para sua biblioteca antes? =D");
+		}
+		else {
+			booksList.setText("<html>" + booksName.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+		}
 	}
 }

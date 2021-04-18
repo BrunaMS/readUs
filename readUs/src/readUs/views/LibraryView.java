@@ -31,8 +31,8 @@ public class LibraryView extends JPanel {
 		JButton btnMostrarLivros = new JButton("Listar Livros");
 		btnMostrarLivros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListBooksView listView = new ListBooksView();
-				listView.showBooks(libControl);
+				ListBooksView listLibView = new ListBooksView();
+				listLibView.showBooks(libControl);
 			}
 			
 		});
@@ -50,8 +50,9 @@ public class LibraryView extends JPanel {
 		JButton btnAdicionarLivro = new JButton("Adicionar Livro");
 		btnAdicionarLivro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				libControl.addBook();
-				lblStatus.setText("Books Successfully added.");
+				AddBookView addLibView = new AddBookView();
+				addLibView.setAutoRequestFocus(true);
+				addLibView.setVisible(true);
 				
 			}
 		});
