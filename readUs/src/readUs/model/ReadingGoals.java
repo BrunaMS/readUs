@@ -24,7 +24,7 @@ public class ReadingGoals{
 	private Timestamp startTimestamp;
 	private Timestamp endTimestamp;
 	
-	public ReadingGoals(goalType typeGoal, float desiredNumber, float concludedNumber) {
+	public void addReadingGoals(goalType typeGoal, float desiredNumber, float concludedNumber) {
 		setTypeGoal(typeGoal);
 		setDesiredNumber(desiredNumber);
 		setConcludedNumber(concludedNumber);	
@@ -33,16 +33,16 @@ public class ReadingGoals{
 		endTimestamp = null;
 	}
 	
-	public ReadingGoals(goalType typeGoal, float desiredNumber, float concludedNumber, String deadline_ddmmyyyy) {
-		Date date = new Date();
+	public void addReadingGoals(goalType typeGoal, float desiredNumber, float concludedNumber, String endDate, String begginingDate) {
+		
 		
 		setTypeGoal(typeGoal);
 		setDesiredNumber(desiredNumber);
 		setConcludedNumber(concludedNumber);
-		dateToTimestamp(deadline_ddmmyyyy);
 		
-		startTimestamp = new Timestamp(date.getTime());
-		endTimestamp = dateToTimestamp(deadline_ddmmyyyy);
+		
+		startTimestamp = dateToTimestamp(begginingDate);
+		endTimestamp = dateToTimestamp(endDate);
 		
 	}
 
@@ -90,7 +90,7 @@ public class ReadingGoals{
 		this.typeGoal = typeGoal;
 	}
 	
-	private Timestamp dateToTimestamp(String date) {
+	public static Timestamp dateToTimestamp(String date) {
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
 	    Date parsedDate = null;
 		try {
