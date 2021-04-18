@@ -7,14 +7,18 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import readUs.controller.ReadingGoalsController;
+
 import javax.swing.JButton;
 
 public class DeleteGoal extends JPanel {
-
+	ReadingGoalsController GoalsControl;
 	/**
 	 * Create the panel.
 	 */
-	public DeleteGoal() {
+	public DeleteGoal(ReadingGoalsController GoalsControl) {
+		this.GoalsControl = GoalsControl;
 		
 		JLabel lblGoalSelection = new JLabel("Escolha a meta");
 		

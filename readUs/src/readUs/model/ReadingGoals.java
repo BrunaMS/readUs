@@ -41,6 +41,7 @@ public class ReadingGoals{
 		setConcludedNumber(concludedNumber);
 		
 		
+		
 		startTimestamp = dateToTimestamp(begginingDate);
 		endTimestamp = dateToTimestamp(endDate);
 		
@@ -91,6 +92,7 @@ public class ReadingGoals{
 	}
 	
 	public static Timestamp dateToTimestamp(String date) {
+		
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
 	    Date parsedDate = null;
 		try {

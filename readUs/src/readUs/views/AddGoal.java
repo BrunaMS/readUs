@@ -199,6 +199,12 @@ public class AddGoal extends JPanel {
 		JButton saveButton = new JButton("Salvar");
 		saveButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
+		JLabel lblSucess = new JLabel("Nova meta salva :)");
+		lblSucess.setForeground(new Color(0, 128, 128));
+		lblSucess.setFont(new Font("Tahoma", Font.BOLD, 12));
+        lblSucess.setVisible(false);
+		
+		
 		// Validate user data when the save button is clicked
 
 		saveButton.addActionListener(new ActionListener() {
@@ -237,7 +243,7 @@ public class AddGoal extends JPanel {
 
 					// Begging of goal date validation
 
-
+					
 					int validDayBeggining = Integer.valueOf((String) dayBeggining.getSelectedItem());
 					int validMonthBeggining = Integer.valueOf((String) monthBeggining.getSelectedItem());
 					int validYearBeggining = Integer.valueOf((String) yearBeggining.getSelectedItem());
@@ -266,17 +272,39 @@ public class AddGoal extends JPanel {
 								+ "</html>");
 					}
 					else {
-
-						String BegginingDate = String.valueOf(validDayBeggining) + String.valueOf(validMonthBeggining)
-								+ String.valueOf(validYearBeggining);
-
-						String EndDate = String.valueOf(validDayEnd) + String.valueOf(validMonthEnd)+
-										String.valueOf(validYearEnd);
+					    
+						String stringValidDayBeggining = String.valueOf(validDayBeggining);
+						String stringValidMonthBeggining = String.valueOf(validMonthBeggining);
+						String stringValidYearBeggining = String.valueOf(validYearBeggining);
+						
+						while (stringValidDayBeggining.length() < 2) {
+							stringValidDayBeggining= "0" + stringValidDayBeggining;
+						}
+						while (stringValidMonthBeggining.length() < 2) {
+							stringValidMonthBeggining= "0" + stringValidMonthBeggining;
+						}
+						
+						String BegginingDate = stringValidDayBeggining+stringValidMonthBeggining+stringValidYearBeggining;
+						
+						String stringValidDayEnd = String.valueOf(validDayEnd);
+						String stringValidMonthEnd = String.valueOf(validMonthEnd);
+						String stringValidYearEnd = String.valueOf(validYearEnd);
+						
+						while (stringValidDayEnd.length() < 2) {
+							stringValidDayEnd= "0" + stringValidDayEnd;
+						}
+						while (stringValidMonthEnd.length() < 2) {
+							stringValidMonthEnd= "0" + stringValidMonthEnd;
+						}
+						
+						String EndDate = stringValidDayEnd+stringValidMonthEnd+stringValidYearEnd;
+					
 
 						GoalsControl.saveValues(typeGoalField,
 								Float.parseFloat(formattedDesiredNumber.getText().replace(".", "")),
 								Float.parseFloat(formattedConcludedNumber.getText().replace(".", "")), EndDate,
 								BegginingDate);
+						 lblSucess.setVisible(true);
 					}
 				} else {
 
@@ -293,7 +321,7 @@ public class AddGoal extends JPanel {
 								Float.valueOf(formattedConcludedNumber.getText().replace(".", "")));
 					}
 
-				}
+				
 
 				// Checks if an error is detected
 				boolean detectError = GoalsControl.isDetectError();
@@ -309,120 +337,103 @@ public class AddGoal extends JPanel {
 					GoalsControl.saveValues(typeGoalField,
 							Float.parseFloat(formattedDesiredNumber.getText().replace(".", "")),
 							Float.parseFloat(formattedConcludedNumber.getText().replace(".", "")));
+                    lblSucess.setVisible(true);
 				}
-			}
+			}}
 
 		}
 
 		);
-
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup()
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-						.createSequentialGroup()
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup().addGap(202).addComponent(lblTitle))
-								.addGroup(groupLayout.createSequentialGroup().addGap(58).addGroup(groupLayout
-										.createParallelGroup(Alignment.LEADING)
+		
+				GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(202)
+							.addComponent(lblTitle))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(58)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(chckbxDefDates)
+										.addComponent(lblDesiredNumber, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblGoalType, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblConcludedNumber, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
 										.addGroup(groupLayout.createSequentialGroup()
-												.addPreferredGap(ComponentPlacement.RELATED)
-												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-														.addGroup(groupLayout.createSequentialGroup()
-																.addComponent(lblEnd, GroupLayout.PREFERRED_SIZE, 25,
-																		GroupLayout.PREFERRED_SIZE)
-																.addGap(18)
-																.addComponent(dayEnd, GroupLayout.PREFERRED_SIZE,
-																		GroupLayout.DEFAULT_SIZE,
-																		GroupLayout.PREFERRED_SIZE)
-																.addPreferredGap(ComponentPlacement.UNRELATED)
-																.addComponent(monthEnd, GroupLayout.PREFERRED_SIZE,
-																		GroupLayout.DEFAULT_SIZE,
-																		GroupLayout.PREFERRED_SIZE)
-																.addPreferredGap(ComponentPlacement.UNRELATED)
-																.addComponent(yearEnd, GroupLayout.PREFERRED_SIZE,
-																		GroupLayout.DEFAULT_SIZE,
-																		GroupLayout.PREFERRED_SIZE))
-														.addComponent(lblBlankField, GroupLayout.PREFERRED_SIZE, 481,
-																GroupLayout.PREFERRED_SIZE))
-												.addGap(21))
-										.addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout
-												.createParallelGroup(Alignment.LEADING).addComponent(chckbxDefDates)
-												.addComponent(lblDesiredNumber, GroupLayout.PREFERRED_SIZE, 120,
-														GroupLayout.PREFERRED_SIZE)
-												.addComponent(lblGoalType, GroupLayout.PREFERRED_SIZE, 120,
-														GroupLayout.PREFERRED_SIZE)
-												.addComponent(lblConcludedNumber, GroupLayout.PREFERRED_SIZE, 120,
-														GroupLayout.PREFERRED_SIZE)
-												.addGroup(groupLayout.createSequentialGroup().addComponent(lblBeggining)
-														.addPreferredGap(ComponentPlacement.UNRELATED)
-														.addComponent(dayBeggining, GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-														.addGap(10)
-														.addComponent(monthBeggining, GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-														.addPreferredGap(ComponentPlacement.UNRELATED)
-														.addComponent(yearBeggining, GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-														.addGroup(groupLayout.createSequentialGroup().addGap(103)
-																.addGroup(groupLayout
-																		.createParallelGroup(Alignment.TRAILING, false)
-																		.addComponent(formattedDesiredNumber,
-																				Alignment.LEADING)
-																		.addComponent(goalSelection, Alignment.LEADING,
-																				0, 169, Short.MAX_VALUE)))
-														.addGroup(Alignment.TRAILING,
-																groupLayout.createSequentialGroup()
-																		.addPreferredGap(ComponentPlacement.RELATED)
-																		.addComponent(formattedConcludedNumber,
-																				GroupLayout.PREFERRED_SIZE, 169,
-																				GroupLayout.PREFERRED_SIZE)))
-												.addPreferredGap(ComponentPlacement.RELATED, 89, Short.MAX_VALUE)))))
-						.addGap(3))
-						.addGroup(groupLayout.createSequentialGroup().addGap(233)
-								.addComponent(saveButton, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED, 233, Short.MAX_VALUE)))
-				.addGap(27)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(18)
-						.addComponent(lblTitle, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE).addGap(44)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(goalSelection, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblGoalType, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-						.addGap(18)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblDesiredNumber, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-								.addComponent(formattedDesiredNumber, GroupLayout.PREFERRED_SIZE,
-										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGap(18)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblConcludedNumber, GroupLayout.PREFERRED_SIZE, 20,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(formattedConcludedNumber, GroupLayout.PREFERRED_SIZE, 23,
-										GroupLayout.PREFERRED_SIZE))
-						.addGap(16).addComponent(chckbxDefDates).addGap(18)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblBeggining, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-								.addComponent(monthBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(yearBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(dayBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addGap(18)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblEnd, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-								.addComponent(dayEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(monthEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(yearEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(lblBlankField, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
-						.addGap(18).addComponent(saveButton).addGap(44)));
+											.addComponent(lblBeggining)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(dayBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addGap(10)
+											.addComponent(monthBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(yearBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+									.addGap(103)
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+											.addComponent(formattedDesiredNumber, Alignment.LEADING)
+											.addComponent(goalSelection, Alignment.LEADING, 0, 169, Short.MAX_VALUE))
+										.addComponent(formattedConcludedNumber, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblBlankField, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(lblEnd, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+											.addGap(18)
+											.addComponent(dayEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(monthEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(yearEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+										.addComponent(lblSucess))))
+							.addPreferredGap(ComponentPlacement.RELATED))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(233)
+							.addComponent(saveButton, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(51, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(18)
+					.addComponent(lblTitle, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addGap(44)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(goalSelection, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblGoalType, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblDesiredNumber, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+						.addComponent(formattedDesiredNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblConcludedNumber, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+						.addComponent(formattedConcludedNumber, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+					.addGap(16)
+					.addComponent(chckbxDefDates)
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblBeggining, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+						.addComponent(monthBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(yearBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(dayBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblEnd, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+						.addComponent(dayEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(monthEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(yearEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(lblSucess)
+					.addGap(8)
+					.addComponent(lblBlankField, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(saveButton)
+					.addGap(44))
+		);
 		setLayout(groupLayout);
 
 	}
