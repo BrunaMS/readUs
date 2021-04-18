@@ -198,7 +198,7 @@ public class Collection {
 	private void orderLibraryAZ(){
         for (int i = 0; i < qntBooks; i++) {
             for (int j = i + 1; j < qntBooks; j++) { 
-                if (books[i].getName().compareTo(books[j].getName()) > 0){ //  > 0: Book[i] > Book[j]
+                if (books[i].getName().toLowerCase().compareTo(books[j].getName().toLowerCase()) > 0){ //  > 0: Book[i] > Book[j]
                 	Literature temp = books[i];						 // == 0: Book[i] == Book[j]
                     books[i] = books[j];						 //  < 0: Book[i] < Book[j]
                     books[j] = temp;
@@ -211,7 +211,7 @@ public class Collection {
 	private void orderLibraryZA() {
         for (int i = 0; i < qntBooks; i++) {
             for (int j = i + 1; j < qntBooks; j++) { 
-                if (books[i].getName().compareTo(books[j].getName()) < 0){  //  > 0: Book[i]  > Book[j]
+                if (books[i].getName().toLowerCase().compareTo(books[j].getName().toLowerCase()) < 0){  //  > 0: Book[i]  > Book[j]
                 	Literature temp = books[i];						 		// == 0: Book[i] == Book[j]
                     books[i] = books[j];						 			//  < 0: Book[i]  < Book[j]
                     books[j] = temp;

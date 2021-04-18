@@ -1,6 +1,6 @@
 package readUs.views;
 import readUs.controller.LibraryController;
-
+import readUs.model.Collection.sortType;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -36,7 +36,7 @@ public class ListBooksView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ListBooksView frame = new ListBooksView();
+					ListBooksView frame = new ListBooksView(new LibraryController());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +48,8 @@ public class ListBooksView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ListBooksView() {
+	public ListBooksView(LibraryController libController){
+		this.libControl = libController;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 651, 387);
 		setVisible(true);
@@ -98,24 +99,26 @@ public class ListBooksView extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 	
-	public void showBooks(LibraryController libControl){
-		this.libControl = libControl;
+	public void showBooks(){
+		libControl.setSort(sortType.NAME_A_Z);
 		updateList();
 	}
 	
 	private void updateList(){
 		this.strBooksName = libControl.getAllBooksName();
+		qntBooks = libControl.getQntBooks();
+		if(qntBooks == 0) {
+			booksList.setForeground(Color.RED);
+			booksList.setText("Sem livros aqui... Que tal adicionar algum para sua biblioteca antes? =D");
+			return;
+		}
+		
 		
 		String booksName = "";
 		for(int i = 0; i < qntBooks; i++) {
 			booksName +=  strBooksName[i] + "\n";
 		}
-		if(booksName.isEmpty()) {
-			booksList.setForeground(Color.RED);
-			booksList.setText("Sem livros aqui... Que tal adicionar algum para sua biblioteca antes? =D");
-		}
-		else {
-			booksList.setText("<html>" + booksName.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
-		}
+		booksList.setText("<html>" + booksName.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+	
 	}
 }

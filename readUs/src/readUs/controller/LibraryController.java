@@ -45,6 +45,7 @@ public class LibraryController {
 		Literature[] books = myLibrary.getBooks();
 		for(int i = 0; i < myLibrary.getQntBooks(); i++) {
 			booksName[i] = books[i].getName();
+			System.out.println(booksName[i]);
 		}
 		return booksName;
 		
@@ -79,6 +80,10 @@ public class LibraryController {
 		myLibrary.sortBooks(sorting);
 	}
 	
+	public void setSort(sortType sorting) {
+		myLibrary.sortBooks(sorting);
+	}
+	
 	public String[] splitStringArray(String data, String regex) {
 		if(data == null) return null;
 		else return data.split(regex);
@@ -109,6 +114,15 @@ public class LibraryController {
 								numberPages, numberPagesRead, genre, writer, penciller, inker, letterer, 
 								colourist, mainCharacters);
 		
+	}
+	
+	public boolean exists(String name) {
+		String[] booksName = getAllBooksName();
+		for(int idx = 0; idx < booksName.length; idx++) {
+			if(booksName[idx].contentEquals(name))
+				return true;
+		}
+		return false;
 	}
 	
 

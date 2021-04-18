@@ -13,6 +13,7 @@ import readUs.controller.LibraryController;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -22,6 +23,7 @@ import javax.swing.JTextPane;
 import javax.swing.JFormattedTextField;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JSpinner;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -82,11 +84,6 @@ public class AddBookView extends JFrame {
 	private JComboBox frequencyComboBox;
 	private JLabel headlineLabel;
 	private JTextField headLineField;
-	
-	AddBookView(LibraryController libController){
-		this.libControl = libController;
-	}
-
 
 	public void bookFieldsSetVisible(boolean enabled) {
 		titleField.setVisible(enabled);
@@ -176,10 +173,15 @@ public class AddBookView extends JFrame {
 		
 	}
 	
+	private void closeFrame() {
+		this.dispose();
+	}
+	
 	/**
 	 * Create the frame.
 	 */
-	public AddBookView() {
+	public AddBookView(LibraryController libController){
+		this.libControl = libController;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 622, 400);
 		contentPane = new JPanel();
@@ -343,6 +345,15 @@ public class AddBookView extends JFrame {
 				readPages 	= (int)readPagesSpinner.getValue();
 				
 				title 		= titleField.getText();
+				if(libControl.exists(title)) {
+					JDialog.setDefaultLookAndFeelDecorated(true);
+					int response = JOptionPane.showConfirmDialog(null, "Ja existe um livro na sua biblioteca com esse nome. Deseja continuar mesmo assim?", "Aviso: Livro duplicado",
+							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					if (response != JOptionPane.YES_OPTION) {
+						return;
+					}
+				}
+				
 				publisher 	= publisherField.getText();
 				nationality = nationalityField.getText();
 				language 	= languageField.getText();
@@ -375,7 +386,12 @@ public class AddBookView extends JFrame {
 											colourist, mainChars);
 						break;
 				}
+				JDialog.setDefaultLookAndFeelDecorated(true);
+				JOptionPane.showMessageDialog(contentPane, "Item adicionado com sucesso! =)");
+				closeFrame();
+				
 			}
+			
 		});
 		
 		headlineLabel = new JLabel("Manchete");
@@ -567,7 +583,7 @@ public class AddBookView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddBookView frame = new AddBookView();
+					AddBookView frame = new AddBookView(new LibraryController());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

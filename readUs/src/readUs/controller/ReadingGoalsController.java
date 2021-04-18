@@ -239,7 +239,7 @@ public class ReadingGoalsController {
 
 		if (timeStampBeggining.after(timeStampEnd)) {
 			error = error
-					+ "A data de inicio n�o pode acontecer apos a data de fim. Por favor confira suas datas e tente novamente.\n";
+					+ "A data de inicio nao pode acontecer apos a data de fim. Por favor confira suas datas e tente novamente.\n";
 			detectError = true;
 		}
 	}
