@@ -116,7 +116,7 @@ public class UpdateGoal extends JPanel {
 		dayEnd.setVisible(false);
 		monthEnd.setVisible(false);
 		yearEnd.setVisible(false);
-
+        
 		JCheckBox chckbxDefDates = new JCheckBox("Definir datas");
 		chckbxDefDates.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		chckbxDefDates.addItemListener(new ItemListener() {

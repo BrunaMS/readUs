@@ -18,8 +18,11 @@ public class VisualizeGoals extends JPanel {
 	public VisualizeGoals(ReadingGoalsController GoalsControl) {
 		this.GoalsControl = GoalsControl;
 		
-		JLabel lblMetas = new JLabel("Metas");
-		lblMetas.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		JLabel lblGoals= new JLabel("Metas");
+		lblGoals.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		
+		int numbGoals=GoalsControl.getNumbGoals();
+	
 		
 		JScrollBar scrollBar = new JScrollBar();
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -27,22 +30,21 @@ public class VisualizeGoals extends JPanel {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(185)
-					.addComponent(lblMetas)
-					.addGap(180)
+					.addComponent(lblGoals)
+					.addGap(169)
 					.addComponent(scrollBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addGap(21))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(15)
-							.addComponent(lblMetas))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(40)
-							.addComponent(scrollBar, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE)))
+					.addGap(15)
+					.addComponent(lblGoals)
 					.addContainerGap(38, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(40, Short.MAX_VALUE)
+					.addComponent(scrollBar, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE)
+					.addGap(38))
 		);
 		setLayout(groupLayout);
 

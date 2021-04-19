@@ -91,6 +91,22 @@ public class ReadingGoalsController {
 		return true;
 		
 	}
+	
+
+	
+	
+	//Delete Goals
+	
+	public void removeGoal(int index) {
+		
+		if(numbGoals > 0) {
+			userGoals[index] = userGoals[numbGoals - 1];
+			userGoals[numbGoals - 1] = null;
+			numbGoals--;			
+		}
+		
+	}
+	
 
 	//Updates goals 
 
