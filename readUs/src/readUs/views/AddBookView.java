@@ -28,10 +28,14 @@ import javax.swing.JSpinner;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ItemListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.text.ParseException;
 import java.awt.event.ItemEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class AddBookView extends JFrame {
 	LibraryController libControl;
@@ -61,7 +65,7 @@ public class AddBookView extends JFrame {
 	private JFormattedTextField dateField;
 	
 	
-	private JLabel lblCadastrarNovaLeitura;
+	private JLabel registerNewBookLabel;
 	private JLabel frequencyLabel;
 	private JLabel dateLabel;
 	private JLabel writerLabel;
@@ -188,8 +192,8 @@ public class AddBookView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		lblCadastrarNovaLeitura = new JLabel("Cadastrar nova Leitura");
-		lblCadastrarNovaLeitura.setHorizontalAlignment(SwingConstants.CENTER);
+		registerNewBookLabel = new JLabel("Cadastrar nova Leitura");
+		registerNewBookLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		titleField = new JTextField();
 		titleField.setColumns(10);
@@ -225,7 +229,24 @@ public class AddBookView extends JFrame {
 									                 Integer.MAX_VALUE, //maximum value  
 									                 1); //step 
 		pagesSpinner = new JSpinner(value);
-		
+		pagesSpinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				int maxPages = (int) pagesSpinner.getValue();
+				SpinnerModel value;
+				value = new SpinnerNumberModel(maxPages, //initial value  
+	                	   0, //minimum value  
+	                	   maxPages, //maximum value  
+		                   1); //step 
+				int oldValue = (int)readPagesSpinner.getValue();
+				readPagesSpinner.setModel(value);
+			    if(oldValue > maxPages) {
+			    	readPagesSpinner.setValue(maxPages);
+			    }
+			    else {
+			    	readPagesSpinner.setValue(oldValue);
+			    }
+			}
+		});
 	    value =  new SpinnerNumberModel(2021, //initial value  
                 0, //minimum value  
                2021, //maximum value  
@@ -242,7 +263,7 @@ public class AddBookView extends JFrame {
 		
 		readPagesLabel = new JLabel("Paginas Lidas");
 		int maxPages = (Integer) pagesSpinner.getValue();
-	    value = new SpinnerNumberModel(500, //initial value  
+	    value = new SpinnerNumberModel(0, //initial value  
 				                	   0, //minimum value  
 				                	   maxPages, //maximum value  
 					                   1); //step 
@@ -345,6 +366,11 @@ public class AddBookView extends JFrame {
 				readPages 	= (int)readPagesSpinner.getValue();
 				
 				title 		= titleField.getText();
+				if(title.isBlank()) {
+					JOptionPane.showMessageDialog(null, "O título da obra não pode ser deixado vazio.", 
+							"Título vazio", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
 				if(libControl.exists(title)) {
 					JDialog.setDefaultLookAndFeelDecorated(true);
 					int response = JOptionPane.showConfirmDialog(null, "Ja existe um livro na sua biblioteca com esse nome. Deseja continuar mesmo assim?", "Aviso: Livro duplicado",
@@ -352,8 +378,8 @@ public class AddBookView extends JFrame {
 					if (response != JOptionPane.YES_OPTION) {
 						return;
 					}
+					title = title + "(1)";
 				}
-				
 				publisher 	= publisherField.getText();
 				nationality = nationalityField.getText();
 				language 	= languageField.getText();
@@ -459,14 +485,14 @@ public class AddBookView extends JFrame {
 											.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 												.addComponent(yearSpinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 												.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-													.addComponent(lettererField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-													.addComponent(mainCharsField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-													.addComponent(PencillerField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+													.addComponent(lettererField)
+													.addComponent(mainCharsField)
+													.addComponent(PencillerField)
 													.addComponent(authorField)
 													.addComponent(readPagesSpinner, GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
 													.addComponent(awardsField)
 													.addComponent(languageField)
-													.addComponent(dateField, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))))
+													.addComponent(dateField, GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))))
 										.addGroup(gl_contentPane.createSequentialGroup()
 											.addPreferredGap(ComponentPlacement.RELATED)
 											.addComponent(headLineField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -474,7 +500,7 @@ public class AddBookView extends JFrame {
 											.addComponent(saveBookButton)))))
 							.addGap(142))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblCadastrarNovaLeitura)
+							.addComponent(registerNewBookLabel)
 							.addPreferredGap(ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
 							.addComponent(bookTypeLabel)
 							.addGap(172))))
@@ -490,7 +516,7 @@ public class AddBookView extends JFrame {
 							.addComponent(bookTypeComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(lblCadastrarNovaLeitura)))
+							.addComponent(registerNewBookLabel)))
 					.addGap(22)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)

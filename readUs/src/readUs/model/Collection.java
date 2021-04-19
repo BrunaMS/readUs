@@ -3,6 +3,8 @@ package readUs.model;
 // Source: https://jar-download.com/artifacts/org.json
 import org.json.JSONObject;
 
+import readUs.model.Literature.itemType;
+
 public class Collection {
 
 	public enum sortType {
@@ -80,6 +82,7 @@ public class Collection {
 			newBook.setNumberPagesRead(numberPagesRead);
 			newBook.setGenre(genre);
 			newBook.setAuthor(author);
+			newBook.setType(itemType.BOOK);
 	
 			books[qntBooks] = newBook;
 			qntBooks++;
@@ -109,6 +112,7 @@ public class Collection {
 			newMagazine.setHeadline(headline);
 			newMagazine.setFrequency(frequency);
 			newMagazine.setCoverDate(coverDate);
+			newMagazine.setType(itemType.MAGAZINE);
 	
 			books[qntBooks] = newMagazine;
 			qntBooks++;
@@ -142,6 +146,7 @@ public class Collection {
 			newComic.setLetterer(letterer);
 			newComic.setColourist(colourist);
 			newComic.setMainCharacters(mainCharacters);
+			newComic.setType(itemType.COMIC);
 	
 			books[qntBooks] = newComic;
 			qntBooks++;
@@ -165,7 +170,7 @@ public class Collection {
 	}
 	
 	
-	private int getBookIndex(String itemName){
+	public int getBookIndex(String itemName){
 		for(int i = 0; i < this.books.length; i++) {
 			if(this.books[i].getName().contentEquals(itemName)) {
 				return i;

@@ -1,6 +1,12 @@
 package readUs.model;
 
 public abstract class Literature {
+	public enum itemType{
+		BOOK,
+		MAGAZINE,
+		COMIC
+	}
+	
 	
 	// Atributos
 	protected String name;
@@ -14,6 +20,7 @@ public abstract class Literature {
 	protected int numberPagesRead;
 	protected String genre;
 	protected float progress;
+	protected itemType type;
 	// EstimatedReadingTime[] estimatedReadingTime; // TODO
 	
 	// Initializes the class attributes
@@ -26,6 +33,13 @@ public abstract class Literature {
 		return name;
 	}
 
+	public void setType(itemType type) {
+		this.type = type;
+	}
+	
+	public itemType getType() {
+		return this.type;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}

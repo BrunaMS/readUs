@@ -24,8 +24,6 @@ public class LibraryView extends JPanel {
 	public LibraryView() {
 		initComponents();
 		this.setSize(500, 500);
-		
-		JLabel lblStatus = new JLabel("Status");
 		JLabel lblNewLabel = new JLabel("Biblioteca");
 		
 		JButton btnMostrarLivros = new JButton("Listar Livros");
@@ -37,15 +35,21 @@ public class LibraryView extends JPanel {
 			
 		});
 		
-		JButton btnSearchBook = new JButton("Buscar Livro");
-		btnSearchBook.addActionListener(new ActionListener() {
+		JButton btnRemoveBook = new JButton("Remover Livro");
+		btnRemoveBook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				RemoveBookView rmLibView = new RemoveBookView(libControl);
+				rmLibView.setVisible(true);
 			}
 		});
 		
-		JButton btnRemoveBook = new JButton("Remover Livro");
-		
 		JButton btnEditarLivro = new JButton("Editar Livro");
+		btnEditarLivro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UpdateBookView updateLibView = new UpdateBookView(libControl);
+				updateLibView.setVisible(true);
+			}
+		});
 		
 		JButton btnAdicionarLivro = new JButton("Adicionar Livro");
 		btnAdicionarLivro.addActionListener(new ActionListener() {
@@ -69,14 +73,9 @@ public class LibraryView extends JPanel {
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
 								.addComponent(btnRemoveBook, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(btnEditarLivro, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnAdicionarLivro, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-								.addComponent(btnSearchBook, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnMostrarLivros, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addComponent(btnMostrarLivros, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnAdicionarLivro, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
 							.addGap(150))))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblStatus)
-					.addContainerGap(418, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -86,16 +85,12 @@ public class LibraryView extends JPanel {
 					.addGap(42)
 					.addComponent(btnMostrarLivros)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnSearchBook)
+					.addComponent(btnAdicionarLivro)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnRemoveBook)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnEditarLivro)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnAdicionarLivro)
-					.addGap(18)
-					.addComponent(lblStatus)
-					.addContainerGap(169, Short.MAX_VALUE))
+					.addContainerGap(233, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 	}
