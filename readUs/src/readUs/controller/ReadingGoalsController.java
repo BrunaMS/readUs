@@ -12,7 +12,14 @@ public class ReadingGoalsController {
 	ReadingGoals[] userGoals = new ReadingGoals[maxGoals];
 	boolean detectError = false;
 	String error = "Erros:\n";
-
+ 
+	
+	public float getProgress(int index) {
+		return userGoals[index].getProgress();
+	}
+	
+	
+	
 //Gets and sets
 	public boolean isDetectError() {
 		return detectError;
