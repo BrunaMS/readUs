@@ -76,7 +76,7 @@ public class RemoveBookView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		mainTitleLabel = new JLabel("Título");
+		mainTitleLabel = new JLabel("Titulo");
 		mainTitleLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
 		deleteBookButton = new JButton("Deletar Livro");

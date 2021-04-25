@@ -6,7 +6,7 @@ import readUs.model.Collection.sortType;
 
 import org.junit.jupiter.api.Test;
 
-class AddBooksTests {
+class LibraryControllerTests {
 	LibraryController libTest = new LibraryController();
 	
    
@@ -78,12 +78,7 @@ class AddBooksTests {
 		assertTrue(libTest.exists("Pequeno Principe"));
 		assertTrue(libTest.exists("Batman: o cavaleiro das trevas"));
 		
-		
-		
-		
-		
-		
-		
+
 		
 	}
 	

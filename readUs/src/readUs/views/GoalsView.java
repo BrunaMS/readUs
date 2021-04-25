@@ -85,7 +85,7 @@ public class GoalsView extends JPanel {
 		JButton btnDeleteGoals = new JButton("Deletar meta");
 		btnDeleteGoals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeleteGoal deleteGoal = new DeleteGoal(GoalsControl);
+				DeleteGoalView deleteGoal = new DeleteGoalView(GoalsControl);
 				deleteGoal.setVisible(true);
 				JFrame newWindow = new JFrame();
 				newWindow.getContentPane().add(deleteGoal);

@@ -2,6 +2,8 @@ package readUs.views;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,14 +23,14 @@ import javax.swing.JButton;
 import javax.swing.JProgressBar;
 import java.awt.Color;
 
-public class DeleteGoal extends JPanel {
+public class DeleteGoalView extends JPanel {
 	ReadingGoalsController GoalsControl;
 
 	/**
 	 * Create the panel.
 	 */
 	int numberGoals;
-	public DeleteGoal(ReadingGoalsController GoalsControl) {
+	public DeleteGoalView(ReadingGoalsController GoalsControl) {
 		
 		this.GoalsControl = GoalsControl;
 		numberGoals= GoalsControl.getNumbGoals();
@@ -53,8 +55,8 @@ public class DeleteGoal extends JPanel {
 
 		
 		comboBoxChooseGoal.addItem("Selecione");
-		for (int counter = 0; counter < numberGoals; counter++) {
-			comboBoxChooseGoal.addItem("Meta " + (String.valueOf(counter+1)));
+		for (int counter = 1; counter <= numberGoals; counter++) {
+			comboBoxChooseGoal.addItem("Meta " + (String.valueOf(counter)));
 		}
 		
 		
@@ -65,9 +67,10 @@ public class DeleteGoal extends JPanel {
 				index = (comboBoxChooseGoal.getSelectedIndex());
 				if (index > 0) {
 
-					ReadingGoals goal = GoalsControl.getUserGoals()[index];
-
-					lblGoalTitle.setText("Meta " + (index+1));
+					ReadingGoals goal = GoalsControl.getUserGoals()[index-1];
+                    
+                    
+					lblGoalTitle.setText("Meta " + (index));
 					lblGoalTitle.setVisible(true);
 
 					// Case of goal w/ fixed time period
@@ -184,23 +187,30 @@ public class DeleteGoal extends JPanel {
 					}
 
 				}
-				deleteButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					
-						GoalsControl.removeGoal(index);
-						lblGoalData.setText(null);
-						lblGoalData.setVisible(false);
-						comboBoxChooseGoal.removeAllItems();
-						comboBoxChooseGoal.addItem("Selecione");
-						numberGoals=GoalsControl.getNumbGoals();
-						for (int counter = 0; counter < numberGoals; counter++) {
-							comboBoxChooseGoal.addItem("Meta " + (String.valueOf(counter + 1)));
-						}
-						comboBoxChooseGoal.setSelectedIndex(0);
-						
-						
-					}
-				});
+				
+			}
+		});
+		
+		deleteButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int index = (comboBoxChooseGoal.getSelectedIndex());
+				if (index == 0) {
+					JOptionPane.showMessageDialog(null, "Selecione a meta desejada", 
+							"Meta não selecionada", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				GoalsControl.removeGoal((index-1));
+				lblGoalData.setText(null);
+				lblGoalData.setVisible(false);
+			comboBoxChooseGoal.removeAllItems();
+			comboBoxChooseGoal.addItem("Selecione");
+			numberGoals=GoalsControl.getNumbGoals();
+				for (int counter = 1; counter <= numberGoals; counter++) {
+					comboBoxChooseGoal.addItem("Meta " + (String.valueOf(counter)));
+			}
+				comboBoxChooseGoal.setSelectedIndex(0);
+			
+				
 			}
 		});
 

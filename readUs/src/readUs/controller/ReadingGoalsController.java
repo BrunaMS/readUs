@@ -52,6 +52,10 @@ public class ReadingGoalsController {
 		
 		return numbGoals;
 	}
+	
+	public String getStringGoals(int index) {
+		return userGoals[index].toString();
+	}
 
 	
 	//Add goals
@@ -100,12 +104,13 @@ public class ReadingGoalsController {
 	public void removeGoal(int index) {
 		
 		if(numbGoals > 0) {
-			userGoals[index] = userGoals[numbGoals - 1];
-			userGoals[numbGoals - 1] = null;
+			userGoals[index] = userGoals[numbGoals-1];
+			userGoals[numbGoals-1] = null;
 			numbGoals--;			
 		}
 		
 	}
+	
 	
 
 	//Updates goals 
