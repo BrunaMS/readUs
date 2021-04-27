@@ -22,12 +22,18 @@ import readUs.model.ReadingGoals;
 import javax.swing.JButton;
 import javax.swing.JProgressBar;
 import java.awt.Color;
-
+/**
+ * Interface para a remocao de objetivos.
+ * @author Beatriz Carolina
+ * @version 1.0 (Abril 2021)
+ *
+ */
 public class DeleteGoalView extends JPanel {
 	ReadingGoalsController GoalsControl;
 
 	/**
-	 * Create the panel.
+	 * Painel para remocao de objetivos
+	 * @param GoalsControl: parametro para realizar a interacao entre interface e controle
 	 */
 	int numberGoals;
 	public DeleteGoalView(ReadingGoalsController GoalsControl) {

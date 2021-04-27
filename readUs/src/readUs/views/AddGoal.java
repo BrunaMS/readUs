@@ -2,6 +2,8 @@ package readUs.views;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -35,13 +37,21 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.Timestamp;
 
+/**
+ * Interface para a adicao de novos objetivos.
+ * @author Beatriz Carolina
+ * @version 1.0 (Abril 2021)
+ *
+ */
+
 public class AddGoal extends JPanel {
 
 	ReadingGoalsController GoalsControl;
 
 	/**
-	 * Creation of panel for new goals
-	**/
+	 * Painel para adicao de novos objetivos
+	 * @param GoalsControl: parametro para realizar a interacao entre interface e controle
+	 */
 
 	public AddGoal(ReadingGoalsController GoalsControl) {
 
@@ -266,10 +276,11 @@ public class AddGoal extends JPanel {
 					boolean detectError = GoalsControl.isDetectError();
 					String error = GoalsControl.getError();
 					if (detectError == true) {
-						lblBlankField.setVisible(true);
-						lblBlankField.setText("<html>"
-								+ error.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>")
-								+ "</html>");
+					   String errorMessage = "<html>"+ error.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>")
+								+ "</html>";
+						JOptionPane.showMessageDialog(null, errorMessage, 
+								"Erro", JOptionPane.ERROR_MESSAGE);
+		
 					}
 					else {
 					    
@@ -327,10 +338,10 @@ public class AddGoal extends JPanel {
 				boolean detectError = GoalsControl.isDetectError();
 				String error = GoalsControl.getError();
 				if (detectError == true) {
-					lblBlankField.setVisible(true);
-					lblBlankField.setText(
-							"<html>" + error.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>")
-									+ "</html>");
+					   String errorMessage = "<html>"+ error.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>")
+								+ "</html>";
+						JOptionPane.showMessageDialog(null, errorMessage, 
+								"Erro", JOptionPane.ERROR_MESSAGE);
 				}
 
 				else {

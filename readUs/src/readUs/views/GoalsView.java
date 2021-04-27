@@ -25,17 +25,24 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * Interface para o CRUD dos objetivos.
+ * @author Beatriz Carolina
+ * @version 1.0 (Abril 2021)
+ *
+ */
 public class GoalsView extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
+	
 	ReadingGoalsController GoalsControl = new ReadingGoalsController();
 
 	public ReadingGoalsController getGoalsControl() {
 		return GoalsControl;
 	}
+	/**
+	 * Painel para o  CRUD dos objetivos
+	 */
+
 
 	public GoalsView() {
 		initComponents();

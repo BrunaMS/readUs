@@ -1,15 +1,22 @@
 package readUs.model;
 
 import org.json.JSONObject;
-
+/**
+ * Cria os objetos do tipo revista e gera string que fornece os dados 
+ * de uma revista.
+ * @author Bruna Medeiros
+ * @version 1.0 (Abril 2021)
+ *
+ */ 
 public class Magazine extends Literature {
 	
 	private String[] headline;
 	private String frequency;
 	private String coverDate;
 	
-	
-	// Initializes the class attributes
+	/**
+	 * Inicializa os atributos da classe
+	 */
 	public Magazine() {
 		
 	}

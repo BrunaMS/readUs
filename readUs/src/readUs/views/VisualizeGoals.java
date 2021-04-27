@@ -17,13 +17,20 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.awt.Color;
-
+/**
+ * Interface para a atualização dos objetivos.
+ * @author Beatriz Carolina
+ * @version 1.0 (Abril 2021)
+ *
+ */
 public class VisualizeGoals extends JPanel {
 	ReadingGoalsController GoalsControl;
 	
+	
 	/**
-	 * Create the panel.
+	 *  Painel para a atualizacao dos objetivos
 	 */
+
 	public VisualizeGoals(ReadingGoalsController GoalsControl) {
 		this.GoalsControl = GoalsControl;
 		

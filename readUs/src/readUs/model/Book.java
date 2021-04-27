@@ -1,11 +1,18 @@
 package readUs.model;
 import org.json.JSONObject;
-
+/**
+ * Cria os objetos do tipo livro
+ * @author Bruna Medeiros
+ * @version 1.0 (Abril 2021)
+ *
+ */ 
 public class Book extends Literature{
 	private String[] author;
 	
+	/**
+	 * Inicializa os atributos da classe
+	 */
 	
-	// Initializes the class attributes
 	public Book() {
 		
 	}
@@ -21,7 +28,10 @@ public class Book extends Literature{
 		this.author = author;
 	}
 
-
+/**
+ * Cria objetos Json para os livros
+ * @return arquivo Json com as informacoes do livro
+ */
 	
 	public JSONObject toJson() {
 		JSONObject bookJson = new JSONObject();
@@ -38,7 +48,7 @@ public class Book extends Literature{
 		return bookJson;
 	}
 	
-	
+
 	public String toString() {
 		String output = "\n     ** Dados do Livro **\n";
 		output += "Nome: " + getName() + "\n";
@@ -51,7 +61,7 @@ public class Book extends Literature{
 		output += "Total de paginas: " + getNumberPages() + "\n";
 		output += "Paginas lidas: " + getNumberPagesRead() + "\n";
 		output += "Progresso: " + getProgress()* 100 + "%\n";
-		output += "Gênero: " + genre + "\n";
+		output += "Genero: " + genre + "\n";
 		output += "Primeira edicao: " + getFirstEdition() + "\n";
 		output += "Premio(s): ";
 		for(int i = 0; i < numberAwards; i++) {
