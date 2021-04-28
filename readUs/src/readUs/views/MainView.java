@@ -28,6 +28,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 
 /**
  * View usada como padrão para o desenvolvimento de toda a interface com o usuário, definindo 
@@ -52,6 +53,7 @@ public class MainView extends JFrame {
 	 * Inicializa componentes da interface e define ações a serem tomadas caso um dos botões disponíveis seja pressionado.
 	 */
 	public MainView() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MainView.class.getResource("/readUs/views/Read Us.png")));
 		viewsInitializationControl = new InitViews();
 		initComponents();
 		this.setLocationRelativeTo(null);
