@@ -55,6 +55,7 @@ public class MainView extends JFrame {
 		viewsInitializationControl = new InitViews();
 		initComponents();
 		this.setLocationRelativeTo(null);
+		viewsInitializationControl.initOverviewFrame(this, viewsPanel);
 	}
 	
 	/**
