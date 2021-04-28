@@ -23,6 +23,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
+import net.miginfocom.swing.MigLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import java.awt.GridBagLayout;
 
 /**
  * View usada como padrão para o desenvolvimento de toda a interface com o usuário, definindo 
@@ -130,7 +135,7 @@ public class MainView extends JFrame {
 	private void initComponents() {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1128, 556);
+		setBounds(100, 100, 1128, 600);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -138,6 +143,7 @@ public class MainView extends JFrame {
 		
 		buttonsPanel = new JPanel();
 		viewsPanel = new JPanel();
+		viewsPanel.setBackground(Color.WHITE);
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -154,18 +160,13 @@ public class MainView extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(buttonsPanel, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))
 		);
+		GridBagLayout gbl_viewsPanel = new GridBagLayout();
+		gbl_viewsPanel.columnWidths = new int[]{0};
+		gbl_viewsPanel.rowHeights = new int[]{0};
+		gbl_viewsPanel.columnWeights = new double[]{Double.MIN_VALUE};
+		gbl_viewsPanel.rowWeights = new double[]{Double.MIN_VALUE};
+		viewsPanel.setLayout(gbl_viewsPanel);
 		buttonsPanel.setLayout(new GridLayout(1, 0, 0, 0));
-		
-		goalsButton = new JButton("Metas");
-		goalsButton.setFont(new Font("L M Mono Lt10", Font.BOLD, 20));
-		goalsButton.setForeground(Color.BLACK);
-		goalsButton.setBackground(Color.PINK);
-		goalsButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				initGoalFrame();
-			}
-		});
-		buttonsPanel.add(goalsButton);
 		
 		libraryButton = new JButton("Biblioteca");
 		libraryButton.addActionListener(new ActionListener() {
@@ -173,10 +174,21 @@ public class MainView extends JFrame {
 				initLibraryFrame();
 			}
 		});
+		
+		overviewButton = new JButton("Inicio");
+		overviewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				initOverviewFrame();
+			}
+		});
+		overviewButton.setFont(new Font("L M Mono Lt10", Font.BOLD, 20));
+		overviewButton.setForeground(Color.BLACK);
+		overviewButton.setBackground(new Color(0, 255, 127));
+		buttonsPanel.add(overviewButton);
 		libraryButton.setFont(new Font("L M Mono Lt10", Font.BOLD, 20));
 		libraryButton.setForeground(Color.BLACK);
 		libraryButton.setEnabled(true);
-		libraryButton.setBackground(Color.PINK);
+		libraryButton.setBackground(new Color(0, 255, 127));
 		buttonsPanel.add(libraryButton);
 		
 		wishlistButton = new JButton("Lista de Desejos");
@@ -187,19 +199,19 @@ public class MainView extends JFrame {
 		});
 		wishlistButton.setFont(new Font("L M Mono Lt10", Font.BOLD, 20));
 		wishlistButton.setForeground(Color.BLACK);
-		wishlistButton.setBackground(Color.PINK);
+		wishlistButton.setBackground(new Color(0, 255, 127));
 		buttonsPanel.add(wishlistButton);
 		
-		overviewButton = new JButton("Inicio");
-		overviewButton.addActionListener(new ActionListener() {
+		goalsButton = new JButton("Metas");
+		goalsButton.setFont(new Font("L M Mono Lt10", Font.BOLD, 20));
+		goalsButton.setForeground(Color.BLACK);
+		goalsButton.setBackground(new Color(0, 255, 127));
+		goalsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				initOverviewFrame();
+				initGoalFrame();
 			}
 		});
-		overviewButton.setFont(new Font("L M Mono Lt10", Font.BOLD, 20));
-		overviewButton.setForeground(Color.BLACK);
-		overviewButton.setBackground(Color.PINK);
-		buttonsPanel.add(overviewButton);
+		buttonsPanel.add(goalsButton);
 		contentPane.setLayout(gl_contentPane);
 	}
 
@@ -210,11 +222,11 @@ public class MainView extends JFrame {
 		wishlistButton.setEnabled(false);
 		wishlistButton.setBackground(Color.WHITE);
 		libraryButton.setEnabled(true);
-		libraryButton.setBackground(Color.PINK);
+		libraryButton.setBackground(new Color(0, 255, 127));
 		overviewButton.setEnabled(true);
-		overviewButton.setBackground(Color.PINK);
+		overviewButton.setBackground(new Color(0, 255, 127));
 		goalsButton.setEnabled(true);
-		goalsButton.setBackground(Color.PINK);
+		goalsButton.setBackground(new Color(0, 255, 127));
 	}
 
 	/**
@@ -222,13 +234,13 @@ public class MainView extends JFrame {
 	 */
 	public void initLibrary() {
 		wishlistButton.setEnabled(true);
-		wishlistButton.setBackground(Color.PINK);
+		wishlistButton.setBackground(new Color(0, 255, 127));
 		libraryButton.setEnabled(false);
 		libraryButton.setBackground(Color.WHITE);
 		overviewButton.setEnabled(true);
-		overviewButton.setBackground(Color.PINK);
+		overviewButton.setBackground(new Color(0, 255, 127));
 		goalsButton.setEnabled(true);
-		goalsButton.setBackground(Color.PINK);
+		goalsButton.setBackground(new Color(0, 255, 127));
 	}
 	
 	/**
@@ -236,11 +248,11 @@ public class MainView extends JFrame {
 	 */
 	public void initGoals() {
 		wishlistButton.setEnabled(true);
-		wishlistButton.setBackground(Color.PINK);
+		wishlistButton.setBackground(new Color(0, 255, 127));
 		libraryButton.setEnabled(true);
-		libraryButton.setBackground(Color.PINK);
+		libraryButton.setBackground(new Color(0, 255, 127));
 		overviewButton.setEnabled(true);
-		overviewButton.setBackground(Color.PINK);
+		overviewButton.setBackground(new Color(0, 255, 127));
 		goalsButton.setEnabled(false);
 		goalsButton.setBackground(Color.WHITE);
 	}
@@ -250,13 +262,13 @@ public class MainView extends JFrame {
 	 */
 	public void initOverview() {
 		wishlistButton.setEnabled(true);
-		wishlistButton.setBackground(Color.PINK);
+		wishlistButton.setBackground(new Color(0, 255, 127));
 		libraryButton.setEnabled(true);
-		libraryButton.setBackground(Color.PINK);
+		libraryButton.setBackground(new Color(0, 255, 127));
 		overviewButton.setEnabled(false);
 		overviewButton.setBackground(Color.WHITE);
 		goalsButton.setEnabled(true);
-		goalsButton.setBackground(Color.PINK);
+		goalsButton.setBackground(new Color(0, 255, 127));
 	}
 
 	/**

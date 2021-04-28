@@ -42,6 +42,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.awt.Color;
 
 /**
  * @author bruna
@@ -327,10 +328,12 @@ public class UpdateBookView extends JFrame {
 	 * Create the frame.
 	 */
 	public UpdateBookView(LibraryController libController){
+		setBackground(Color.WHITE);
 		this.libControl = libController;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 622, 422);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
@@ -492,6 +495,7 @@ public class UpdateBookView extends JFrame {
 		bookTypeLabel = new JLabel("Classificação");
 		
 		saveBookButton = new JButton("Salvar");
+		saveBookButton.setBackground(Color.LIGHT_GRAY);
 		saveBookButton.setVisible(false);
 		saveBookButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

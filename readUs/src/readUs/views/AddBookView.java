@@ -36,6 +36,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import java.awt.Color;
 
 /**
  * Classe para exibição e comunicação entre usuário e o software implementado para adição de obras da biblioteca. 
@@ -190,10 +191,12 @@ public class AddBookView extends JFrame {
 	 * Create the frame.
 	 */
 	public AddBookView(LibraryController libController){
+		setBackground(Color.WHITE);
 		this.libControl = libController;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 622, 400);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
@@ -360,6 +363,7 @@ public class AddBookView extends JFrame {
 		bookTypeLabel = new JLabel("Classificação");
 		
 		saveBookButton = new JButton("Salvar");
+		saveBookButton.setBackground(Color.LIGHT_GRAY);
 		saveBookButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int releaseYear, pages, readPages;

@@ -30,10 +30,10 @@ public class LibraryView extends JPanel {
 	 * Inicializa componentes do JFrame e define Listeners para os botões da interface
 	 */
 	public LibraryView() {
-		this.setSize(500, 500);
-		JLabel lblNewLabel = new JLabel("Biblioteca");
+		setBackground(Color.WHITE);
 		
-		JButton btnMostrarLivros = new JButton("Listar Livros");
+		JButton btnMostrarLivros = new JButton("Listar itens");
+		btnMostrarLivros.setBackground(Color.LIGHT_GRAY);
 		btnMostrarLivros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Create new JFrame to show items (books, magazines or comics)
@@ -43,7 +43,8 @@ public class LibraryView extends JPanel {
 			
 		});
 		
-		JButton btnRemoveBook = new JButton("Remover Livro");
+		JButton btnRemoveBook = new JButton("Remover item");
+		btnRemoveBook.setBackground(Color.LIGHT_GRAY);
 		btnRemoveBook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Create new JFrame to remove items (books, magazines or comics)
@@ -52,7 +53,8 @@ public class LibraryView extends JPanel {
 			}
 		});
 		
-		JButton btnEditarLivro = new JButton("Editar Livro");
+		JButton btnEditarLivro = new JButton("Editar item");
+		btnEditarLivro.setBackground(Color.LIGHT_GRAY);
 		btnEditarLivro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Create new JFrame to update items (books, magazines or comics)
@@ -61,7 +63,8 @@ public class LibraryView extends JPanel {
 			}
 		});
 		
-		JButton btnAdicionarLivro = new JButton("Adicionar Livro");
+		JButton btnAdicionarLivro = new JButton("Adicionar item");
+		btnAdicionarLivro.setBackground(Color.LIGHT_GRAY);
 		btnAdicionarLivro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Create new JFrame to add items (books, magazines or comics)
@@ -74,34 +77,27 @@ public class LibraryView extends JPanel {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(173, Short.MAX_VALUE)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(141)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel)
-							.addGap(209))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(btnRemoveBook, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnEditarLivro, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnMostrarLivros, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnAdicionarLivro, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
-							.addGap(150))))
+						.addComponent(btnEditarLivro, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+						.addComponent(btnRemoveBook, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+						.addComponent(btnMostrarLivros, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+						.addComponent(btnAdicionarLivro, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
+					.addGap(132))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(92)
-					.addComponent(lblNewLabel)
-					.addGap(42)
-					.addComponent(btnMostrarLivros)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnAdicionarLivro)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnRemoveBook)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnEditarLivro)
-					.addContainerGap(233, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(66, Short.MAX_VALUE)
+					.addComponent(btnMostrarLivros, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnAdicionarLivro, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnRemoveBook, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnEditarLivro, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addGap(34))
 		);
 		setLayout(groupLayout);
 	}

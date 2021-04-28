@@ -26,6 +26,7 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 /**
  * Classe para exibição e comunicação entre usuário e o software implementado para remoção de obras da biblioteca. 
@@ -79,10 +80,12 @@ public class RemoveBookView extends JFrame {
 	 * @param libController: Instância da LibraryController cpara interação entre views.
 	 */
 	public RemoveBookView(LibraryController libController){
+		setBackground(Color.WHITE);
 		this.libControl = libController;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 520, 480);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
@@ -90,6 +93,7 @@ public class RemoveBookView extends JFrame {
 		mainTitleLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
 		deleteBookButton = new JButton("Deletar Livro");
+		deleteBookButton.setBackground(Color.LIGHT_GRAY);
 		deleteBookButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String title = (String)titleComboBox.getSelectedItem();

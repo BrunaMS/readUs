@@ -1,12 +1,17 @@
 package readUs.model;
 
-//Source: https://jar-download.com/artifacts/org.json
+// Source: https://jar-download.com/artifacts/org.json
 import org.json.JSONObject;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @author Bruna Medeiros
+ * @version 1.0 (Abr 2021)
+ *
+ */
 public class ReadingGoals{
 	
 	public enum goalType {
@@ -24,6 +29,12 @@ public class ReadingGoals{
 	private Timestamp startTimestamp;
 	private Timestamp endTimestamp;
 	
+	/**
+	 * Adiciona metas sem marcação de tempo.
+	 * @param typeGoal: Tipo de meta que deseja-se criar (por nro de páginas, livros, capítulos ou palavras)
+	 * @param desiredNumber: Valor ao qual deseja-se chegar (alvo)
+	 * @param concludedNumber: Valor atual (presente)
+	 */
 	public void addReadingGoals(goalType typeGoal, float desiredNumber, float concludedNumber) {
 		setTypeGoal(typeGoal);
 		setDesiredNumber(desiredNumber);
@@ -33,6 +44,14 @@ public class ReadingGoals{
 		endTimestamp = null;
 	}
 	
+	/**
+	 * Adiciona metas com marcação de tempo.
+	 * @param typeGoal: Tipo de meta que deseja-se criar (por nro de páginas, livros, capítulos ou palavras)
+	 * @param desiredNumber: Valor ao qual deseja-se chegar (alvo)
+	 * @param concludedNumber: Valor atual (presente)
+	 * @param endDate: Data em que deseja-se concluir a meta
+	 * @param begginingDate: Data em que o desafio será iniciado.
+	 */
 	public void addReadingGoals(goalType typeGoal, float desiredNumber, float concludedNumber, String endDate, String begginingDate) {
 		
 		
@@ -91,6 +110,10 @@ public class ReadingGoals{
 		this.typeGoal = typeGoal;
 	}
 	
+	/**
+	 * @param date: Data atual no formato(ddMMyyyy) - dia e mês com 2 dígitos e ano com 4 dígitos
+	 * @return timestamp
+	 */
 	public static Timestamp dateToTimestamp(String date) {
 		
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
@@ -105,6 +128,9 @@ public class ReadingGoals{
 	    return timestamp;
 	}
 
+	/**
+	 * Obtem progresso pela porcentagem concluída da meta.
+	 */
 	private void updateProgress() {
 		this.progress = this.concludedNumber / this.desiredNumber;
 	}
@@ -114,6 +140,9 @@ public class ReadingGoals{
 		return this.progress;
 	}	
 
+	/**
+	 * @return json com chaves e valores para todos os dados da meta.
+	 */
 	public JSONObject toJson() {
 		JSONObject readingGoalsJson = new JSONObject();
 		readingGoalsJson.put("concludedNumber", concludedNumber);

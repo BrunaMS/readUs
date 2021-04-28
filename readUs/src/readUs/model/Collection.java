@@ -5,6 +5,10 @@ import org.json.JSONObject;
 
 import readUs.model.Literature.itemType;
 
+/**
+ * @author Bruna Medeiros
+ * @version 1.0 (Abr 2021)
+ */
 public class Collection {
 
 	public enum sortType {
@@ -22,6 +26,9 @@ public class Collection {
 	private sortType typeSorting;
 	
 	
+	/**
+	 * Define valores padrão para a biblioteca e inicializa array onde os livros serão armazenados
+	 */
 	public Collection(){
 		qntBooks = 0;
 		// Can not be changed
@@ -65,7 +72,19 @@ public class Collection {
 		typeSorting = sorting;
 	}
 	
-	// Book
+	/**
+	 * Adiciona um novo livro à biblioteca.
+	 * @param name: Nome/Título da obra
+	 * @param publisher: Editora
+	 * @param nationality: Nacionalidade da obra
+	 * @param firstEdition: Ano de lançamento da primeira edição
+	 * @param originalLanguage: Linguagem original da obra
+	 * @param awards: Lista de prêmios recebidos
+	 * @param numberPages: Número total de páginas
+	 * @param numberPagesRead: Número de páginas já lidas
+	 * @param genre: Gênero da obra
+	 * @param author: Lista de autores da obra
+	 */
 	public void addLiterature(String name, String publisher, String nationality, int firstEdition,
 			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre, 
 			String[] author) {
@@ -93,7 +112,21 @@ public class Collection {
 		}
 	}
 	
-	// Magazine
+	/**
+	 * Adiciona uma nova revista à biblioteca.
+	 * @param name: Nome/Título da obra
+	 * @param publisher: Editora
+	 * @param nationality: Nacionalidade da obra
+	 * @param firstEdition: Ano de lançamento da primeira edição
+	 * @param originalLanguage: Linguagem original da obra
+	 * @param awards: Lista de prêmios recebidos
+	 * @param numberPages: Número total de páginas
+	 * @param numberPagesRead: Número de páginas já lidas
+	 * @param genre: Gênero da obra
+	 * @param headline: Manchete da revista escolhida
+	 * @param frequency: Frequência com que a revista é lançada
+	 * @param coverDate: Data da capa (mês e ano)
+	 */
 	public void addLiterature(String name, String publisher, String nationality, int firstEdition,
 			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre,
 			String[] headline, String frequency, String coverDate) {
@@ -123,7 +156,24 @@ public class Collection {
 		}
 	}
 	
-	// Comic
+	
+	/**
+	 * @param name: Nome/Título da obra
+	 * @param publisher: Editora
+	 * @param nationality: Nacionalidade da obra
+	 * @param firstEdition: Ano de lançamento da primeira edição
+	 * @param originalLanguage: Linguagem original da obra
+	 * @param awards: Lista de prêmios recebidos
+	 * @param numberPages: Número total de páginas
+	 * @param numberPagesRead: Número de páginas já lidas
+	 * @param genre: Gênero da obra
+	 * @param writer: Lista de escritores
+	 * @param penciller: Lista de quadrinistas
+	 * @param inker: Lista de arte-finalistas 
+	 * @param letterer: Lista de letristas 
+	 * @param colourist: Lista de coloristas
+	 * @param mainCharacters: Personagens principais da história
+	 */
 	public void addLiterature(String name, String publisher, String nationality, int firstEdition,
 			String originalLanguage, String[] awards, int numberPages, int numberPagesRead, String genre,
 			String[] writer, String[] penciller, String[] inker, String[] letterer, String[] colourist,
@@ -157,6 +207,10 @@ public class Collection {
 		}
 	}
 	
+	/**
+	 * Remove obra da lista, colocando o último item em seu lugar e reduzindo o tamanho do array.
+	 * @param removedBookName: Título da obra a ser removida
+	 */
 	public void removeBook(String removedBookName) {
 		int idx = getBookIndex(removedBookName);
 		if(qntBooks > 0) {
@@ -180,6 +234,9 @@ public class Collection {
 		return -1;
 	}
 
+	/**
+	 * @param sort: Forma com que deseja-se ordernar os itens dentro da biblioteca
+	 */
 	public void sortBooks(sortType sort){
 		switch(sort) {
 			case NAME_A_Z:
@@ -200,6 +257,9 @@ public class Collection {
 		}
 	}
 
+	/**
+	 * Ordena lista em ordem alfabética (de A a Z).
+	 */
 	private void orderLibraryAZ(){
         for (int i = 0; i < qntBooks; i++) {
             for (int j = i + 1; j < qntBooks; j++) { 
@@ -212,7 +272,9 @@ public class Collection {
         }
 	}
 	
-	
+	/**
+	 * Ordena lista em ordem alfabética (de Z a A).
+	 */
 	private void orderLibraryZA() {
         for (int i = 0; i < qntBooks; i++) {
             for (int j = i + 1; j < qntBooks; j++) { 
@@ -225,6 +287,9 @@ public class Collection {
         }
 	}
 	
+	/**
+	 * Ordena lista em por ano de lançamento (Mais antigos primeiro).
+	 */
 	private void orderLibraryYear() {
         for (int i = 0; i < qntBooks; i++) {
             for (int j = i + 1; j < qntBooks; j++) { 
@@ -237,6 +302,9 @@ public class Collection {
         }
 	}
 	
+	/**
+	 * Ordena lista por quantidade de páginas (maiores primeiro).
+	 */
 	private void orderLibraryPages() {
         for (int i = 0; i < qntBooks; i++) {
             for (int j = i + 1; j < qntBooks; j++) { 
@@ -248,7 +316,10 @@ public class Collection {
             }
         }
 	}
-	
+
+	/**
+	 * Ordena lista pelo progresso do usuário (maior porcentagem lida primeiro).
+	 */
 	private void orderLibraryProgress() {
         for (int i = 0; i < qntBooks; i++) {
             for (int j = i + 1; j < qntBooks; j++) { 
@@ -261,6 +332,9 @@ public class Collection {
         }
 	}
 
+	/**
+	 * @return json com chaves e valores para todos os itens da lista.
+	 */
 	public JSONObject toJson() {
 		JSONObject libraryJson = new JSONObject();
 		for(int i = 0; i < this.qntBooks; i++) {

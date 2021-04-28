@@ -8,5 +8,7 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/bruna/Documents/UnB/Classes/10th_semester/OO/readUs/readUs/src/json-20210307.jar"/>
 	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
+	<classpathentry kind="lib" path="miglayout15-swing.jar" sourcepath="miglayout-src.zip"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

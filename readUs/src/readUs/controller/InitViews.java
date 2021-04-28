@@ -9,19 +9,23 @@ import readUs.views.GoalsView;
 import readUs.views.LibraryView;
 import readUs.views.MainView;
 import readUs.views.OverviewView;
-import readUs.views.WishlistView;
 
+/**
+ * Classe para inicialização das views (JPanels) do software
+ * @author Bruna Medeiros
+ * @version 1.0 (Abr 2021)
+ */
 public class InitViews {
 	GoalsView goalFrame;
 	LibraryView libFrame; 
 	OverviewView overviewFrame;
-	WishlistView wishlistFrame;
+	LibraryView wishlistFrame;
 	
 	public InitViews() {
 		goalFrame = new GoalsView();
 		libFrame = new LibraryView();
 		overviewFrame = new OverviewView();
-		wishlistFrame = new WishlistView();
+		wishlistFrame = new LibraryView();
 
 		libFrame.setVisible(false);
 		overviewFrame.setVisible(false);
@@ -30,7 +34,13 @@ public class InitViews {
 		
 	}
 	
+	/**
+	 * Inicializa painel de metas do usuário
+	 * @param frame: View principal onde o JPanel será adicionado
+	 * @param panel: Panel principal do JFrame escolhido
+	 */
 	public void initGoalFrame(MainView frame, JPanel panel){
+		goalFrame.setSize(panel.getSize());
 		panel.add(goalFrame);
 		libFrame.setVisible(false);
 		overviewFrame.setVisible(false);
@@ -41,6 +51,11 @@ public class InitViews {
 		goalFrame.setEnabled(true);
 	}
 	
+	/**
+	 * Inicializa painel de biblioteca do usuário
+	 * @param frame: View principal onde o JPanel será adicionado
+	 * @param panel: Panel principal do JFrame escolhido
+	 */
 	public void initLibraryFrame(MainView frame, JPanel panel){
 		panel.add(libFrame);
 		goalFrame.setVisible(false);
@@ -52,6 +67,11 @@ public class InitViews {
 		libFrame.setEnabled(true);
 	}
 	
+	/**
+	 * Inicializa painel inicial a ser mostrado para o usuário
+	 * @param frame: View principal onde o JPanel será adicionado
+	 * @param panel: Panel principal do JFrame escolhido
+	 */
 	public void initOverviewFrame(MainView frame, JPanel panel){
 		panel.add(overviewFrame);
 		goalFrame.setVisible(false);
@@ -63,6 +83,11 @@ public class InitViews {
 		overviewFrame.setEnabled(true);
 	}
 	
+	/**
+	 * Inicializa painel de lista de desejos do usuário
+	 * @param frame: View principal onde o JPanel será adicionado
+	 * @param panel: Panel principal do JFrame escolhido
+	 */
 	public void initWishlistFrame(MainView frame, JPanel panel){
 		panel.add(wishlistFrame);
 		goalFrame.setVisible(false);
