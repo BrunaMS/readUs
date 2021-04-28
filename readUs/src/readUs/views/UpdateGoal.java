@@ -58,13 +58,15 @@ public class UpdateGoal extends JPanel {
 	 */
 	
 	public UpdateGoal(ReadingGoalsController GoalsControl) {
+		setBackground(Color.WHITE);
 		this.GoalsControl = GoalsControl;
 		boolean result = false;
 
 		JLabel lblTitle = new JLabel("Alterar Meta");
-		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 31));
+		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 27));
 
 		JComboBox goalSelection = new JComboBox();
+		goalSelection.setBackground(Color.LIGHT_GRAY);
 		goalSelection.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		goalSelection.addItem("Paginas");
@@ -133,6 +135,7 @@ public class UpdateGoal extends JPanel {
 		yearEnd.setVisible(false);
         
 		JCheckBox chckbxDefDates = new JCheckBox("Definir datas");
+		chckbxDefDates.setBackground(Color.WHITE);
 		chckbxDefDates.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		chckbxDefDates.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
@@ -168,6 +171,7 @@ public class UpdateGoal extends JPanel {
 		formatter.setAllowsInvalid(false);
 
 		JFormattedTextField formattedDesiredNumber = new JFormattedTextField(formatter);
+		formattedDesiredNumber.setBackground(Color.LIGHT_GRAY);
 		formattedDesiredNumber.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		formattedDesiredNumber.addKeyListener(new KeyAdapter() {
@@ -182,6 +186,7 @@ public class UpdateGoal extends JPanel {
 		});
 
 		JFormattedTextField formattedConcludedNumber = new JFormattedTextField(formatter);
+		formattedConcludedNumber.setBackground(Color.LIGHT_GRAY);
 		formattedConcludedNumber.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -195,12 +200,14 @@ public class UpdateGoal extends JPanel {
 		formattedConcludedNumber.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		JButton saveButton = new JButton("Salvar");
+		saveButton.setBackground(Color.LIGHT_GRAY);
 		saveButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		
 		
 		
 		JComboBox goalLibrarySelection = new JComboBox();
+		goalLibrarySelection.setBackground(Color.LIGHT_GRAY);
 		goalLibrarySelection.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 
@@ -417,26 +424,23 @@ public class UpdateGoal extends JPanel {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(202)
-							.addComponent(lblTitle))
-						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(58)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(chckbxDefDates)
+								.addComponent(lblDesiredNumber, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblGoalType, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblConcludedNumber, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblEscolhaAMeta, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(chckbxDefDates)
-										.addComponent(lblDesiredNumber, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblGoalType, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblConcludedNumber, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(lblBeggining)
-											.addPreferredGap(ComponentPlacement.UNRELATED)
-											.addComponent(dayBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addGap(10)
-											.addComponent(monthBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.UNRELATED)
-											.addComponent(yearBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-										.addComponent(lblEscolhaAMeta, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))
+									.addComponent(lblBeggining)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(dayBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGap(10)
+									.addComponent(monthBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(yearBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(103)
 									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
@@ -445,26 +449,28 @@ public class UpdateGoal extends JPanel {
 											.addComponent(goalLibrarySelection, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE))
 										.addComponent(formattedConcludedNumber, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)))
 								.addGroup(groupLayout.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGap(63)
 									.addComponent(lblEnd, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(dayEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(monthEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(yearEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-							.addGap(58))
+									.addComponent(yearEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(233)
-							.addComponent(saveButton, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(68, Short.MAX_VALUE))
+							.addGap(225)
+							.addComponent(saveButton, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(172)
+							.addComponent(lblTitle)))
+					.addContainerGap(126, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(18)
+					.addGap(17)
 					.addComponent(lblTitle, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(goalLibrarySelection, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblEscolhaAMeta, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
@@ -487,16 +493,14 @@ public class UpdateGoal extends JPanel {
 						.addComponent(lblBeggining, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 						.addComponent(monthBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(yearBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(dayBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblEnd, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-						.addComponent(dayEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(dayBeggining, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(yearEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(monthEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(yearEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(109)
+						.addComponent(dayEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblEnd, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+					.addGap(52)
 					.addComponent(saveButton)
-					.addGap(44))
+					.addGap(126))
 		);
 		setLayout(groupLayout);
 

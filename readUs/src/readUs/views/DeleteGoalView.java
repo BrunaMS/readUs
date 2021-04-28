@@ -37,6 +37,7 @@ public class DeleteGoalView extends JPanel {
 	 */
 	int numberGoals;
 	public DeleteGoalView(ReadingGoalsController GoalsControl) {
+		setBackground(Color.WHITE);
 		
 		this.GoalsControl = GoalsControl;
 		numberGoals= GoalsControl.getNumbGoals();
@@ -44,10 +45,11 @@ public class DeleteGoalView extends JPanel {
 		JLabel lblGoalSelection = new JLabel("Escolha a meta");
 		lblGoalSelection.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel lblDeleteGoal = new JLabel("Deletar Meta");
-		lblDeleteGoal.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		JLabel lblDeleteGoal = new JLabel("Deletar meta");
+		lblDeleteGoal.setFont(new Font("Tahoma", Font.BOLD, 27));
 
 		JButton deleteButton = new JButton("Deletar");
+		deleteButton.setBackground(Color.LIGHT_GRAY);
 
 		JLabel lblGoalTitle = new JLabel("Meta");
 		lblGoalTitle.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -58,6 +60,7 @@ public class DeleteGoalView extends JPanel {
 		lblGoalData.setVisible(false);
 
 		JComboBox comboBoxChooseGoal = new JComboBox();
+		comboBoxChooseGoal.setBackground(Color.LIGHT_GRAY);
 
 		
 		comboBoxChooseGoal.addItem("Selecione");
@@ -134,7 +137,7 @@ public class DeleteGoalView extends JPanel {
 						case PAGES:
 							String pagesWDate = "Ler: " + String.valueOf((int) goal.getDesiredNumber())
 									+ " paginas\n	" + "Concluidas:" + String.valueOf((int) goal.getConcludedNumber())
-									+ "\n" + "Período:" + String.valueOf(cal.get(Calendar.DAY_OF_MONTH)) + "/"
+									+ "\n" + "Perï¿½odo:" + String.valueOf(cal.get(Calendar.DAY_OF_MONTH)) + "/"
 									+ String.valueOf(cal.get(Calendar.MONTH) + 1) + "/"
 									+ String.valueOf(cal.get(Calendar.YEAR)) + "ate"
 									+ String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)) + "/"
@@ -148,7 +151,7 @@ public class DeleteGoalView extends JPanel {
 						case BOOKS:
 							String booksWDate = "Ler: " + String.valueOf((int) goal.getDesiredNumber())
 									+ " livros\n	" + "Concluidas:" + String.valueOf((int) goal.getConcludedNumber())
-									+ "\n" + "Período:" + String.valueOf(cal.get(Calendar.DAY_OF_MONTH)) + "/"
+									+ "\n" + "Perï¿½odo:" + String.valueOf(cal.get(Calendar.DAY_OF_MONTH)) + "/"
 									+ String.valueOf(cal.get(Calendar.MONTH) + 1) + "/"
 									+ String.valueOf(cal.get(Calendar.YEAR)) + "ate"
 									+ String.valueOf(calendar.get(Calendar.DAY_OF_MONTH) - 1) + "/"
@@ -162,7 +165,7 @@ public class DeleteGoalView extends JPanel {
 						case CHAPTERS:
 							String chptrWDate = "Ler: " + String.valueOf((int) goal.getDesiredNumber())
 									+ " capitulos\n	" + "Concluidas:" + String.valueOf((int) goal.getConcludedNumber())
-									+ "\n" + "Período:" + String.valueOf(cal.get(Calendar.DAY_OF_MONTH)) + "/"
+									+ "\n" + "Perï¿½odo:" + String.valueOf(cal.get(Calendar.DAY_OF_MONTH)) + "/"
 									+ String.valueOf(cal.get(Calendar.MONTH)) + "/"
 									+ String.valueOf(cal.get(Calendar.YEAR)) + "ate"
 									+ String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)) + "/"
@@ -176,7 +179,7 @@ public class DeleteGoalView extends JPanel {
 						case WORDS:
 							String wordsWDate = "Ler: " + String.valueOf((int) goal.getDesiredNumber())
 									+ " palavras\n	" + "Concluidas:" + String.valueOf((int) goal.getConcludedNumber())
-									+ "\n" + "Período:" + String.valueOf(cal.get(Calendar.DAY_OF_MONTH)) + "/"
+									+ "\n" + "Perï¿½odo:" + String.valueOf(cal.get(Calendar.DAY_OF_MONTH)) + "/"
 									+ String.valueOf(cal.get(Calendar.MONTH) + 1) + "/"
 									+ String.valueOf(cal.get(Calendar.YEAR)) + "ate"
 									+ String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)) + "/"
@@ -202,7 +205,7 @@ public class DeleteGoalView extends JPanel {
 				int index = (comboBoxChooseGoal.getSelectedIndex());
 				if (index == 0) {
 					JOptionPane.showMessageDialog(null, "Selecione a meta desejada", 
-							"Meta não selecionada", JOptionPane.ERROR_MESSAGE);
+							"Meta nï¿½o selecionada", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				GoalsControl.removeGoal((index-1));
@@ -221,33 +224,48 @@ public class DeleteGoalView extends JPanel {
 		});
 
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout
-				.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup().addGap(53).addComponent(lblGoalSelection)
-								.addPreferredGap(ComponentPlacement.RELATED, 268, Short.MAX_VALUE)
-								.addComponent(comboBoxChooseGoal, GroupLayout.PREFERRED_SIZE, 124,
-										GroupLayout.PREFERRED_SIZE)
-								.addGap(71))
-						.addGroup(groupLayout.createSequentialGroup().addGap(220).addComponent(lblDeleteGoal)
-								.addContainerGap(262, Short.MAX_VALUE))
-						.addGroup(groupLayout
-								.createSequentialGroup().addGap(240).addComponent(lblGoalTitle)
-								.addContainerGap(339, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup().addGap(90)
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addComponent(deleteButton, GroupLayout.PREFERRED_SIZE, 104,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblGoalData, GroupLayout.PREFERRED_SIZE, 264,
-												GroupLayout.PREFERRED_SIZE))
-								.addContainerGap(254, Short.MAX_VALUE)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(28).addComponent(lblDeleteGoal).addGap(68)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblGoalSelection)
-								.addComponent(comboBoxChooseGoal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addGap(26).addComponent(lblGoalTitle).addGap(30).addComponent(lblGoalData)
-						.addPreferredGap(ComponentPlacement.RELATED, 187, Short.MAX_VALUE).addComponent(deleteButton)
-						.addGap(48)));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(53)
+					.addComponent(lblGoalSelection)
+					.addPreferredGap(ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
+					.addComponent(comboBoxChooseGoal, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+					.addGap(133))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(240)
+					.addComponent(lblGoalTitle)
+					.addContainerGap(371, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(190)
+					.addComponent(lblDeleteGoal)
+					.addContainerGap(242, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(90)
+					.addComponent(lblGoalData, GroupLayout.PREFERRED_SIZE, 264, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(286, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(223)
+					.addComponent(deleteButton, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(281, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(29)
+					.addComponent(lblDeleteGoal)
+					.addGap(67)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblGoalSelection)
+						.addComponent(comboBoxChooseGoal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(26)
+					.addComponent(lblGoalTitle)
+					.addGap(30)
+					.addComponent(lblGoalData)
+					.addGap(78)
+					.addComponent(deleteButton)
+					.addContainerGap(153, Short.MAX_VALUE))
+		);
 		setLayout(groupLayout);
 
 	}
