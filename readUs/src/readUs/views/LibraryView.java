@@ -15,20 +15,28 @@ import readUs.controller.LibraryController;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class LibraryView extends JPanel {
 
+/**
+ * Mostra ações disponíveis a serem realizadas com a biblioteca e seus itens 
+ * e redireciona para novas views de acordo com a opção selecionada pelo usuário.
+ *
+ *	@author Bruna Medeiros
+ *  @version 1.0 (Apr 2021) 
+ */
+public class LibraryView extends JPanel {
 	LibraryController libControl = new LibraryController();
+	
 	/**
-	 * Create the frame.
+	 * Inicializa componentes do JFrame e define Listeners para os botões da interface
 	 */
 	public LibraryView() {
-		initComponents();
 		this.setSize(500, 500);
 		JLabel lblNewLabel = new JLabel("Biblioteca");
 		
 		JButton btnMostrarLivros = new JButton("Listar Livros");
 		btnMostrarLivros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Create new JFrame to show items (books, magazines or comics)
 				ListBooksView listLibView = new ListBooksView(libControl);
 				listLibView.showBooks();
 			}
@@ -38,6 +46,7 @@ public class LibraryView extends JPanel {
 		JButton btnRemoveBook = new JButton("Remover Livro");
 		btnRemoveBook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Create new JFrame to remove items (books, magazines or comics)
 				RemoveBookView rmLibView = new RemoveBookView(libControl);
 				rmLibView.setVisible(true);
 			}
@@ -46,6 +55,7 @@ public class LibraryView extends JPanel {
 		JButton btnEditarLivro = new JButton("Editar Livro");
 		btnEditarLivro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Create new JFrame to update items (books, magazines or comics)
 				UpdateBookView updateLibView = new UpdateBookView(libControl);
 				updateLibView.setVisible(true);
 			}
@@ -54,6 +64,7 @@ public class LibraryView extends JPanel {
 		JButton btnAdicionarLivro = new JButton("Adicionar Livro");
 		btnAdicionarLivro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Create new JFrame to add items (books, magazines or comics)
 				AddBookView addLibView = new AddBookView(libControl);
 				addLibView.setVisible(true);
 			}
@@ -93,8 +104,5 @@ public class LibraryView extends JPanel {
 					.addContainerGap(233, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
-	}
-
-	private void initComponents() {		
 	}
 }

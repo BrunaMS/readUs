@@ -1,4 +1,5 @@
 package readUs.views;
+import readUs.controller.InitViews;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -6,8 +7,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import readUs.controller.InitViews;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -25,6 +24,13 @@ import javax.swing.JList;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
 
+/**
+ * View usada como padrão para o desenvolvimento de toda a interface com o usuário, definindo 
+ * o padrão de botões e ações realizadas em comum entre todas a demais.
+ * 
+ * @author Bruna Medeiros
+ * @version 1.0 (Abr 2021)
+ */
 public class MainView extends JFrame {
 	JButton goalsButton;
 	JButton libraryButton;
@@ -37,28 +43,46 @@ public class MainView extends JFrame {
 	private JPanel contentPane;
 	private InitViews viewsInitializationControl;
 
+	/**
+	 * Inicializa componentes da interface e define ações a serem tomadas caso um dos botões disponíveis seja pressionado.
+	 */
 	public MainView() {
 		viewsInitializationControl = new InitViews();
 		initComponents();
 		this.setLocationRelativeTo(null);
 	}
 	
+	/**
+	 * Inicializa JFrame com dados das metas de usuário e ações disponíveis para serem executadas.
+	 */
 	private void initGoalFrame(){
 		viewsInitializationControl.initGoalFrame(this, viewsPanel);
 	}
 	
+	/**
+	 * Inicializa JFrame com dados da biblioteca e ações disponíveis para serem executadas em seus itens.
+	 */
 	private void initLibraryFrame(){
 		viewsInitializationControl.initLibraryFrame(this, viewsPanel);
 	}
 	
+	/**
+	 * Inicializa JFrame com dados gerais sobre o usuário.
+	 */
 	private void initOverviewFrame(){
 		viewsInitializationControl.initOverviewFrame(this, viewsPanel);
 	}
 	
+	/**
+	 * Inicializa JFrame com dados da lista de desejos e ações disponíveis para serem executadas em seus itens.
+	 */
 	private void initWishlistFrame(){
 		viewsInitializationControl.initWishlistFrame(this, viewsPanel);
 	}
 	
+	/**
+	 * Define itens ativados ou desativados quando o botão de metas é pressionado.
+	 */
 	public void onGoalsView() {
 		goalsButton.setBackground(Color.WHITE);
 		goalsButton.setEnabled(false);
@@ -66,7 +90,10 @@ public class MainView extends JFrame {
 		wishlistButton.setEnabled(true);
 		overviewButton.setEnabled(true);
 	}
-	
+
+	/**
+	 * Define itens ativados ou desativados quando o botão de bibliotecas é pressionado.
+	 */
 	public void onLibraryView() {
 		libraryButton.setBackground(Color.WHITE);
 		goalsButton.setEnabled(true);
@@ -75,6 +102,9 @@ public class MainView extends JFrame {
 		overviewButton.setEnabled(true);
 	}
 	
+	/**
+	 * Define itens ativados ou desativados quando o botão de lista de desejos é pressionado.
+	 */
 	public void onWishlistView() {
 		wishlistButton.setBackground(Color.WHITE);
 		goalsButton.setEnabled(true);
@@ -82,7 +112,10 @@ public class MainView extends JFrame {
 		wishlistButton.setEnabled(false);
 		overviewButton.setEnabled(true);
 	}
-	
+
+	/**
+	 * Define itens ativados ou desativados quando o botão de visao geral é pressionado.
+	 */
 	public void onOverviewView() {
 		overviewButton.setBackground(Color.WHITE);
 		goalsButton.setEnabled(true);
@@ -91,6 +124,9 @@ public class MainView extends JFrame {
 		overviewButton.setEnabled(false);
 	}
 	
+	/**
+	 * Inicializa todos os componentes do JFrame principal.
+	 */
 	private void initComponents() {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -167,6 +203,9 @@ public class MainView extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 
+	/**
+	 * Seta formato dos botões ao iniciar a lista de desejos.
+	 */
 	public void initWishList() {
 		wishlistButton.setEnabled(false);
 		wishlistButton.setBackground(Color.WHITE);
@@ -178,6 +217,9 @@ public class MainView extends JFrame {
 		goalsButton.setBackground(Color.PINK);
 	}
 
+	/**
+	 * Seta formato dos botões ao iniciar a biblioteca.
+	 */
 	public void initLibrary() {
 		wishlistButton.setEnabled(true);
 		wishlistButton.setBackground(Color.PINK);
@@ -189,6 +231,9 @@ public class MainView extends JFrame {
 		goalsButton.setBackground(Color.PINK);
 	}
 	
+	/**
+	 * Seta formato dos botões ao iniciar as metas.
+	 */
 	public void initGoals() {
 		wishlistButton.setEnabled(true);
 		wishlistButton.setBackground(Color.PINK);
@@ -200,6 +245,9 @@ public class MainView extends JFrame {
 		goalsButton.setBackground(Color.WHITE);
 	}
 	
+	/**
+	 * Seta formato dos botões ao iniciar visão geral.
+	 */
 	public void initOverview() {
 		wishlistButton.setEnabled(true);
 		wishlistButton.setBackground(Color.PINK);

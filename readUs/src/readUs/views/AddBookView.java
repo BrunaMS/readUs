@@ -37,6 +37,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
+/**
+ * Classe para exibição e comunicação entre usuário e o software implementado para adição de obras da biblioteca. 
+ * @author Bruna Medeiros
+ * @version 1.0 (Abr 2021)
+ */
 public class AddBookView extends JFrame {
 	LibraryController libControl;
 	

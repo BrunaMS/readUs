@@ -27,6 +27,11 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Classe para exibição e comunicação entre usuário e o software implementado para remoção de obras da biblioteca. 
+ * @author Bruna Medeiros
+ * @version 1.0 (Abr 2021)
+ */
 public class RemoveBookView extends JFrame {
 
 	private JPanel contentPane;
@@ -35,7 +40,7 @@ public class RemoveBookView extends JFrame {
 	private JComboBox titleComboBox;
 	private JButton deleteBookButton;
 	
-	LibraryController libControl;
+	private LibraryController libControl;
 	private JLabel itemContentLabel;
 
 	/**
@@ -55,6 +60,9 @@ public class RemoveBookView extends JFrame {
 	}
 	
 	
+	/**
+	 * Atualiza componente comboBox com a lista de livros atualizada.
+	 */
 	private void updateTitleComboBox(){
 		String[] books = libControl.getAllBooksName();
 		titleComboBox.removeAllItems();
@@ -65,8 +73,10 @@ public class RemoveBookView extends JFrame {
 		titleComboBox.setSelectedIndex(0);
 	}
 
+
 	/**
-	 * Create the frame.
+	 * View para interação com usuário para remoção de uma obra da biblioteca.
+	 * @param libController: Instância da LibraryController cpara interação entre views.
 	 */
 	public RemoveBookView(LibraryController libController){
 		this.libControl = libController;

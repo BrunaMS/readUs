@@ -43,6 +43,10 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 
+/**
+ * @author bruna
+ *
+ */
 public class UpdateBookView extends JFrame {
 	LibraryController libControl;
 	
