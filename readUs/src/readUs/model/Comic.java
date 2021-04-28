@@ -1,6 +1,12 @@
 package readUs.model;
 import org.json.JSONObject;
-
+/**
+ * Cria os objetos do tipo quadrinho e gera string que fornece os dados 
+ * de um quadrinho.
+ * @author Bruna Medeiros
+ * @version 1.0 (Abril 2021)
+ *
+ */ 
 public class Comic extends Literature{
 
 	private String[] writer;
@@ -10,7 +16,9 @@ public class Comic extends Literature{
 	private String[] colourist;
 	private String[] mainCharacters;
 	
-	// Initializes the class attributes
+	/**
+	 * Inicializa os atributos da classe
+	 */
 	public Comic() {
 		
 	}
@@ -64,6 +72,8 @@ public class Comic extends Literature{
 		this.mainCharacters = mainCharacters;
 	}
 
+	
+	
 	public String toString() {	
 		int i = 0;
 		String output = "\n     ** Dados da Comic **\n";

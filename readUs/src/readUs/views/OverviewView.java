@@ -11,17 +11,22 @@ import javax.swing.JTextField;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
+/**
+ * Interface para a visao geral dos objetivos
+ * @author Beatriz Carolina
+ * @version 1.0 (Abril 2021)
+ *
+ */
 public class OverviewView extends JPanel {
 
 	/**
-	 * Create the panel.
+	 * Cria o painel de visao geral 
 	 */
 	public OverviewView() {
 		initComponents();
 		this.setSize(500, 500);
 		
-		JLabel lblITitle = new JLabel("In\u00EDcio");
+		JLabel lblITitle = new JLabel("Inicio");
 		lblITitle.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		
 		JLabel lblQuote = new JLabel("Os seus livros est\u00E3o te esperando ...");

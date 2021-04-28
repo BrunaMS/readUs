@@ -25,17 +25,24 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * Interface para o CRUD dos objetivos.
+ * @author Beatriz Carolina
+ * @version 1.0 (Abril 2021)
+ *
+ */
 public class GoalsView extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
+	
 	ReadingGoalsController GoalsControl = new ReadingGoalsController();
 
 	public ReadingGoalsController getGoalsControl() {
 		return GoalsControl;
 	}
+	/**
+	 * Painel para o  CRUD dos objetivos
+	 */
+
 
 	public GoalsView() {
 		initComponents();
@@ -51,7 +58,6 @@ public class GoalsView extends JPanel {
 				newWindow.setVisible(true);
 				newWindow.setBounds(100, 100, 600, 500);
 				newWindow.setLocationRelativeTo(null);
-				
 
 			}
 		});
@@ -85,7 +91,7 @@ public class GoalsView extends JPanel {
 		JButton btnDeleteGoals = new JButton("Deletar meta");
 		btnDeleteGoals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeleteGoal deleteGoal = new DeleteGoal(GoalsControl);
+				DeleteGoalView deleteGoal = new DeleteGoalView(GoalsControl);
 				deleteGoal.setVisible(true);
 				JFrame newWindow = new JFrame();
 				newWindow.getContentPane().add(deleteGoal);
