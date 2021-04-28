@@ -58,7 +58,6 @@ public class GoalsView extends JPanel {
 				newWindow.setVisible(true);
 				newWindow.setBounds(100, 100, 600, 500);
 				newWindow.setLocationRelativeTo(null);
-				
 
 			}
 		});

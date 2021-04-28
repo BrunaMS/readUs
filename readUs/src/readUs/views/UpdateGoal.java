@@ -8,6 +8,7 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
 
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import readUs.controller.ReadingGoalsController;
@@ -27,22 +28,35 @@ import javax.swing.text.NumberFormatter;
 
 import java.awt.Color;
 import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
 /**
- * Interface para a atualização dos objetivos.
+ * Interface para a atualizaï¿½ï¿½o dos objetivos.
  * @author Beatriz Carolina
  * @version 1.0 (Abril 2021)
  *
  */
+
+
 public class UpdateGoal extends JPanel {
 	ReadingGoalsController GoalsControl;
 
 	/**
+	 * Fecha o painel apos a atualizacao
+	 */
+	
+	private void closeFrame() {
+		JFrame parent = (JFrame) this.getTopLevelAncestor();
+	    parent.dispose();
+	}
+	
+	/**
 	 *  Painel para a atualizacao dos objetivos
 	 */
+	
 	public UpdateGoal(ReadingGoalsController GoalsControl) {
 		this.GoalsControl = GoalsControl;
 		boolean result = false;
@@ -82,11 +96,6 @@ public class UpdateGoal extends JPanel {
 		JLabel lblEnd = new JLabel("Fim");
 		lblEnd.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblEnd.setVisible(false);
-
-		JLabel lblSucess = new JLabel("Meta alterada ;)");
-		lblSucess.setForeground(new Color(0, 128, 128));
-		lblSucess.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblSucess.setVisible(false);
 
 		
 		JComboBox dayEnd = new JComboBox();
@@ -185,12 +194,6 @@ public class UpdateGoal extends JPanel {
 		});
 		formattedConcludedNumber.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel lblBlankField = new JLabel("0");
-		lblBlankField.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblBlankField.setForeground(new Color(255, 0, 0));
-
-		lblBlankField.setVisible(false);
-
 		JButton saveButton = new JButton("Salvar");
 		saveButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
@@ -255,7 +258,6 @@ public class UpdateGoal extends JPanel {
 				saveButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						String typeGoalField = (String) goalSelection.getSelectedItem();
-						lblBlankField.setVisible(false);
 						GoalsControl.setDetectError(false);
 						GoalsControl.setError("Erros:\n");
 
@@ -349,7 +351,9 @@ public class UpdateGoal extends JPanel {
 										Float.parseFloat(formattedDesiredNumber.getText().replace(".", "")),
 										Float.parseFloat(formattedConcludedNumber.getText().replace(".", "")), EndDate,
 										BegginingDate,index);
-								 lblSucess.setVisible(true);
+								JDialog.setDefaultLookAndFeelDecorated(true);
+								JOptionPane.showMessageDialog(null, "Item adicionado com sucesso! =)");
+								closeFrame();
 							}
 						} else {
 
@@ -382,7 +386,9 @@ public class UpdateGoal extends JPanel {
 							GoalsControl.updateValues(typeGoalField,
 									Float.parseFloat(formattedDesiredNumber.getText().replace(".", "")),
 									Float.parseFloat(formattedConcludedNumber.getText().replace(".", "")),index);
-		                    lblSucess.setVisible(true);
+							JDialog.setDefaultLookAndFeelDecorated(true);
+							JOptionPane.showMessageDialog(null, "Item adicionado com sucesso! =)");
+							closeFrame();
 						}
 					}}
 
@@ -440,18 +446,14 @@ public class UpdateGoal extends JPanel {
 										.addComponent(formattedConcludedNumber, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblBlankField, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(lblEnd, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-											.addGap(18)
-											.addComponent(dayEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.UNRELATED)
-											.addComponent(monthEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.UNRELATED)
-											.addComponent(yearEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-										.addComponent(lblSucess))))
-							.addPreferredGap(ComponentPlacement.RELATED))
+									.addComponent(lblEnd, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(dayEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(monthEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(yearEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addGap(58))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(233)
 							.addComponent(saveButton, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)))
@@ -492,11 +494,7 @@ public class UpdateGoal extends JPanel {
 						.addComponent(dayEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(monthEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(yearEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(23)
-					.addComponent(lblSucess)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblBlankField, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
+					.addGap(109)
 					.addComponent(saveButton)
 					.addGap(44))
 		);
