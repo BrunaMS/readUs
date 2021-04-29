@@ -166,11 +166,6 @@ public class ReadingGoals{
 		}
 		return output;
 	}
-	
-	public static void main(String[] args){
-		
-	}
-	
 }
 
 

@@ -8,15 +8,6 @@ import org.json.JSONObject;
  */ 
 public class Book extends Literature{
 	private String[] author;
-	
-	/**
-	 * Inicializa os atributos da classe
-	 */
-	
-	public Book() {
-		
-	}
-
 
 	// Get and Set
 	public String[] getAuthor() {

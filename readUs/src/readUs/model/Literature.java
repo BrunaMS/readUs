@@ -135,6 +135,9 @@ public abstract class Literature {
 		this.awards[this.numberAwards++] = award;
 	}
 	
+	/**
+	 * Atualiza progresso de acordo com o número de páginas lidas e o número total de páginas da obra.
+	 */
 	private void updateProgress() {
 		this.progress = (float)this.numberPagesRead / (float)this.numberPages;
 	}

@@ -25,13 +25,18 @@ public class ReadingGoalsController {
 	
 	
 	
-//Gets and sets
+	/**
+	 * Verifica se algum erro foi detectado
+	 * @return True, se houve algum erro ou
+	 * 		   False, caso contrÃ¡rio.
+	 */
 	public boolean isDetectError() {
 		return detectError;
 	}
 
 
 
+//Gets and sets
 	public void setDetectError(boolean detectError) {
 		this.detectError = detectError;
 	}
@@ -73,8 +78,8 @@ public class ReadingGoalsController {
 	/**
 	 * Adiciona um novo objetivo aos ja existentes.
 	 * @param typeGoal:parametro do tipo goalType que indica o que se deseja computar com um objetivo pode ser paginas('PAGES'), livros('BOOKS'), capitulos('CHAPTERS') e palavras ('WORDS').
-	 * @param desiredNumber: numero que se deseja alcancar com um certo objetivo (ex. ler 50 páginas).
-	 * @param concludedNumber: numero que ja se alcançou do objetivo.
+	 * @param desiredNumber: numero que se deseja alcancar com um certo objetivo (ex. ler 50 pÃ¡ginas).
+	 * @param concludedNumber: numero que ja se alcanÃ§ou do objetivo.
 	 * @return falso caso o numero maximo de objetivos ja tenha sido extrapolado e verdadeiro caso nao
 	 */
 
@@ -97,10 +102,10 @@ public class ReadingGoalsController {
 	/**
 	 * Adiciona um novo objetivo aos ja existentes.
 	 * @param typeGoal: parametro do tipo goalType que indica o que se deseja computar com um objetivo pode ser paginas('PAGES'), livros('BOOKS'), capitulos('CHAPTERS') e palavras ('WORDS').
-	 * @param desiredNumber: numero que se deseja alcancar com um certo objetivo (ex. ler 50 páginas).
-	 * @param concludedNumber: numero que ja se alcançou do objetivo.
+	 * @param desiredNumber: numero que se deseja alcancar com um certo objetivo (ex. ler 50 paginas).
+	 * @param concludedNumber: numero que ja se alcanÃ§ou do objetivo.
 	 * @param endDate:string que representa a data na qual deseja-se concluir o  objetivo no formato DDMMYYYY.
-	 * @param begginingDate:string que representa data na qual deseja-se começar/começou o objetivo no formato DDMMYYYY.
+	 * @param begginingDate:string que representa data na qual comeÃ§ou ou deseja-se comeÃ§ar o objetivo no formato DDMMYYYY.
 	 * @return falso caso o numero maximo de objetivos ja tenha sido extrapolado e verdadeiro caso nao
 	 */
 	public boolean addGoal(goalType typeGoal, float desiredNumber, float concludedNumber, String endDate, String begginingDate) {
@@ -142,16 +147,13 @@ public class ReadingGoalsController {
 	/**
 	 * Atualiza um objetivo ja existente
 	 * @param typeGoal :parametro do tipo goalType que indica o que se deseja computar com um objetivo pode ser paginas('PAGES'), livros('BOOKS'), capitulos('CHAPTERS') e palavras ('WORDS').
-	 * @param desiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 páginas).
-	 * @param concludedNumber:  numero que ja se alcançou do objetivo.
+	 * @param desiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 paginas).
+	 * @param concludedNumber:  numero que ja se alcanÃ§ou do objetivo.
 	 * @param endDate:string que representa a data na qual deseja-se concluir o  objetivo no formato DDMMYYYY.
-	 * @param begginingDate:string que representa data na qual deseja-se começar/começou o objetivo no formato DDMMYYYY.
+	 * @param begginingDate:string que representa data na qual comeÃ§ou ou deseja-se comeÃ§ar o objetivo no formato DDMMYYYY.
 	 * @param index: indice inteiro que representa o objetivo que se deseja atualizar.
 	 * @return verdadeiro se objetivos foram atualizados com sucesso.
 	 */
-
-	
-
 	public boolean updateGoal(goalType typeGoal, float desiredNumber, float concludedNumber, int index){
 	
 			
@@ -170,8 +172,8 @@ public class ReadingGoalsController {
 	/**
 	 * Atualiza um objetivo ja existente
 	 * @param typeGoal :parametro do tipo goalType que indica o que se deseja computar com um objetivo pode ser paginas('PAGES'), livros('BOOKS'), capitulos('CHAPTERS') e palavras ('WORDS').
-	 * @param desiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 páginas).
-	 * @param concludedNumber:  numero que ja se alcançou do objetivo.
+	 * @param desiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 paginas).
+	 * @param concludedNumber:  numero que ja se alcanÃ§ou do objetivo.
 	 * @param index: indice inteiro que representa o objetivo que se deseja atualizar.
 	 * @return verdadeiro se objetivos foram atualizados com sucesso.
 	 */
@@ -195,8 +197,8 @@ public class ReadingGoalsController {
     /**
      * Salva os valores atualizados pelo usuario
      * @param typeGoalField: string que indica o que se deseja computar com um objetivo pode ser "Paginas", "Livros", "Capitulos" e "Palavras".
-     * @param desiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 páginas).
-	 * @param concludedNumber:  numero que ja se alcançou do objetivo.
+     * @param desiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 pÃ¡ginas).
+	 * @param concludedNumber:  numero que ja se alcanÃ§ou do objetivo.
 	 * @param index: indice inteiro que representa o objetivo que se deseja atualizar.
      */
 	
@@ -223,11 +225,11 @@ public class ReadingGoalsController {
 	/**
      * Salva os valores atualizados pelo usuario
      * @param typeGoalField: string que indica o que se deseja computar com um objetivo pode ser "Paginas", "Livros", "Capitulos" e "Palavras".
-     * @param desiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 páginas).
-	 * @param concludedNumber:  numero que ja se alcançou do objetivo.
+     * @param desiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 pÃ¡ginas).
+	 * @param concludedNumber:  numero que ja se alcanÃ§ou do objetivo.
 	 * @param index: indice inteiro que representa o objetivo que se deseja atualizar.
-	 * @param endDate:string que representa a data na qual deseja-se concluir o  objetivo no formato DDMMYYYY.
-	 * @param begginingDate:string que representa data na qual deseja-se começar/começou o objetivo no formato DDMMYYYY.
+	 * @param endDate:string que representa a data na qual deseja-se concluir o  objetivo no formato ddMMyyyy.
+	 * @param begginingDate:string que representa data na qual comeÃ§ou ou deseja-se comeÃ§ar o objetivo no formato ddMMyyyy.
      */
 	
 	
@@ -253,8 +255,8 @@ public class ReadingGoalsController {
 	/**
      * Salva os valores inseridos na interface pelo usuario
      * @param typeGoalField: string que indica o que se deseja computar com um objetivo pode ser "Paginas", "Livros", "Capitulos" e "Palavras".
-     * @param desiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 páginas).
-	 * @param concludedNumber:  numero que ja se alcançou do objetivo.
+     * @param desiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 paginas).
+	 * @param concludedNumber:  numero que ja se alcanÃ§ou do objetivo.
      */
 	
 
@@ -280,10 +282,10 @@ public class ReadingGoalsController {
 	/**
      * Salva os valores inseridos na interface pelo usuario
      * @param typeGoalField: string que indica o que se deseja computar com um objetivo pode ser "Paginas", "Livros", "Capitulos" e "Palavras".
-     * @param desiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 páginas).
-	 * @param concludedNumber:  numero que ja se alcançou do objetivo.
+     * @param desiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 paginas).
+	 * @param concludedNumber:  numero que ja se alcanï¿½ou do objetivo.
 	 * @param endDate:string que representa a data na qual deseja-se concluir o  objetivo no formato DDMMYYYY.
-	 * @param begginingDate:string que representa data na qual deseja-se começar/começou o objetivo no formato DDMMYYYY.
+	 * @param begginingDate:string que representa data na qual comeÃ§ou ou deseja-se comeÃ§ar o objetivo no formato DDMMYYYY.
      */
 	
 	
@@ -393,8 +395,8 @@ public class ReadingGoalsController {
 
 /**
  * Verifica se o numero desejado pelo usuario e menor que o numero concluido.
- * @param desired: numero que se deseja alcancar com um certo objetivo (ex. ler 50 páginas).
- * @param concluded: numero que ja se alcançou do objetivo.
+ * @param desired: numero que se deseja alcancar com um certo objetivo (ex. ler 50 pï¿½ginas).
+ * @param concluded: numero que ja se alcanÃ§ou do objetivo.
  */
 
 
