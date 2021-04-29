@@ -20,6 +20,23 @@ import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Classe para exibição e comunicação entre usuário e o software implementado para listar itens da biblioteca. 
+ * @author Bruna Medeiros
+ * @version 1.0 (Abr 2021)
+ */
+/**
+ * @author bruna
+ *
+ */
+/**
+ * @author bruna
+ *
+ */
+/**
+ * @author bruna
+ *
+ */
 public class ListBooksView extends JFrame {
 
 	private JPanel contentPane;
@@ -102,11 +119,18 @@ public class ListBooksView extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 	
+	/**
+	 *  Inicializa lista de livros com ordenação padrão (A-Z)
+	 */
 	public void showBooks(){
 		libControl.setSort(sortType.NAME_A_Z);
 		updateList();
 	}
 	
+
+	/**
+	 * Atualiza list de itens da biblioteca
+	 */
 	private void updateList(){
 		this.strBooksName = libControl.getAllBooksName();
 		qntBooks = libControl.getQntBooks();

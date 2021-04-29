@@ -45,6 +45,12 @@ import java.beans.PropertyChangeEvent;
 import java.awt.Color;
 
 /**
+ * Classe para exibição e comunicação entre usuário e o software 
+ * implementado para modificação/atualização de itens da biblioteca. 
+ * @author Bruna Medeiros 
+ * @version 1.0 (Abr 2021)
+ */
+/**
  * @author bruna
  *
  */
@@ -100,6 +106,11 @@ public class UpdateBookView extends JFrame {
 	private JTextField headLineField;
 	private JTextField titleField;
 
+	/**
+	 * Torna visível ou invisível campos relativos à classe Book()
+	 * @param enabled: True, caso deseje ativar os componentes
+	 * 				   False, caso deseje desativar (tornar invisível)
+	 */
 	public void bookFieldsSetVisible(boolean enabled) {
 		titleField.setVisible(enabled);
 		publisherField.setVisible(enabled);
@@ -128,6 +139,11 @@ public class UpdateBookView extends JFrame {
 		bookTypeComboBox.setVisible(enabled);
 	}
 
+	/**
+	 * Torna visível ou invisível campos relativos à classe Magazine()
+	 * @param enabled: True, caso deseje ativar os componentes
+	 * 				   False, caso deseje desativar (tornar invisível)
+	 */
 	public void magazinesFieldsSetVisible(boolean enabled) {
 		titleField.setVisible(enabled);
 		publisherField.setVisible(enabled);
@@ -159,6 +175,11 @@ public class UpdateBookView extends JFrame {
 		bookTypeComboBox.setVisible(enabled);
 	}
 	
+	/**
+	 * Torna visível ou invisível campos relativos à classe Comic()
+	 * @param enabled: True, caso deseje ativar os componentes
+	 * 				   False, caso deseje desativar (tornar invisível)
+	 */
 	public void comicsFieldsSetVisible(boolean enabled) {
 		titleField.setVisible(enabled);
 		publisherField.setVisible(enabled);
@@ -196,10 +217,17 @@ public class UpdateBookView extends JFrame {
 		bookTypeComboBox.setVisible(enabled);
 	}
 	
+	/**
+	 * Fecha Frame de atualização de itens.
+	 */
 	private void closeFrame() {
 		this.dispose();
 	}
 	
+	/**
+	 * Atualiza instância/item de um livro (Book()) dentro da biblioteca (Collection())
+	 * @param item Objeto do tipo Book() que deseja-se atualizar.
+	 */
 	private void updateBookFields(Book item){
 		magazinesFieldsSetVisible(false);
 		comicsFieldsSetVisible(false);
@@ -227,6 +255,10 @@ public class UpdateBookView extends JFrame {
 		authorField.setText(author);
 	}
 	
+	/**
+	 * Atualiza instância/item de um livro (Magazine()) dentro da biblioteca (Collection())
+	 * @param item Objeto do tipo Magazine() que deseja-se atualizar.
+	 */
 	private void updateMagazineFields(Magazine item){
 		bookFieldsSetVisible(false);
 		comicsFieldsSetVisible(false);
@@ -256,6 +288,10 @@ public class UpdateBookView extends JFrame {
 		dateField.setText(item.getCoverDate());
 	}
 	
+	/**
+	 * Atualiza instância/item de um livro (Comic()) dentro da biblioteca (Collection())
+	 * @param item Objeto do tipo Comic() que deseja-se atualizar.
+	 */
 	private void updateComicFields(Comic item){
 		bookFieldsSetVisible(false);
 		magazinesFieldsSetVisible(false);
@@ -314,6 +350,10 @@ public class UpdateBookView extends JFrame {
 		mainCharsField.setText(mainChars);
 	}
 
+	
+	/**
+	 * Atualiza lista de itens da biblioteca
+	 */
 	private void updateTitleComboBox(){
 		String[] books = libControl.getAllBooksName();
 		titleComboBox.removeAllItems();

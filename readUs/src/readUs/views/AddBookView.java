@@ -39,7 +39,7 @@ import javax.swing.event.ChangeEvent;
 import java.awt.Color;
 
 /**
- * Classe para exibição e comunicação entre usuário e o software implementado para adição de obras da biblioteca. 
+ * Classe para exibição e comunicação entre usuário e o software implementado para adição de itens à biblioteca. 
  * @author Bruna Medeiros
  * @version 1.0 (Abr 2021)
  */
@@ -95,6 +95,11 @@ public class AddBookView extends JFrame {
 	private JLabel headlineLabel;
 	private JTextField headLineField;
 
+	/**
+	 * Torna visível ou invisível campos relativos à classe Book()
+	 * @param enabled: True, caso deseje ativar os componentes
+	 * 				   False, caso deseje desativar (tornar invisível)
+	 */
 	public void bookFieldsSetVisible(boolean enabled) {
 		titleField.setVisible(enabled);
 		publisherField.setVisible(enabled);
@@ -120,6 +125,11 @@ public class AddBookView extends JFrame {
 		yearLabel.setVisible(enabled);
 	}
 
+	/**
+	 * Torna visível ou invisível campos relativos à classe Magazine()
+	 * @param enabled: True, caso deseje ativar os componentes
+	 * 				   False, caso deseje desativar (tornar invisível)
+	 */
 	public void magazinesFieldsSetVisible(boolean enabled) {
 		titleField.setVisible(enabled);
 		publisherField.setVisible(enabled);
@@ -147,7 +157,12 @@ public class AddBookView extends JFrame {
 		frequencyLabel.setVisible(enabled);
 		dateLabel.setVisible(enabled);
 	}
-	
+
+	/**
+	 * Torna visível ou invisível campos relativos à classe Comic()
+	 * @param enabled: True, caso deseje ativar os componentes
+	 * 				   False, caso deseje desativar (tornar invisível)
+	 */
 	public void comicsFieldsSetVisible(boolean enabled) {
 		titleField.setVisible(enabled);
 		publisherField.setVisible(enabled);
@@ -183,6 +198,9 @@ public class AddBookView extends JFrame {
 		
 	}
 	
+	/**
+	 * Fecha janela para adição de livros
+	 */
 	private void closeFrame() {
 		this.dispose();
 	}

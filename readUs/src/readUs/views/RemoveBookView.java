@@ -29,7 +29,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 
 /**
- * Classe para exibição e comunicação entre usuário e o software implementado para remoção de obras da biblioteca. 
+ * Classe para exibição e comunicação entre usuário e o software implementado para remoção de itens da biblioteca. 
  * @author Bruna Medeiros
  * @version 1.0 (Abr 2021)
  */
