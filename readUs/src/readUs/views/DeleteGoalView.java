@@ -30,12 +30,12 @@ import java.awt.Color;
  */
 public class DeleteGoalView extends JPanel {
 	ReadingGoalsController GoalsControl;
+	int numberGoals;
 
 	/**
 	 * Painel para remocao de objetivos
 	 * @param GoalsControl: parametro para realizar a interacao entre interface e controle
 	 */
-	int numberGoals;
 	public DeleteGoalView(ReadingGoalsController GoalsControl) {
 		setBackground(Color.WHITE);
 		

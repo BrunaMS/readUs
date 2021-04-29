@@ -149,8 +149,6 @@ public class ReadingGoalsController {
 	 * @param typeGoal :parametro do tipo goalType que indica o que se deseja computar com um objetivo pode ser paginas('PAGES'), livros('BOOKS'), capitulos('CHAPTERS') e palavras ('WORDS').
 	 * @param desiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 paginas).
 	 * @param concludedNumber:  numero que ja se alcançou do objetivo.
-	 * @param endDate:string que representa a data na qual deseja-se concluir o  objetivo no formato DDMMYYYY.
-	 * @param begginingDate:string que representa data na qual começou ou deseja-se começar o objetivo no formato DDMMYYYY.
 	 * @param index: indice inteiro que representa o objetivo que se deseja atualizar.
 	 * @return verdadeiro se objetivos foram atualizados com sucesso.
 	 */
@@ -197,12 +195,10 @@ public class ReadingGoalsController {
     /**
      * Salva os valores atualizados pelo usuario
      * @param typeGoalField: string que indica o que se deseja computar com um objetivo pode ser "Paginas", "Livros", "Capitulos" e "Palavras".
-     * @param desiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 páginas).
-	 * @param concludedNumber:  numero que ja se alcançou do objetivo.
+     * @param DesiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 páginas).
+	 * @param ConcludedNumber:  numero que ja se alcançou do objetivo.
 	 * @param index: indice inteiro que representa o objetivo que se deseja atualizar.
      */
-	
-	
 	public void updateValues(String typeGoalField, float DesiredNumber, float ConcludedNumber,int index) {
 	
 	switch (typeGoalField) {
@@ -225,14 +221,12 @@ public class ReadingGoalsController {
 	/**
      * Salva os valores atualizados pelo usuario
      * @param typeGoalField: string que indica o que se deseja computar com um objetivo pode ser "Paginas", "Livros", "Capitulos" e "Palavras".
-     * @param desiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 páginas).
-	 * @param concludedNumber:  numero que ja se alcançou do objetivo.
+     * @param DesiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 páginas).
+	 * @param ConcludedNumber:  numero que ja se alcançou do objetivo.
 	 * @param index: indice inteiro que representa o objetivo que se deseja atualizar.
 	 * @param endDate:string que representa a data na qual deseja-se concluir o  objetivo no formato ddMMyyyy.
 	 * @param begginingDate:string que representa data na qual começou ou deseja-se começar o objetivo no formato ddMMyyyy.
      */
-	
-	
 	public void updateValues(String typeGoalField, float DesiredNumber, float ConcludedNumber, String endDate, String begginingDate, int index) {
 		
 		switch (typeGoalField) {
@@ -255,11 +249,9 @@ public class ReadingGoalsController {
 	/**
      * Salva os valores inseridos na interface pelo usuario
      * @param typeGoalField: string que indica o que se deseja computar com um objetivo pode ser "Paginas", "Livros", "Capitulos" e "Palavras".
-     * @param desiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 paginas).
-	 * @param concludedNumber:  numero que ja se alcançou do objetivo.
+     * @param DesiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 paginas).
+	 * @param ConcludedNumber:  numero que ja se alcançou do objetivo.
      */
-	
-
 	public void saveValues(String typeGoalField, float DesiredNumber, float ConcludedNumber) {
 	
 	switch (typeGoalField) {
@@ -282,13 +274,11 @@ public class ReadingGoalsController {
 	/**
      * Salva os valores inseridos na interface pelo usuario
      * @param typeGoalField: string que indica o que se deseja computar com um objetivo pode ser "Paginas", "Livros", "Capitulos" e "Palavras".
-     * @param desiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 paginas).
-	 * @param concludedNumber:  numero que ja se alcan�ou do objetivo.
+     * @param DesiredNumber:  numero que se deseja alcancar com um certo objetivo (ex. ler 50 paginas).
+	 * @param ConcludedNumber:  numero que ja se alcan�ou do objetivo.
 	 * @param endDate:string que representa a data na qual deseja-se concluir o  objetivo no formato DDMMYYYY.
 	 * @param begginingDate:string que representa data na qual começou ou deseja-se começar o objetivo no formato DDMMYYYY.
      */
-	
-	
 	public void saveValues(String typeGoalField, float DesiredNumber, float ConcludedNumber, String endDate, String begginingDate) {
 		
 		switch (typeGoalField) {

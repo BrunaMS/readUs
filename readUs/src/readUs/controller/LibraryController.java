@@ -141,6 +141,7 @@ public class LibraryController {
 	}
 	
 	/**
+	 * Adiciona nova comic/hq na biblioteca (classe Collection()).
 	 * @param name: Nome/Título da obra
 	 * @param publisher: Editora
 	 * @param nationality: Nacionalidade da obra
