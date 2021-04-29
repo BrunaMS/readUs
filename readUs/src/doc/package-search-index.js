@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"readUs.controller"},{"l":"readUs.model"},{"l":"readUs.tests"},{"l":"readUs.views"}];updateSearchResults();
